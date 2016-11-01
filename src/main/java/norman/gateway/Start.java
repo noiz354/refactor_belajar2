@@ -60,8 +60,11 @@ public class Start {
 //		template_factory.run(template_factory.hackkerank, template_factory.journeytothemoon);
 
 		// uva problem
+		// racing uva 1234
+		template_factory.run(template_factory.graph, template_factory.racing);
+
 		// critical link - find bridge 
-		template_factory.run(template_factory.graph, template_factory.critical_link);
+//		template_factory.run(template_factory.graph, template_factory.critical_link);
 		// network - find articulation 
 //		template_factory.run(template_factory.graph, template_factory.network);
 		
