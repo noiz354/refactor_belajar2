@@ -1,0 +1,59 @@
+A:BCD;B:AD;D:BG;F:H;G:DEH;E:FGH;H:EG;C:AD. A C 3
+step ke-1, M : A, T : C, adjList : [B,C,D] candle[M] : false
+!(candle[index]) : true && B(index) != C(T)
+step ke-2, M : B, T : A, adjList : [A,D] candle[M] : false
+!(candle[index]) : true && A(index) != A(T)
+step ke-3, M : A, T : B, adjList : [B,C,D] candle[M] : true
+!(candle[index]) : true && B(index) != B(T)
+A 
+step ke-4, M : B, T : A, adjList : [A,D] candle[M] : false
+!(candle[index]) : false && A(index) != A(T)
+!(candle[index]) : true && D(index) != A(T)
+step ke-5, M : D, T : B, adjList : [B,G] candle[M] : false
+!(candle[index]) : true && B(index) != B(T)
+step ke-6, M : B, T : D, adjList : [A,D] candle[M] : true
+!(candle[index]) : false && A(index) != D(T)
+!(candle[index]) : true && D(index) != D(T)
+B 
+step ke-7, M : D, T : B, adjList : [B,G] candle[M] : false
+!(candle[index]) : false && B(index) != B(T)
+!(candle[index]) : true && G(index) != B(T)
+step ke-8, M : G, T : D, adjList : [D,E,H] candle[M] : false
+!(candle[index]) : true && D(index) != D(T)
+step ke-9, M : D, T : G, adjList : [B,G] candle[M] : true
+!(candle[index]) : false && B(index) != G(T)
+!(candle[index]) : true && G(index) != G(T)
+D 
+step ke-10, M : G, T : D, adjList : [D,E,H] candle[M] : false
+!(candle[index]) : false && D(index) != D(T)
+!(candle[index]) : true && E(index) != D(T)
+step ke-11, M : E, T : G, adjList : [F,G,H] candle[M] : false
+!(candle[index]) : true && F(index) != G(T)
+step ke-12, M : F, T : E, adjList : [H] candle[M] : true
+!(candle[index]) : true && H(index) != E(T)
+F 
+step ke-13, M : H, T : F, adjList : [E,G] candle[M] : false
+!(candle[index]) : true && E(index) != F(T)
+step ke-14, M : E, T : H, adjList : [F,G,H] candle[M] : false
+!(candle[index]) : false && F(index) != H(T)
+!(candle[index]) : true && G(index) != H(T)
+step ke-15, M : G, T : E, adjList : [D,E,H] candle[M] : true
+!(candle[index]) : false && D(index) != E(T)
+!(candle[index]) : true && E(index) != E(T)
+G 
+step ke-16, M : E, T : G, adjList : [F,G,H] candle[M] : false
+!(candle[index]) : false && F(index) != G(T)
+!(candle[index]) : false && G(index) != G(T)
+!(candle[index]) : true && H(index) != G(T)
+step ke-17, M : H, T : E, adjList : [E,G] candle[M] : false
+!(candle[index]) : true && E(index) != E(T)
+step ke-18, M : E, T : H, adjList : [F,G,H] candle[M] : true
+!(candle[index]) : false && F(index) != H(T)
+!(candle[index]) : false && G(index) != H(T)
+!(candle[index]) : true && H(index) != H(T)
+E 
+step ke-19, M : H, T : E, adjList : [E,G] candle[M] : false
+!(candle[index]) : false && E(index) != E(T)
+!(candle[index]) : false && G(index) != E(T)
+/H
+
