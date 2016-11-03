@@ -104,7 +104,7 @@ public class PrimMSTSpecialSubTree extends template {
 	}
 	
 	// Union-Find Disjoint Sets Library written in OOP manner, using both path compression and union by rank heuristics
-	class UnionFind {                                              // OOP style
+	public static class UnionFind {                                              // OOP style
 	  private Vector<Integer> p, rank, setSize;
 	  private int numSets;
 
