@@ -96,7 +96,7 @@ public abstract class template_factory {
 		case graph:
 			switch(prob_num){
 			case racing:
-				new Racing();
+				new Racing2();
 				break;
 			case dfscyclic:
 				new DFSCyclicLearn();

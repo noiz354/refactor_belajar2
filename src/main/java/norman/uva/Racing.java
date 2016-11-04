@@ -12,6 +12,7 @@ import static norman.uva.TheseusAndTheMinotaur.N;
 /**
  * Created by normansyahputa on 11/1/16.
  */
+@Deprecated
 public class Racing extends template{
 
     public Racing() {
@@ -100,10 +101,9 @@ public class Racing extends template{
 //                print(integerPairPair);
 //            }
 
-            int zero = getInput().nextInt();
             print((cost-mst_cost));
-//            print("------"+mst_cost+"-----");
         }
+        int zero = getInput().nextInt();
 
 
     }
