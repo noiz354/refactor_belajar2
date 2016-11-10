@@ -60,8 +60,12 @@ public class Start {
 //		template_factory.run(template_factory.hackkerank, template_factory.journeytothemoon);
 
 		// uva problem
+
+		// highway 10147 - minimum spanning subgraph
+		template_factory.run(template_factory.graph, template_factory.highways);
+
 		// racing uva 1234
-		template_factory.run(template_factory.graph, template_factory.racing);
+//		template_factory.run(template_factory.graph, template_factory.racing);
 
 		// critical link - find bridge 
 //		template_factory.run(template_factory.graph, template_factory.critical_link);
