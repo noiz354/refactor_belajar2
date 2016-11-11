@@ -10,7 +10,9 @@ import static java.lang.Math.sqrt;
 
 /**
  * Created by normansyahputa on 11/10/16.
+ * not correct answer {@link Highways2}
  */
+@Deprecated
 public class Highways extends template {
 
     public Highways() {

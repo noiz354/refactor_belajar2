@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -5,108 +6,154 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 import java.util.Vector;
 
+import static java.lang.Math.sqrt;
+
 class Main {
 	public static void main(String[] args) {
 		new Main().go();
 	}
 
 	void go() {
-		D = new edge[100_000];
-		E = new edge[100_000];
+		T = getInput().nextInt();
+		while(T-- > 0){
+			edgeList = new ArrayList<>();
 
-		p = new int[10_001];
-		r = new int[10_001];
+			initP();
 
-		// number of dataset
-		int c = getInput().nextInt();
-		while(c-- >  0) {
-
-			// juction
-			int n = getInput().nextInt();
-
-			// road
-			int m = getInput().nextInt();
-
-			// from 1..n
-			int sum = 0;
-			for (int i = 0; i < m; i++) {
-				edge edge = new edge();
-				edge.x = getInput().nextInt();
-				edge.y = getInput().nextInt();
-				edge.v = getInput().nextInt();
-				D[i] = edge;
-				sum += D[i].v;
+			N = getInput().nextInt();
+			initCoor();
+			for(int i=0;i<N;i++){
+				cx[i] = getInput().nextInt();
+				cy[i] = getInput().nextInt();
 			}
 
-			sort(m);
-
-			init(n);
-
-			for(int i =0;i < m; i++){
-				if(joint(E[i].x, E[i].y)){
-					sum -= E[i].v;
+			for(int i=0;i<N;i++){
+				for( int j=i+1; j<N; j++){
+					int srcX = cx[i];
+					int srcY = cy[i];
+					int dstX = cx[j];
+					int dstY = cy[j];
+					int diffX = srcX - dstX;
+					int diffY = srcY - dstY;
+					double dist = sqrt(diffX * diffX + diffY * diffY);
+					edgeList.add(new Edge(dist, i, j));
 				}
 			}
 
-			System.out.println(sum);
-		}
-		getInput().nextInt();
-	}
+			initSet(N);
 
-	boolean joint(int x, int y){
-		x = find(x);
-		y = find(y);
-		if(x != y){
-			if(r[x] > r[y]) {
-				r[x] += r[y];
-				p[y] = x;
-			}else{
-				r[y] += r[x];
-				p[x] = y;
+			M = getInput().nextInt();
+
+			int d = 0;
+
+			for(int i=0;i<M;i++){
+//            while(M-- > 0){
+				x = getInput().nextInt();
+				y = getInput().nextInt();
+
+				if(!isSameSet(x-1,y-1)) {
+					unionSet(x - 1, y - 1);
+					d++;
+				}
 			}
-			return true;
-		}
-		return false;
-	}
 
-	int find(int x){
-		return p[x] == x ? x : (p[x] = find(p[x]));
-	}
+			if(d == N-1) {
+				System.out.println("No new highways need\n");
+				continue;
+			}
 
-	void init(int n){
-		int i;
-		for(i=0;i<=n;i++){
-			p[i] = i;
-			r[i] = 1;
-		}
-	}
+			Collections.sort(edgeList);
 
-	void sort(int n){
-		int w[] = new int[1001];
-		int i;
-		for(i=0;i<n;i++){
-			w[D[i].v]++;
-		}
-		for(i=999; i>=0;i--){
-			w[i] += w[i+1];
-		}
-		for(i=0;i<n;i++){
-			E[--w[D[i].v]] = D[i];
+			for(int i=0;i<edgeList.size() && d < N-1;i++){
+				Edge edge = edgeList.get(i);
+				if(!isSameSet(edge.x, edge.y)){
+					System.out.println((edge.x+1)+" "+(edge.y+1));
+					d++;
+					unionSet(edge.x, edge.y);
+				}
+			}
+			if(T > 0){
+				System.out.println();
+			}
 		}
 	}
 
-	class edge{
-		int x,y,v;
+	int findSet(int i){
+		if(p.get(i)==i){
+			return i;
+		}else{
+			p.set(i, findSet(p.get(i)));
+			return p.get(i);
+		}
+	}
+
+	boolean isSameSet(int i, int j){
+//        if(debug){
+//            print(i+" "+j);
+//        }
+		return findSet(i) == findSet(j);
+	}
+
+	void unionSet(int i, int j){
+		if(!isSameSet(i, j)){
+			int set = findSet(j);
+			int set1 = findSet(i);
+			p.set(set1, set);
+		}
+		_sc--;
+	}
+
+	int T, x, y, N, M;
+	List<Integer> p;
+
+	int cx[], cy[];
+	private int _sc;
+
+	void initSet(int N){
+		for(int i=0;i<N;i++){
+			p.set(i, i);
+		}
+		_sc = N;
+	}
+
+	void initCoor(){
+		cx = new int[750];
+		cy = new int[750];
+	}
+
+	void initP(){
+		p = new ArrayList<>();
+		for(int i=0;i<1000;i++){
+			p.add(0);
+		}
+	}
+
+	List<Edge> edgeList = new ArrayList<>();
+	class Edge implements Comparable<Edge>{
+		double weight;
+		int x, y;
+
+		public Edge(double weight, int x, int y) {
+			this.weight = weight;
+			this.x = x;
+			this.y = y;
+		}
 
 		@Override
 		public String toString() {
-			return x + "," + y +"," + v;
+			return
+					weight +
+							": " + x +
+							"," + y;
+		}
+
+		@Override
+		public int compareTo(Edge o) {
+			if(this.weight < o.weight) return -1;
+			if(this.weight > o.weight) return 1;
+			return 0;
 		}
 	}
-
-	edge D[], E[];
-
-	int p[], r[];
 
 	Scanner input;
 	

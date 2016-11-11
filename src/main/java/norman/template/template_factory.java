@@ -96,7 +96,7 @@ public abstract class template_factory {
 		case graph:
 			switch(prob_num){
 				case highways:
-					new Highways();
+					new Highways2();
 					break;
 			case racing:
 				new Racing2();
