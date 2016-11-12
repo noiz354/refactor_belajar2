@@ -246,7 +246,7 @@ public class Highways2 extends template {
     }
 
     List<Edge> edgeList = new ArrayList<>();
-    class Edge implements Comparable<Edge>{
+    private class Edge implements Comparable<Edge>{
         double weight;
         int x, y;
 

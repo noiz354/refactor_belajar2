@@ -61,8 +61,11 @@ public class Start {
 
 		// uva problem
 
+		// acm and blackout - second minimum spanning tree
+		template_factory.run(template_factory.graph, template_factory.acm_and_blackout);
+
 		// highway 10147 - minimum spanning subgraph
-		template_factory.run(template_factory.graph, template_factory.highways);
+//		template_factory.run(template_factory.graph, template_factory.highways);
 
 		// racing uva 1234
 //		template_factory.run(template_factory.graph, template_factory.racing);
