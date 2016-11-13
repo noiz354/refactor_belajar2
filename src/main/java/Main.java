@@ -1,4 +1,5 @@
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,76 +16,91 @@ class Main {
 
 	void go() {
 		T = getInput().nextInt();
-		while(T-- > 0){
-			edgeList = new ArrayList<>();
 
-			initP();
+		while(T-- > 0){
+			edges = new ArrayList<>();
 
 			N = getInput().nextInt();
-			initCoor();
-			for(int i=0;i<N;i++){
-				cx[i] = getInput().nextInt();
-				cy[i] = getInput().nextInt();
-			}
-
-			for(int i=0;i<N;i++){
-				for( int j=i+1; j<N; j++){
-					int srcX = cx[i];
-					int srcY = cy[i];
-					int dstX = cx[j];
-					int dstY = cy[j];
-					int diffX = srcX - dstX;
-					int diffY = srcY - dstY;
-					double dist = sqrt(diffX * diffX + diffY * diffY);
-					edgeList.add(new Edge(dist, i, j));
-				}
-			}
-
-			initSet(N);
-
 			M = getInput().nextInt();
 
-			int d = 0;
-
 			for(int i=0;i<M;i++){
-//            while(M-- > 0){
-				x = getInput().nextInt();
-				y = getInput().nextInt();
+				int x = getInput().nextInt();
+				int y = getInput().nextInt();
+				int cost = getInput().nextInt();
 
-				if(!isSameSet(x-1,y-1)) {
-					unionSet(x - 1, y - 1);
-					d++;
-				}
+				edges.add(new Edge(cost, x-1,y-1));
 			}
 
-			if(d == N-1) {
-				System.out.println("No new highways need\n");
-				continue;
+			// sort based on non-decreasing
+			Collections.sort(edges);
+
+			bannedEdgeFlag = new int[300][300];// lookup for flag
+			bannedEdges = new ArrayList<>();
+
+			// init parent
+			p = new int[300];
+			for(int i=0;i<p.length;i++){
+				p[i] = i;
 			}
 
-			Collections.sort(edgeList);
-
-			for(int i=0;i<edgeList.size() && d < N-1;i++){
-				Edge edge = edgeList.get(i);
+			int mst = 0, secondMst = Integer.MAX_VALUE;
+			for(int i=0;i<edges.size();i++){
+				Edge edge = edges.get(i);
 				if(!isSameSet(edge.x, edge.y)){
-					System.out.println((edge.x+1)+" "+(edge.y+1));
-					d++;
 					unionSet(edge.x, edge.y);
+					mst += edge.weight;
+
+					bannedEdgeFlag[edge.x][edge.y] = 2;
+					bannedEdges.add(edge);
+				}else{
+					bannedEdgeFlag[edge.x][edge.y] = 1;
 				}
 			}
-			if(T > 0){
-				System.out.println();
+			System.out.print(mst+" ");
+
+			// exclude banned edge then rerun the mst without
+			for(int i=0;i<bannedEdges.size();i++){
+				Edge blEdge = bannedEdges.get(i);
+				bannedEdgeFlag[blEdge.x][blEdge.y] = 3;
+
+				// init parent - reset parent - reset mst calc
+				int tempMst = 0;
+				for(int k=0;k<p.length;k++){
+					p[k] = k;
+				}
+
+				for(int j=0;j<edges.size();j++){
+					Edge edge = edges.get(j);
+					if(bannedEdgeFlag[edge.x][edge.y] == 3)
+						continue;
+
+					if(!isSameSet(edge.x, edge.y)){
+						unionSet(edge.x, edge.y);
+						tempMst += edge.weight;
+					}
+				}
+				if(tempMst >= mst && tempMst <= secondMst){
+					secondMst = tempMst;
+				}
+//                print("#"+(i+1)+" : "+mst);
+				bannedEdgeFlag[blEdge.x][blEdge.y] = 2;
 			}
+			System.out.println(secondMst);
+
 		}
 	}
 
+	private int T,
+			N,// number of school in the city 3 < N < 100
+			M;// number of possible connections among them
+
+	List<Edge> edges;
+	List<Edge> bannedEdges;
+	int[][] bannedEdgeFlag;
+	int[] p;
+
 	int findSet(int i){
-		if(p.get(i)==i){
-			return i;
-		}else{
-			p.set(i, findSet(p.get(i)));
-			return p.get(i);
-		}
+		return p[i] == i ? i : (p[i] = findSet(p[i]));
 	}
 
 	boolean isSameSet(int i, int j){
@@ -96,41 +112,12 @@ class Main {
 
 	void unionSet(int i, int j){
 		if(!isSameSet(i, j)){
-			int set = findSet(j);
-			int set1 = findSet(i);
-			p.set(set1, set);
-		}
-		_sc--;
-	}
-
-	int T, x, y, N, M;
-	List<Integer> p;
-
-	int cx[], cy[];
-	private int _sc;
-
-	void initSet(int N){
-		for(int i=0;i<N;i++){
-			p.set(i, i);
-		}
-		_sc = N;
-	}
-
-	void initCoor(){
-		cx = new int[750];
-		cy = new int[750];
-	}
-
-	void initP(){
-		p = new ArrayList<>();
-		for(int i=0;i<1000;i++){
-			p.add(0);
+			p[findSet(i)] = findSet(j);
 		}
 	}
 
-	List<Edge> edgeList = new ArrayList<>();
-	class Edge implements Comparable<Edge>{
-		double weight;
+	private class Edge implements Comparable<Edge>{
+		double weight;// 1 < Cost < 300
 		int x, y;
 
 		public Edge(double weight, int x, int y) {
@@ -154,6 +141,7 @@ class Main {
 			return 0;
 		}
 	}
+
 
 	Scanner input;
 	
