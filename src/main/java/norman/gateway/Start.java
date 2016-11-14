@@ -61,8 +61,11 @@ public class Start {
 
 		// uva problem
 
+		// transportation system 11228 - tricky problem
+		template_factory.run(template_factory.graph, template_factory.transportation_system);
+
 		// acm and blackout - minimax - minimum spanning tree
-		template_factory.run(template_factory.graph, template_factory.audiophobia);
+//		template_factory.run(template_factory.graph, template_factory.audiophobia);
 
 		// acm and blackout - second minimum spanning tree
 //		template_factory.run(template_factory.graph, template_factory.acm_and_blackout);
