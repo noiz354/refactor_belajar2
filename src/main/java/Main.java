@@ -1,12 +1,8 @@
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Scanner;
-import java.util.Vector;
+import java.util.*;
 
+import static java.lang.Math.max;
 import static java.lang.Math.sqrt;
 
 class Main {
@@ -15,89 +11,122 @@ class Main {
 	}
 
 	void go() {
-		T = getInput().nextInt();
+		T = 1;
+		A: while(true){
+			C = getInput().nextInt();
+			S = getInput().nextInt();
+			Q = getInput().nextInt();
 
-		while(T-- > 0){
-			edges = new ArrayList<>();
-
-			N = getInput().nextInt();
-			M = getInput().nextInt();
-
-			for(int i=0;i<M;i++){
-				int x = getInput().nextInt();
-				int y = getInput().nextInt();
-				int cost = getInput().nextInt();
-
-				edges.add(new Edge(cost, x-1,y-1));
+			if(C==0&&S==0&&Q==0){
+				break A;
+			}else{
+				if(T>1)
+					System.out.println();
 			}
 
-			// sort based on non-decreasing
+			tree = new ArrayList<>();
+			for(i=0;i<C;i++){
+				tree.add(new ArrayList<>());
+			}
+
+			weightTable = new int[101][101];
+			edges = new ArrayList<>();
+			for(i=0;i<S;i++){
+				c1 = getInput().nextInt();
+				c2 = getInput().nextInt();
+				d = getInput().nextInt();
+
+				edges.add(new Edge(d, c1-1, c2-1));
+
+			}
+
 			Collections.sort(edges);
 
-			bannedEdgeFlag = new int[300][300];// lookup for flag
-			bannedEdges = new ArrayList<>();
-
-			// init parent
-			p = new int[300];
-			for(int i=0;i<p.length;i++){
+			p = new int[101];
+			for(i=0;i<p.length;i++){
 				p[i] = i;
 			}
 
-			int mst = 0, secondMst = Integer.MAX_VALUE;
-			for(int i=0;i<edges.size();i++){
+			// build MST
+			for(i=0;i<edges.size();i++){
 				Edge edge = edges.get(i);
 				if(!isSameSet(edge.x, edge.y)){
 					unionSet(edge.x, edge.y);
-					mst += edge.weight;
 
-					bannedEdgeFlag[edge.x][edge.y] = 2;
-					bannedEdges.add(edge);
-				}else{
-					bannedEdgeFlag[edge.x][edge.y] = 1;
+					weightTable[edge.x][edge.y] = (int) edge.weight;
+					weightTable[edge.y][edge.x] = (int) edge.weight;
+
+					List<Integer> adj = tree.get(edge.x);
+					adj.add(edge.y);
+					tree.set(edge.x, adj);
+
+					adj = tree.get(edge.y);
+					adj.add(edge.x);
+					tree.set(edge.y, adj);
 				}
 			}
-			System.out.print(mst+" ");
 
-			// exclude banned edge then rerun the mst without
-			for(int i=0;i<bannedEdges.size();i++){
-				Edge blEdge = bannedEdges.get(i);
-				bannedEdgeFlag[blEdge.x][blEdge.y] = 3;
 
-				// init parent - reset parent - reset mst calc
-				int tempMst = 0;
-				for(int k=0;k<p.length;k++){
-					p[k] = k;
-				}
+			System.out.println("Case #"+(T++));
+			// transverse tree
+			for(i=0;i<Q;i++){
+				s = getInput().nextInt()-1;
+				e = getInput().nextInt()-1;
 
-				for(int j=0;j<edges.size();j++){
-					Edge edge = edges.get(j);
-					if(bannedEdgeFlag[edge.x][edge.y] == 3)
-						continue;
-
-					if(!isSameSet(edge.x, edge.y)){
-						unionSet(edge.x, edge.y);
-						tempMst += edge.weight;
+				sol = 0;
+				findThePath = false;
+				visited = new boolean[C];
+				edgeRank = new PriorityQueue<>(new Comparator<Integer>() {
+					@Override
+					public int compare(Integer o1, Integer o2) {
+						return o2 - o1;
 					}
-				}
-				if(tempMst >= mst && tempMst <= secondMst){
-					secondMst = tempMst;
-				}
-//                print("#"+(i+1)+" : "+mst);
-				bannedEdgeFlag[blEdge.x][blEdge.y] = 2;
-			}
-			System.out.println(secondMst);
+				});
 
+//                dfs(s);
+				if(query(s, e)){
+					System.out.println(sol);
+				}else{
+					System.out.println("no path");
+				}
+
+			}
 		}
 	}
 
-	private int T,
-			N,// number of school in the city 3 < N < 100
-			M;// number of possible connections among them
+	boolean query(int c1, int c2){
+		if(c1 == c2) return true;
 
+		visited[c1] = true;
+
+		boolean found = false;
+		for(int i=0;i<tree.get(c1).size() && !found;i++){
+			if(!visited[tree.get(c1).get(i)]){
+				found = query(tree.get(c1).get(i), c2);
+				if(found) {
+					sol = max(sol, weightTable[c1][tree.get(c1).get(i)]);
+				}
+			}
+		}
+		return found;
+	}
+
+	boolean findThePath;
+	boolean[] visited;
+	List<List<Integer>> tree;
+
+	int[][] weightTable;
+	Queue<Integer> edgeRank;
 	List<Edge> edges;
-	List<Edge> bannedEdges;
-	int[][] bannedEdgeFlag;
+	int C, // number of crossing <= 100
+			S, // number of street <= 1_000
+			Q; // number of queries <= 10_000
+
+	int s,e, sol;
+	int i, j;
+	int c1, c2, d;
 	int[] p;
+	int T;
 
 	int findSet(int i){
 		return p[i] == i ? i : (p[i] = findSet(p[i]));

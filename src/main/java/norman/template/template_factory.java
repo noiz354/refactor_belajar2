@@ -50,7 +50,7 @@ public abstract class template_factory {
 			, dfscyclic = 41, ledtest = 42, banknotquiteocr = 43, ancientmessages = 44, llgiocodellx = 45
 			, hmactokopedia = 46, binarysearchtree = 47, continents = 48, battleship = 49, orderingtask = 50
 			, ordering = 51, followingorder = 52, reconnecting = 53, prim_mst_special_subtree = 54, network = 55
-			, critical_link = 56, racing = 57, highways = 58, acm_and_blackout = 59;
+			, critical_link = 56, racing = 57, highways = 58, acm_and_blackout = 59, audiophobia=60;
 
     public static final void run(int category, int prob_num){
 		switch (category) {
@@ -95,6 +95,9 @@ public abstract class template_factory {
 			break;
 		case graph:
 			switch(prob_num){
+				case audiophobia:
+					new AudioPhobia();
+					break;
 				case acm_and_blackout:
 					new ACMAndBlackout();
 					break;
