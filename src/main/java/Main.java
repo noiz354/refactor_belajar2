@@ -11,150 +11,73 @@ class Main {
 	}
 
 	void go() {
-		T = 1;
-		A: while(true){
-			C = getInput().nextInt();
-			S = getInput().nextInt();
-			Q = getInput().nextInt();
+		while(true){
+			m = getInput().nextInt();
+			n = getInput().nextInt();
 
-			if(C==0&&S==0&&Q==0){
-				break A;
-			}else{
-				if(T>1)
-					System.out.println();
+			if(m==0&&n==0)
+				break;
+
+			par = new int[200_000];
+			for(int i=0;i<m;i++){
+				par[i] = i;
+			}
+			ed = new ArrayList<>();
+
+			total = 0;
+			max_save = 0;
+			for(int i=0;i<n;i++){
+				int x = getInput().nextInt();
+				int y = getInput().nextInt();
+				int z = getInput().nextInt();
+
+				ed.add(new Edge(z, x, y));
+
+				total += z;
 			}
 
-			tree = new ArrayList<>();
-			for(i=0;i<C;i++){
-				tree.add(new ArrayList<>());
-			}
+			Collections.sort(ed);
 
-			weightTable = new int[101][101];
-			edges = new ArrayList<>();
-			for(i=0;i<S;i++){
-				c1 = getInput().nextInt();
-				c2 = getInput().nextInt();
-				d = getInput().nextInt();
+			for(int i=0;i<ed.size();i++){
+				int u = findPar(ed.get(i).x);
+				int v = findPar(ed.get(i).y);
 
-				edges.add(new Edge(d, c1-1, c2-1));
-
-			}
-
-			Collections.sort(edges);
-
-			p = new int[101];
-			for(i=0;i<p.length;i++){
-				p[i] = i;
-			}
-
-			// build MST
-			for(i=0;i<edges.size();i++){
-				Edge edge = edges.get(i);
-				if(!isSameSet(edge.x, edge.y)){
-					unionSet(edge.x, edge.y);
-
-					weightTable[edge.x][edge.y] = (int) edge.weight;
-					weightTable[edge.y][edge.x] = (int) edge.weight;
-
-					List<Integer> adj = tree.get(edge.x);
-					adj.add(edge.y);
-					tree.set(edge.x, adj);
-
-					adj = tree.get(edge.y);
-					adj.add(edge.x);
-					tree.set(edge.y, adj);
+				if(!isSameSet(ed.get(i).x, ed.get(i).y)){
+					max_save+=ed.get(i).weight;
+					par[v] = par[u];
 				}
 			}
 
-
-			System.out.println("Case #"+(T++));
-			// transverse tree
-			for(i=0;i<Q;i++){
-				s = getInput().nextInt()-1;
-				e = getInput().nextInt()-1;
-
-				sol = 0;
-				findThePath = false;
-				visited = new boolean[C];
-				edgeRank = new PriorityQueue<>(new Comparator<Integer>() {
-					@Override
-					public int compare(Integer o1, Integer o2) {
-						return o2 - o1;
-					}
-				});
-
-//                dfs(s);
-				if(query(s, e)){
-					System.out.println(sol);
-				}else{
-					System.out.println("no path");
-				}
-
-			}
+			System.out.println((int)(total-max_save));
 		}
-	}
-
-	boolean query(int c1, int c2){
-		if(c1 == c2) return true;
-
-		visited[c1] = true;
-
-		boolean found = false;
-		for(int i=0;i<tree.get(c1).size() && !found;i++){
-			if(!visited[tree.get(c1).get(i)]){
-				found = query(tree.get(c1).get(i), c2);
-				if(found) {
-					sol = max(sol, weightTable[c1][tree.get(c1).get(i)]);
-				}
-			}
-		}
-		return found;
-	}
-
-	boolean findThePath;
-	boolean[] visited;
-	List<List<Integer>> tree;
-
-	int[][] weightTable;
-	Queue<Integer> edgeRank;
-	List<Edge> edges;
-	int C, // number of crossing <= 100
-			S, // number of street <= 1_000
-			Q; // number of queries <= 10_000
-
-	int s,e, sol;
-	int i, j;
-	int c1, c2, d;
-	int[] p;
-	int T;
-
-	int findSet(int i){
-		return p[i] == i ? i : (p[i] = findSet(p[i]));
 	}
 
 	boolean isSameSet(int i, int j){
 //        if(debug){
 //            print(i+" "+j);
 //        }
-		return findSet(i) == findSet(j);
+		return findPar(i) == findPar(j);
 	}
 
-	void unionSet(int i, int j){
-		if(!isSameSet(i, j)){
-			p[findSet(i)] = findSet(j);
-		}
+	int findPar(int x){
+		return (par[x]==x)?x:(par[x] = findPar(par[x]));
 	}
+
+	private double max_save, total;
+	int par[];
+	List<Edge> ed;
+	int m, n;
 
 	private class Edge implements Comparable<Edge>{
-		double weight;// 1 < Cost < 300
-		int x, y;
 
+		double weight;// 1 < Cost < 300
+
+		int x, y;
 		public Edge(double weight, int x, int y) {
 			this.weight = weight;
 			this.x = x;
 			this.y = y;
 		}
-
 		@Override
 		public String toString() {
 			return
@@ -169,6 +92,7 @@ class Main {
 			if(this.weight > o.weight) return 1;
 			return 0;
 		}
+
 	}
 
 
