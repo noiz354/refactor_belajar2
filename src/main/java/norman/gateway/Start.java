@@ -61,8 +61,11 @@ public class Start {
 
 		// uva problem
 
+		// standard mst problem - but the weightest from its choice
+		template_factory.run(template_factory.graph, template_factory.heavy_cycle_edges);
+
 		// standard mst problem - but difficult to understand
-		template_factory.run(template_factory.graph, template_factory.dark_roads);
+//		template_factory.run(template_factory.graph, template_factory.dark_roads);
 
 		// transportation system 11228 - tricky problem
 //		template_factory.run(template_factory.graph, template_factory.transportation_system);

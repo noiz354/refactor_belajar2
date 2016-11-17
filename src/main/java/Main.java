@@ -1,5 +1,4 @@
 
-
 import java.util.*;
 
 import static java.lang.Math.max;
@@ -12,50 +11,60 @@ class Main {
 
 	void go() {
 		while(true){
-			m = getInput().nextInt();
 			n = getInput().nextInt();
+			m = getInput().nextInt();
 
-			if(m==0&&n==0)
+			if(n==0&&m==0){
 				break;
+			}
 
-			par = new int[200_000];
+			edgeList = new ArrayList<>();
 			for(int i=0;i<m;i++){
+				u = getInput().nextInt();
+				v = getInput().nextInt();
+				w = getInput().nextInt();
+
+				edgeList.add(new Edge(w, u,v));
+			}
+
+			Collections.sort(edgeList);
+
+			par = new int[1_001];
+			for(int i=0;i<n;i++){
 				par[i] = i;
 			}
-			ed = new ArrayList<>();
 
-			total = 0;
-			max_save = 0;
-			for(int i=0;i<n;i++){
-				int x = getInput().nextInt();
-				int y = getInput().nextInt();
-				int z = getInput().nextInt();
+			rank = new PriorityQueue<>(new Comparator<Double>() {
+				@Override
+				public int compare(Double o1, Double o2) {
+					return Double.compare(o1, o2);
+				}
+			});
 
-				ed.add(new Edge(z, x, y));
+			for(int i=0;i<m;i++){
 
-				total += z;
-			}
-
-			Collections.sort(ed);
-
-			for(int i=0;i<ed.size();i++){
-				int u = findPar(ed.get(i).x);
-				int v = findPar(ed.get(i).y);
-
-				if(!isSameSet(ed.get(i).x, ed.get(i).y)){
-					max_save+=ed.get(i).weight;
-					par[v] = par[u];
+				Edge edge = edgeList.get(i);
+				if(!isSameSet(edge.x, edge.y)){
+					par[findPar(edge.y)] = par[findPar(edge.x)];
+				}else{
+					rank.add(edge.weight);
 				}
 			}
 
-			System.out.println((int)(total-max_save));
+			int size = rank.size();
+			if(size==0){
+				System.out.println("forest");
+			}else {
+				for (int i = 0; i < size; i++) {
+					double value = rank.remove();
+					System.out.print(((int)value+((i!=size-1)?" ":"")));
+				}
+				System.out.println();
+			}
 		}
 	}
 
 	boolean isSameSet(int i, int j){
-//        if(debug){
-//            print(i+" "+j);
-//        }
 		return findPar(i) == findPar(j);
 	}
 
@@ -63,21 +72,23 @@ class Main {
 		return (par[x]==x)?x:(par[x] = findPar(par[x]));
 	}
 
-	private double max_save, total;
+	private int n, // 1-1_000
+			m,// 0-25_000
+			u,v,w;
 	int par[];
-	List<Edge> ed;
-	int m, n;
+	Queue<Double> rank;
 
+	List<Edge> edgeList = new ArrayList<>();
 	private class Edge implements Comparable<Edge>{
-
-		double weight;// 1 < Cost < 300
-
+		double weight;
 		int x, y;
+
 		public Edge(double weight, int x, int y) {
 			this.weight = weight;
 			this.x = x;
 			this.y = y;
 		}
+
 		@Override
 		public String toString() {
 			return
@@ -92,10 +103,8 @@ class Main {
 			if(this.weight > o.weight) return 1;
 			return 0;
 		}
-
 	}
-
-
+	
 	Scanner input;
 	
 	Scanner getInput() {
