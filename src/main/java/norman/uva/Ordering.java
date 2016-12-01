@@ -20,13 +20,13 @@ public class Ordering extends template {
 	Map<Character, Boolean> vis;
 
 	public Ordering() {
-		super("Ordering", "Ordering", LINUX);		
+		super("Ordering", "Ordering", LINUX, false);
 	}
 
 	@Override
 	public void doSomething() {
-		int T = 1;//getInput().nextInt();
-		getInput().nextLine();
+		int T = getInput().nextInt();// 1;
+//		getInput().nextLine();
 		while(T-->0){
 //			System.out.println(T);
 			
@@ -71,9 +71,13 @@ public class Ordering extends template {
 				adj.set(from-'A', setAgain);
 			}
 			
-			print(adj);
+//			print(adj);
+			getInput().nextLine();
 			
-			dfs("");
+			if(!dfs("")){
+				System.out.println("NO");
+			}
+			System.out.println();
 			
 //			String alphabet = getInput().nextLine();
 //			String constraint = getInput().nextLine();
@@ -81,25 +85,66 @@ public class Ordering extends template {
 //			System.out.println(alphabet +" "+constraint);
 		}
 	}
-	
-	void dfs(String path){
-		printVisited();
-		System.out.println();
-		if(path.length() == characters.size()){
-			System.out.println(path);
-			return;
+
+	/*@Override
+	public void doSomething() {
+		testPrintTab("");
+	}
+	static boolean vi[] = new boolean[4];
+
+	String testPrintTab(String text){
+		if(text.length()==4){
+			System.out.println(text);
+			return text;
 		}
+		int startIndex  = -1;
+		for(int i=0;i<4;i++){
+			if(!vi[i]) {
+				vi[i] = true;
+				if(startIndex==-1){
+					startIndex = i;
+				}
+				printTab(i);
+				System.out.println("index ke-"+i+" : "+text+""+i);
+				testPrintTab(text+"" + i);
+				vi[i] = false;
+			}
+		}
+		return text;
+	}*/
+
+	void printTab(int index){
+		while(index-->0){
+			System.out.print(" ");
+		}
+	}
+
+	boolean dfs(String path){
+//		printVisited();
+//		System.out.println();
+		if(path.length() == characters.size()){
+			char c = path.charAt(0);
+			System.out.print(c);
+			for(int i=1;i<path.length();i++){
+				System.out.print(" "+path.charAt(i));
+			}
+			System.out.println();
+			return true;
+		}
+		boolean ans = false;
 		for(int i=0;i<characters.size();i++){// iterate semua element. 
 			if(!vis.get(characters.get(i))){// check apakah sudah divisited atau belum ? 
 				if(valid(characters.get(i))){
 					vis.put(characters.get(i), true);
-					System.out.println("path "+ path
-							+" index "+i+" > i ="+(char)characters.get(i));
-					dfs(path+characters.get(i));
+//					printTab(path.length());
+//					System.out.println("path "+ path
+//							+" index "+i+" > i ="+(char)characters.get(i));
+					ans = dfs(path+characters.get(i)) || ans;
 					vis.put(characters.get(i), false);
 				}
 			}
 		}
+		return ans;
 	}
 	
 	void printVisited(){

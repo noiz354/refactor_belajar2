@@ -62,7 +62,7 @@ public class Start {
 		// uva problem
 
 		// standard mst problem - but the weightest from its choice
-		template_factory.run(template_factory.graph, template_factory.heavy_cycle_edges);
+//		template_factory.run(template_factory.graph, template_factory.heavy_cycle_edges);
 
 		// standard mst problem - but difficult to understand
 //		template_factory.run(template_factory.graph, template_factory.dark_roads);
@@ -175,7 +175,7 @@ public class Start {
 //		template_factory.run(template_factory.graph, template_factory.orderingtask);
 		
 		// alike topological sort uva 872
-//		template_factory.run(template_factory.graph, template_factory.ordering);
+		template_factory.run(template_factory.graph, template_factory.ordering);
 
 		// SRIN Sotong exerices 2015
 

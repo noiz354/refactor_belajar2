@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import norman.template.template;
+import norman.template.template_utility;
 
 /**
  * 
@@ -74,10 +75,20 @@ public class FollowingOrder extends template {
 			
 			// read backwards
 			for(int i=ts.size()-1;i>=0;i--){
-				System.out.print(unmap.get(ts.get(i))+" ");
+				print(unmap.get(ts.get(i))+" ");
+//				System.out.print(unmap.get(ts.get(i))+" ");
 			}
-			System.out.println();
+			println("");
+//			System.out.println();
 		}
+	}
+
+	private void print(Object o){
+		template_utility.print(getOutput(), o.toString(), false, true);
+	}
+
+	private void println(Object o){
+		template_utility.print(getOutput(), o.toString(), true, true);
 	}
 
 }

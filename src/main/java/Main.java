@@ -10,100 +10,108 @@ class Main {
 	}
 
 	void go() {
-		while(true){
-			n = getInput().nextInt();
-			m = getInput().nextInt();
+		int T = getInput().nextInt();// 1;
+//		getInput().nextLine();
+		while(T-->0){
+//			System.out.println(T);
 
-			if(n==0&&m==0){
+			characters = new ArrayList<>();
+			adj = new LinkedList<>();
+
+			while(getInput().hasNext("[A-Z]")){
+				String character = "";
+				character = getInput().next("[A-Z]");
+//				System.out.println(character);
+				characters.add(character.charAt(0));
+			}
+
+			vis = new HashMap<>();
+
+			for(int i='A';i<'Z';i++){
+				vis.put((char)i, false);
+			}
+
+			//[START] build adjacency list by reading input
+//			for(Character c : characters){
+			for(int i=0;i<='Z';i++){// 'A'
+//				System.out.println(i);
+				adj.add(new LinkedList<Character>());
+			}
+			//[END] build adjacency list by reading input
+
+			String s = getInput().nextLine();
+			System.out.println(s);
+
+			/*while(getInput().hasNext("[A-Z]<[A-Z]")){
+				String temp = "";
+				temp +=getInput().next("[A-Z]<[A-Z]");
+//				System.out.println(temp);
+				char from = temp.charAt(0);
+				char to = temp.charAt(2);
+//				System.out.println(from+" > "+ to);
+				List<Character> setAgain = adj.get(from);// 'A'
+				setAgain.add((char)(to));//-'A'
+//				System.out.println(setAgain);
+				adj.set(from-'A', setAgain);
+			}
+
+			if(!dfs("")){
+				System.out.println("NO");
+			}*/
+
+			System.out.println();
+
+			if(!getInput().hasNext())
 				break;
+
+//			String alphabet = getInput().nextLine();
+//			String constraint = getInput().nextLine();
+//			getInput().next();
+//			System.out.println(alphabet +" "+constraint);
+		}
+	}
+
+	boolean dfs(String path){
+//		printVisited();
+//		System.out.println();
+		if(path.length() == characters.size()){
+			char c = path.charAt(0);
+			System.out.print(c);
+			for(int i=1;i<path.length();i++){
+				System.out.print(" "+path.charAt(i));
 			}
-
-			edgeList = new ArrayList<>();
-			for(int i=0;i<m;i++){
-				u = getInput().nextInt();
-				v = getInput().nextInt();
-				w = getInput().nextInt();
-
-				edgeList.add(new Edge(w, u,v));
-			}
-
-			Collections.sort(edgeList);
-
-			par = new int[1_001];
-			for(int i=0;i<n;i++){
-				par[i] = i;
-			}
-
-			rank = new PriorityQueue<>(new Comparator<Double>() {
-				@Override
-				public int compare(Double o1, Double o2) {
-					return Double.compare(o1, o2);
-				}
-			});
-
-			for(int i=0;i<m;i++){
-
-				Edge edge = edgeList.get(i);
-				if(!isSameSet(edge.x, edge.y)){
-					par[findPar(edge.y)] = par[findPar(edge.x)];
-				}else{
-					rank.add(edge.weight);
+			System.out.println();
+			return true;
+		}
+		boolean ans = false;
+		for(int i=0;i<characters.size();i++){// iterate semua element.
+			if(!vis.get(characters.get(i))){// check apakah sudah divisited atau belum ?
+				if(valid(characters.get(i))){
+					vis.put(characters.get(i), true);
+//					printTab(path.length());
+//					System.out.println("path "+ path
+//							+" index "+i+" > i ="+(char)characters.get(i));
+					ans = dfs(path+characters.get(i)) || ans;
+					vis.put(characters.get(i), false);
 				}
 			}
-
-			int size = rank.size();
-			if(size==0){
-				System.out.println("forest");
-			}else {
-				for (int i = 0; i < size; i++) {
-					double value = rank.remove();
-					System.out.print(((int)value+((i!=size-1)?" ":"")));
-				}
-				System.out.println();
-			}
 		}
+		return ans;
 	}
 
-	boolean isSameSet(int i, int j){
-		return findPar(i) == findPar(j);
+	boolean valid(char e){
+		// iterate semua yang berhubungan dengan e
+		for(int i=0;i<adj.get(e).size();i++){
+			// check apakah adj list member sudah ada yang ke visited.
+			if(vis.get(adj.get(e).get(i)))
+				return false;
+		}
+		return true;
 	}
 
-	int findPar(int x){
-		return (par[x]==x)?x:(par[x] = findPar(par[x]));
-	}
-
-	private int n, // 1-1_000
-			m,// 0-25_000
-			u,v,w;
-	int par[];
-	Queue<Double> rank;
-
-	List<Edge> edgeList = new ArrayList<>();
-	private class Edge implements Comparable<Edge>{
-		double weight;
-		int x, y;
-
-		public Edge(double weight, int x, int y) {
-			this.weight = weight;
-			this.x = x;
-			this.y = y;
-		}
-
-		@Override
-		public String toString() {
-			return
-					weight +
-							": " + x +
-							"," + y;
-		}
-
-		@Override
-		public int compareTo(Edge o) {
-			if(this.weight < o.weight) return -1;
-			if(this.weight > o.weight) return 1;
-			return 0;
-		}
-	}
+	List<Character> characters;
+	List<List<Character>> adj;
+	Map<Character, Boolean> vis;
 	
 	Scanner input;
 	
