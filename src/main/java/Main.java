@@ -12,7 +12,8 @@ class Main {
 	void go() {
 		int T = getInput().nextInt();// 1;
 //		getInput().nextLine();
-		while(T-->0){
+		for(int test=0;test<T;test++){
+//		while(T-->=1){
 //			System.out.println(T);
 
 			characters = new ArrayList<>();
@@ -40,12 +41,12 @@ class Main {
 			//[END] build adjacency list by reading input
 
 			String s = getInput().nextLine();
-			System.out.println(s);
+			String e = getInput().nextLine();
+//			System.out.println(s+" "+e);
 
-			/*while(getInput().hasNext("[A-Z]<[A-Z]")){
-				String temp = "";
-				temp +=getInput().next("[A-Z]<[A-Z]");
-//				System.out.println(temp);
+			String[] split = e.split(" ");
+			for(String temp : split){
+				System.out.println(temp);
 				char from = temp.charAt(0);
 				char to = temp.charAt(2);
 //				System.out.println(from+" > "+ to);
@@ -57,17 +58,9 @@ class Main {
 
 			if(!dfs("")){
 				System.out.println("NO");
-			}*/
+			}
 
-			System.out.println();
 
-			if(!getInput().hasNext())
-				break;
-
-//			String alphabet = getInput().nextLine();
-//			String constraint = getInput().nextLine();
-//			getInput().next();
-//			System.out.println(alphabet +" "+constraint);
 		}
 	}
 
