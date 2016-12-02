@@ -51,7 +51,7 @@ public class Start {
 //		template_factory.run(template_factory.hackkerank, template_factory.rushmurderer);
 		
 		// following order - uva 124
-//		template_factory.run(template_factory.uva, template_factory.followingorder);
+		template_factory.run(template_factory.uva, template_factory.followingorder);
 		
 		// UVa 00908 - Re-connecting
 //		template_factory.run(template_factory.graph, template_factory.reconnecting);
@@ -175,7 +175,7 @@ public class Start {
 //		template_factory.run(template_factory.graph, template_factory.orderingtask);
 		
 		// alike topological sort uva 872
-		template_factory.run(template_factory.graph, template_factory.ordering);
+//		template_factory.run(template_factory.graph, template_factory.ordering);
 
 		// SRIN Sotong exerices 2015
 

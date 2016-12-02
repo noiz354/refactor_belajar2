@@ -1,8 +1,6 @@
 package norman.uva;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import norman.template.template;
 import norman.template.template_utility;
@@ -13,73 +11,65 @@ import norman.template.template_utility;
  * https://f0rth3r3c0rd.wordpress.com/2012/01/25/uva-124-following-orders/
  */
 public class FollowingOrder extends template {
-	
-	final static int UNVISITED = -1, VISITED = 2;
-	
-	int[] dfs_num;
-	List<List<Integer>> adjList;
-	HashMap<String, Integer> map;
-	HashMap<Integer, String> unmap;
-	List<Integer> ts; // global vector to store topsort in reverse order
+
+	 LinkedList<Integer>[] G;
+	 int[] indegree;
+	 static int[] map = new int[128];
+	 char[] unmap;
+	 int n;
+	 StringBuilder out;
+	 char[] res;
+
+	public  void dfs(int left) {
+		if (left == 0)
+			out.append(new String(res) + '\n');
+		for (int i = 0; i < n; i++) {
+			if (indegree[i] == 0) {
+				indegree[i] = -1;
+				res[n - left] = unmap[i];
+				for (int j : G[i])
+					indegree[j]--;
+				dfs(left - 1);
+				for (int j : G[i])
+					indegree[j]++;
+				indegree[i] = 0;
+			}
+		}
+	}
 
 	public FollowingOrder() {
 		super("FollowingOrder", "FollowingOrder", LINUX);
 	}
-	
-	void dfs2(int u){
-		dfs_num[u] = VISITED;
-		for(int j=0;j<adjList.get(u).size();j++){
-			int v = adjList.get(u).get(j);
-			if(dfs_num[v] == UNVISITED){
-				dfs2(v);
-			}
-		}
-		ts.add(u);
-	}
-
 	@Override
 	public void doSomething() {
-		while(getInput().hasNext()){
+		boolean flag = false;
+		while (getInput().hasNext()) {
+			if (flag)
+				System.out.println();
+			flag = true;
 			String[] symb = getInput().nextLine().split(" ");
-			String[] cmp = getInput().nextLine().split(" ");
-			
-			ts = new ArrayList<>();
-			
-			dfs_num = new int[symb.length];
-			for(int i=0;i<dfs_num.length;i++){
-				dfs_num[i] = UNVISITED;
+			String[] comp = getInput().nextLine().split(" ");
+			Arrays.sort(symb);
+			out = new StringBuilder();
+			n = symb.length;
+			unmap = new char[n];
+			G = new LinkedList[symb.length];
+			indegree = new int[symb.length];
+			for (int i = 0; i < G.length; i++)
+				G[i] = new LinkedList<Integer>();
+			for (int i = 0; i < symb.length; i++) {
+				map[symb[i].charAt(0)] = i;
+				unmap[i] = symb[i].charAt(0);
 			}
-			
-			map = new HashMap<>();
-			unmap = new HashMap<>();
-			for(int i=0;i<symb.length;i++){
-				map.put(symb[i], i);
-				unmap.put(i, symb[i]);
+			res = new char[n];
+			for (int i = 0; i < comp.length; i += 2) {
+				int s = map[comp[i].charAt(0)];
+				int t = map[comp[i + 1].charAt(0)];
+				indegree[t]++;
+				G[s].add(t);
 			}
-			
-			adjList = new ArrayList<>();
-			for(int i=0;i<symb.length;i++)
-				adjList.add(new ArrayList<>());
-					
-			for(int i=0;i<cmp.length;i+=2){
-				adjList
-					.get(map.get(cmp[i]))
-					.add(map.get(cmp[i+1]));
-			}
-			
-			for(int i=0;i<symb.length;i++){
-				if(dfs_num[i] == UNVISITED){
-					dfs2(i);
-				}
-			}
-			
-			// read backwards
-			for(int i=ts.size()-1;i>=0;i--){
-				print(unmap.get(ts.get(i))+" ");
-//				System.out.print(unmap.get(ts.get(i))+" ");
-			}
-			println("");
-//			System.out.println();
+			dfs(n);
+			System.out.print(out);
 		}
 	}
 

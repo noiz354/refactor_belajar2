@@ -1,118 +1,89 @@
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.*;
 
 import static java.lang.Math.max;
 import static java.lang.Math.sqrt;
 
 class Main {
+	static LinkedList<Integer>[] G;
+	static int[] indegree;
+	static int[] map = new int[128];
+	static char[] unmap;
+	static int n;
+	static StringBuilder out;
+	static char[] res;
+
+	public static void dfs(int left) {
+		if (left == 0)
+			out.append(new String(res) + '\n');
+		for (int i = 0; i < n; i++) {
+			if (indegree[i] == 0) {
+				indegree[i] = -1;
+				res[n - left] = unmap[i];
+				for (int j : G[i])
+					indegree[j]--;
+				dfs(left - 1);
+				for (int j : G[i])
+					indegree[j]++;
+				indegree[i] = 0;
+			}
+		}
+	}
+
 	public static void main(String[] args) {
-		new Main().go();
-	}
-
-	void go() {
-		int T = getInput().nextInt();// 1;
-//		getInput().nextLine();
-		for(int test=0;test<T;test++){
-//		while(T-->=1){
-//			System.out.println(T);
-
-			characters = new ArrayList<>();
-			adj = new LinkedList<>();
-
-			while(getInput().hasNext("[A-Z]")){
-				String character = "";
-				character = getInput().next("[A-Z]");
-//				System.out.println(character);
-				characters.add(character.charAt(0));
+		Scanner in = new Scanner(System.in);
+		boolean flag = false;
+		while (in.hasNext()) {
+			if (flag)
+				System.out.println();
+			flag = true;
+			String[] symb = in.nextLine().split(" ");
+			String[] comp = in.nextLine().split(" ");
+			Arrays.sort(symb);
+			out = new StringBuilder();
+			n = symb.length;
+			unmap = new char[n];
+			G = new LinkedList[symb.length];
+			indegree = new int[symb.length];
+			for (int i = 0; i < G.length; i++)
+				G[i] = new LinkedList<Integer>();
+			for (int i = 0; i < symb.length; i++) {
+				map[symb[i].charAt(0)] = i;
+				unmap[i] = symb[i].charAt(0);
 			}
-
-			vis = new HashMap<>();
-
-			for(int i='A';i<'Z';i++){
-				vis.put((char)i, false);
+			res = new char[n];
+			for (int i = 0; i < comp.length; i += 2) {
+				int s = map[comp[i].charAt(0)];
+				int t = map[comp[i + 1].charAt(0)];
+				indegree[t]++;
+				G[s].add(t);
 			}
-
-			//[START] build adjacency list by reading input
-//			for(Character c : characters){
-			for(int i=0;i<='Z';i++){// 'A'
-//				System.out.println(i);
-				adj.add(new LinkedList<Character>());
-			}
-			//[END] build adjacency list by reading input
-
-			String s = getInput().nextLine();
-			String e = getInput().nextLine();
-//			System.out.println(s+" "+e);
-
-			String[] split = e.split(" ");
-			for(String temp : split){
-				System.out.println(temp);
-				char from = temp.charAt(0);
-				char to = temp.charAt(2);
-//				System.out.println(from+" > "+ to);
-				List<Character> setAgain = adj.get(from);// 'A'
-				setAgain.add((char)(to));//-'A'
-//				System.out.println(setAgain);
-				adj.set(from-'A', setAgain);
-			}
-
-			if(!dfs("")){
-				System.out.println("NO");
-			}
-
-
+			dfs(n);
+			System.out.print(out);
 		}
 	}
 
-	boolean dfs(String path){
-//		printVisited();
-//		System.out.println();
-		if(path.length() == characters.size()){
-			char c = path.charAt(0);
-			System.out.print(c);
-			for(int i=1;i<path.length();i++){
-				System.out.print(" "+path.charAt(i));
-			}
-			System.out.println();
-			return true;
-		}
-		boolean ans = false;
-		for(int i=0;i<characters.size();i++){// iterate semua element.
-			if(!vis.get(characters.get(i))){// check apakah sudah divisited atau belum ?
-				if(valid(characters.get(i))){
-					vis.put(characters.get(i), true);
-//					printTab(path.length());
-//					System.out.println("path "+ path
-//							+" index "+i+" > i ="+(char)characters.get(i));
-					ans = dfs(path+characters.get(i)) || ans;
-					vis.put(characters.get(i), false);
-				}
-			}
-		}
-		return ans;
-	}
-
-	boolean valid(char e){
-		// iterate semua yang berhubungan dengan e
-		for(int i=0;i<adj.get(e).size();i++){
-			// check apakah adj list member sudah ada yang ke visited.
-			if(vis.get(adj.get(e).get(i)))
-				return false;
-		}
-		return true;
-	}
-
-	List<Character> characters;
-	List<List<Character>> adj;
-	Map<Character, Boolean> vis;
+//	public static void main(String[] args) throws IOException {
+//		new Main().go();
+//	}
+//
+//	void go() throws IOException {
+//
+//	}
 	
 	Scanner input;
+	BufferedReader reader;
 	
-	Scanner getInput() {
+	BufferedReader getInput() {
 		if(input==null){
 			input = new Scanner(System.in);
+			reader = new BufferedReader(new InputStreamReader(System.in));
 		}
-		return input;
+		return reader;
 	}
 	
 }
