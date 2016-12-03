@@ -51,7 +51,7 @@ public class Start {
 //		template_factory.run(template_factory.hackkerank, template_factory.rushmurderer);
 		
 		// following order - uva 124
-		template_factory.run(template_factory.uva, template_factory.followingorder);
+//		template_factory.run(template_factory.uva, template_factory.followingorder);
 		
 		// UVa 00908 - Re-connecting
 //		template_factory.run(template_factory.graph, template_factory.reconnecting);
@@ -202,5 +202,11 @@ public class Start {
 		
 		// binary search tree example
 		// template_factory.run(template_factory.unknown, template_factory.binarysearchtree);
+
+		// general knowledge
+//		template_factory.run(template_factory.graph, template_factory.kahn_topological_sort);
+
+		// uva 11060 - beverages
+		template_factory.run(template_factory.graph, template_factory.beverages);
 	}
 }
