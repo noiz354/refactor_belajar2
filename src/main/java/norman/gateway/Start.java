@@ -10,6 +10,10 @@ import norman.template.template_factory;
 public class Start {
 	public static void main(String[] args) {
 		// hackerrank
+
+		// shortest reach 2
+		template_factory.run(template_factory.graph, template_factory.shortestreach2);
+
 		// Prim's (MST) : Special Subtree
 //		template_factory.run(template_factory.greedy, template_factory.prim_mst_special_subtree);
 		
@@ -207,6 +211,6 @@ public class Start {
 //		template_factory.run(template_factory.graph, template_factory.kahn_topological_sort);
 
 		// uva 11060 - beverages
-		template_factory.run(template_factory.graph, template_factory.beverages);
+//		template_factory.run(template_factory.graph, template_factory.beverages);
 	}
 }

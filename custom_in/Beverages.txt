@@ -1,0 +1,14 @@
+5
+misanthropy
+bruising
+aria
+inelegant
+tourism
+7
+aria tourism
+misanthropy bruising
+bruising tourism
+bruising tourism
+misanthropy inelegant
+bruising aria
+misanthropy inelegant

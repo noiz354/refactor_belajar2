@@ -1,19 +1,6 @@
 package norman.template;
 
-import norman.hackerrank.AVeryBigSum;
-import norman.hackerrank.CountLuck;
-import norman.hackerrank.DiagonalDifference;
-import norman.hackerrank.EvenTree;
-import norman.hackerrank.GridChallenge;
-import norman.hackerrank.IntroSorting;
-import norman.hackerrank.JourneyToTheMoon;
-import norman.hackerrank.PascalTriangle;
-import norman.hackerrank.PrimMSTSpecialSubTree;
-import norman.hackerrank.QuickSortInPlace;
-import norman.hackerrank.ReformatTheDate;
-import norman.hackerrank.RustMurderer;
-import norman.hackerrank.ShortestReach;
-import norman.hackerrank.VisitedCell;
+import norman.hackerrank.*;
 import norman.srin.algorithm.BiColoring;
 import norman.srin.algorithm.Bomberman;
 import norman.srin.algorithm.BugHunters;
@@ -51,9 +38,9 @@ public abstract class template_factory {
 			, hmactokopedia = 46, binarysearchtree = 47, continents = 48, battleship = 49, orderingtask = 50
 			, ordering = 51, followingorder = 52, reconnecting = 53, prim_mst_special_subtree = 54, network = 55
 			, critical_link = 56, racing = 57, highways = 58, acm_and_blackout = 59, audiophobia=60, transportation_system = 61
-			,dark_roads = 62, heavy_cycle_edges = 63, kahn_topological_sort = 64, beverages=65;
+			,dark_roads = 62, heavy_cycle_edges = 63, kahn_topological_sort = 64, beverages=65, shortestreach2=66;
 
-	public static final void run(int category, int prob_num){
+    public static final void run(int category, int prob_num){
 		switch (category) {
 		case unknown:
 			switch (prob_num) {
@@ -96,6 +83,9 @@ public abstract class template_factory {
 			break;
 		case graph:
 			switch(prob_num){
+				case shortestreach2:
+					new ShortestReach2();
+					break;
 				case beverages:
 					new Beverages();
 					break;
