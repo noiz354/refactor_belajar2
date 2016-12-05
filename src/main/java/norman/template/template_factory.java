@@ -39,7 +39,7 @@ public abstract class template_factory {
 			, ordering = 51, followingorder = 52, reconnecting = 53, prim_mst_special_subtree = 54, network = 55
 			, critical_link = 56, racing = 57, highways = 58, acm_and_blackout = 59, audiophobia=60, transportation_system = 61
 			,dark_roads = 62, heavy_cycle_edges = 63, kahn_topological_sort = 64, beverages=65, shortestreach2=66
-			, word_transformation = 67;
+			, word_transformation = 67, davis_staircase =68;
 
     public static final void run(int category, int prob_num){
 		switch (category) {
@@ -57,9 +57,12 @@ public abstract class template_factory {
 			break;
 		case dynamic_programming:
 			switch(prob_num){
-			case coinchangedp:
-				new CoinChangeDP();
-				break;
+				case davis_staircase:
+					new DarvisStaircase();
+					break;
+				case coinchangedp:
+					new CoinChangeDP();
+					break;
 			}
 			break;
 		case greedy:
