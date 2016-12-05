@@ -11,8 +11,8 @@ public class Start {
 	public static void main(String[] args) {
 		// hackerrank
 
-		// shortest reach 2
-		template_factory.run(template_factory.graph, template_factory.shortestreach2);
+		// shortest reach 2 - testcase 7 failed - input output reading
+//		template_factory.run(template_factory.graph, template_factory.shortestreach2);
 
 		// Prim's (MST) : Special Subtree
 //		template_factory.run(template_factory.greedy, template_factory.prim_mst_special_subtree);
@@ -64,6 +64,9 @@ public class Start {
 //		template_factory.run(template_factory.hackkerank, template_factory.journeytothemoon);
 
 		// uva problem
+
+		// word transformation - uva 429
+		template_factory.run(template_factory.graph, template_factory.word_transformation);
 
 		// standard mst problem - but the weightest from its choice
 //		template_factory.run(template_factory.graph, template_factory.heavy_cycle_edges);

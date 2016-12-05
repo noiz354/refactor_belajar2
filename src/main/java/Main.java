@@ -14,105 +14,116 @@ class Main {
 
 	void go() throws IOException {
 		Reader.init(System.in);
-		int T = Reader.nextInt();
-		while(T-- > 0){
+		String s = getInput().nextLine();
+		int T = Integer.parseInt(s);
+		// read blank line
+		getInput().nextLine();
 
-			int N = Reader.nextInt();
-			int M = Reader.nextInt();
+		while(T-->0){
+			adjList = new HashMap<>();
+			visited = new HashMap<>();
 
-			adjList = new ArrayList<>();
-			for(int i=0;i<N;i++){
-				List<IntegerPair> neighbor
-						= new ArrayList<>();
-				adjList.add(neighbor);
-			}
+			while(true){
+				String dic = getInput().nextLine();
+//            println(dic);
+				if(dic.equals("*"))
+					break;
 
-			for(int i=0;i<M;i++){
-				int u = Reader.nextInt()-1;
-				int v = Reader.nextInt()-1;
-				int w = Reader.nextInt();
-
-//                adjList.get(u).add(new IntegerPair(v,w));
-				List<IntegerPair> bef = adjList.get(u);
-				bef.add(new IntegerPair(v,w));
-				adjList.set(u, bef);
-
-				bef = adjList.get(v);
-				bef.add(new IntegerPair(u,w));
-				adjList.set(v, bef);
-			}
-
-			int s = Reader.nextInt()-1;
-
-			// dijkstra routine
-			List<Integer> dist = new ArrayList<>();
-			dist.addAll(Collections.nCopies(N, INF));// INF = 1*10^9 not MAX_INT to avoid overflow
-			dist.set(s, 0);
-			PriorityQueue<IntegerPair> pq = new PriorityQueue<>(1,
-					(i,j)->( i.first - j.first ));
-
-			// sort based on increasing distance
-			pq.offer(new IntegerPair(0,s));
-
-			while(!pq.isEmpty()){// main loop
-				IntegerPair top = pq.poll();// greedy: pick shortest unvisited vertex
-				int d = top.first;
-				int u = top.second;
-
-				// we want to process vertex u only once but we can
-				if(d > dist.get(u))// This check is importatn !
-					continue;
-
-				Iterator<IntegerPair> it = adjList.get(u).iterator();
-				while(it.hasNext()){// all outgoind edges from u
-					IntegerPair p = it.next();
-					int v = p.first;
-					int weight_u_v = p.second;
-					// if can relax
-					if(dist.get(u) + weight_u_v < dist.get(v)){
-						dist.set(v, dist.get(u)+weight_u_v); // relax
-						pq.offer(new IntegerPair(dist.get(v), v));
-					}
-
+				List<String> adj = null;
+				if(adjList.get(dic)!=null){
+					adj = adjList.get(dic);
+				}else{
+					adj = new ArrayList<>();
+					adjList.put(dic, adj);
 				}
-			}
 
-			boolean firstPrint = false;
-			for(int i=0;i<N;i++){
-				if(s==i){
-					continue;
-				}else {
-					if(!firstPrint){
-						if(dist.get(i)==INF){
-							System.out.print("-1");
-						}else {
-							System.out.print(dist.get(i));
+				Iterator<String> it = adjList.keySet().iterator();
+				while(it.hasNext()){
+					String key = it.next();
+					if(dic.equals(key))
+						continue;
+
+					int diff = 0;
+//                int length = dic.length() > key.length() ? key.length() : dic.length();
+					if(dic.length() == key.length()){
+						for(int i=0;i<dic.length();i++){
+							if(key.charAt(i)!=dic.charAt(i)){
+								diff++;
+							}
 						}
-						firstPrint = !firstPrint;
-					}else{
-						if(dist.get(i)==INF){
-							System.out.print(" -1");
-						}else {
-							System.out.print(" " + dist.get(i));
+
+						if(diff == 1){
+							List<String> adj2 = null;
+							if(adjList.get(key)!=null){
+								adj2 = adjList.get(key);
+							}else{
+								adj2 = new ArrayList<>();
+								adjList.put(key, adj2);
+							}
+
+							adj.add(key);
+							adjList.put(dic, adj);
+
+							adj2.add(dic);
+							adjList.put(key, adj2);
 						}
 					}
 				}
 			}
-			System.out.println();
+
+//            printAdjList();
+
+			String line = getInput().nextLine();
+			while(!line.equals("")){
+				String[] q = line.split(" ");
+//                println(Arrays.toString(q));
+
+				initVisited();
+//            visited.clear();
+				System.out.println(q[0]+" "+q[1]+" "+bfs(q[0],q[1]));
+
+				if(!getInput().hasNext())
+					break;
+				line = getInput().nextLine();
+				if(line.equals("")){
+					break;
+				}
+			}
+
+			if(T!=0)
+				System.out.println("");
 		}
 	}
 
-	static final int INF = 1000000000;
-	List<List<IntegerPair>> adjList;
+	int bfs(String start, String to){
+		Queue<String> s = new LinkedList<>();
+		s.offer(start);
+		visited.put(start, 0);
+		while(!s.isEmpty()){
+			String top = s.poll();
+			if(top.equals(to))
+				return visited.get(top);
+			int total = adjList.get(top).size();
+			for(int i=0;i<total;i++){
+				if(visited.get(adjList.get(top).get(i))==0){
+					visited.put(adjList.get(top).get(i), visited.get(top)+1);
+					s.offer(adjList.get(top).get(i));
+				}
+			}
+		}
+		return visited.get(to);
+	}
 
-	static class IntegerPair{
-		public int first,second;
-
-		public IntegerPair(int first, int second) {
-			this.first = first;
-			this.second = second;
+	void initVisited(){
+		for(Iterator<String> it = adjList.keySet().iterator();it.hasNext();){
+			String next = it.next();
+			List<String> adj = adjList.get(next);
+			visited.put(next, 0);
 		}
 	}
+
+	Map<String, List<String>> adjList;
+	Map<String, Integer> visited;
 
 	/** Class for buffered reading int and double values */
 	static class Reader {
@@ -129,6 +140,7 @@ class Main {
 		/** get next word */
 		static String next() throws IOException {
 			while ( ! tokenizer.hasMoreTokens() ) {
+				//TODO add check for eof if necessary
 				tokenizer = new StringTokenizer(
 						reader.readLine() );
 			}
