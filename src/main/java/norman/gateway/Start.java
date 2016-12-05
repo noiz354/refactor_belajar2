@@ -11,8 +11,11 @@ public class Start {
 	public static void main(String[] args) {
 		// hackerrank
 
+        // balanced brackets
+        template_factory.run(template_factory.hackkerank, template_factory.balanced_brackets);
+
 		// recursive
-		template_factory.run(template_factory.dynamic_programming, template_factory.davis_staircase);
+//		template_factory.run(template_factory.dynamic_programming, template_factory.davis_staircase);
 
 		// shortest reach 2 - testcase 7 failed - input output reading
 //		template_factory.run(template_factory.graph, template_factory.shortestreach2);
