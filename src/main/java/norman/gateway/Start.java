@@ -11,8 +11,11 @@ public class Start {
 	public static void main(String[] args) {
 		// hackerrank
 
+		// greedy florist
+		template_factory.run(template_factory.hackkerank, template_factory.greedy_florist);
+
 		// candies
-		template_factory.run(template_factory.hackkerank, template_factory.candies);
+//		template_factory.run(template_factory.hackkerank, template_factory.candies);
 
 		// sherlock and the cose
 //		template_factory.run(template_factory.hackkerank, template_factory.sherlock_and_the_cost);

@@ -156,18 +156,18 @@ class Main {
 		}
 	}
 
-	Scanner input;
 	BufferedReader reader;
 	Reader getInput2(){
+		reader = new BufferedReader(new InputStreamReader(System.in));
 		return new Reader();
 	}
-	
+
+	Scanner input;
 	Scanner getInput() {
 		if(input==null){
 			input = new Scanner(System.in);
-			reader = new BufferedReader(new InputStreamReader(System.in));
 		}
 		return input;
 	}
-	
+
 }
