@@ -11,8 +11,11 @@ public class Start {
 	public static void main(String[] args) {
 		// hackerrank
 
-        // balanced brackets
-        template_factory.run(template_factory.hackkerank, template_factory.balanced_brackets);
+		// sherlock and the cose
+		template_factory.run(template_factory.hackkerank, template_factory.sherlock_and_the_cost);
+
+        // balanced brackets - failed
+//        template_factory.run(template_factory.hackkerank, template_factory.balanced_brackets);
 
 		// recursive
 //		template_factory.run(template_factory.dynamic_programming, template_factory.davis_staircase);

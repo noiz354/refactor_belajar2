@@ -39,9 +39,9 @@ public abstract class template_factory {
 			, ordering = 51, followingorder = 52, reconnecting = 53, prim_mst_special_subtree = 54, network = 55
 			, critical_link = 56, racing = 57, highways = 58, acm_and_blackout = 59, audiophobia=60, transportation_system = 61
 			,dark_roads = 62, heavy_cycle_edges = 63, kahn_topological_sort = 64, beverages=65, shortestreach2=66
-			, word_transformation = 67, davis_staircase =68, balanced_brackets = 69;
+			, word_transformation = 67, davis_staircase =68, balanced_brackets = 69, sherlock_and_the_cost=70;
 
-	public static final void run(int category, int prob_num){
+    public static final void run(int category, int prob_num){
 		switch (category) {
 		case unknown:
 			switch (prob_num) {
@@ -310,6 +310,10 @@ public abstract class template_factory {
 			break;
 		case hackkerank:
 			switch (prob_num) {
+				case sherlock_and_the_cost:
+					new SherlockAndTheCost2();
+//					new SherlockAndTheCost();// naive solution
+					break;
 				case balanced_brackets:
 					new BalancedBrackets();
 					break;
