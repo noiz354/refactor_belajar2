@@ -6,6 +6,7 @@ import java.util.*;
 import static java.lang.Math.max;
 import static java.lang.Math.sqrt;
 
+
 class Main {
 
 	public static void main(String[] args) throws IOException {
@@ -13,117 +14,91 @@ class Main {
 	}
 
 	void go() throws IOException {
-		Reader.init(System.in);
-		String s = getInput().nextLine();
-		int T = Integer.parseInt(s);
-		// read blank line
-		getInput().nextLine();
 
-		while(T-->0){
-			adjList = new HashMap<>();
-			visited = new HashMap<>();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		Scanner sc = new Scanner(br);
+		int[][] dist;
+		int[][] weight;
+		int row,col,i,j, new_r, new_c;
+		PriorityQueue<Vertex> pq;
+		Vertex u;
 
-			while(true){
-				String dic = getInput().nextLine();
-//            println(dic);
-				if(dic.equals("*"))
-					break;
+		int tc=sc.nextInt();
+		while(tc-->0)
+		{
+			//input processing
+			row=sc.nextInt();
+			col=sc.nextInt();
 
-				List<String> adj = null;
-				if(adjList.get(dic)!=null){
-					adj = adjList.get(dic);
-				}else{
-					adj = new ArrayList<>();
-					adjList.put(dic, adj);
-				}
+			dist=new int[row+1][col+1];
+			weight=new int[row+1][col+1];
+			pq = new PriorityQueue<Vertex>();
 
-				Iterator<String> it = adjList.keySet().iterator();
-				while(it.hasNext()){
-					String key = it.next();
-					if(dic.equals(key))
-						continue;
+			for(int r=1;r<=row;r++)
+			{
+				Arrays.fill(dist[r], INFINITY);
+				Arrays.fill(weight[r],INFINITY);
+			}
 
-					int diff = 0;
-//                int length = dic.length() > key.length() ? key.length() : dic.length();
-					if(dic.length() == key.length()){
-						for(int i=0;i<dic.length();i++){
-							if(key.charAt(i)!=dic.charAt(i)){
-								diff++;
-							}
+			for(int r=1;r<=row;r++)
+				for(int c=1;c<=col;c++)
+					weight[r][c] = sc.nextInt();
+
+			//Dijkstra Algorithm - SSSP
+			u = new Vertex(1, 1, weight[1][1]);
+			dist[1][1] = weight[1][1];
+			pq.add(u);
+			while(!pq.isEmpty())
+			{
+				u=pq.poll();
+				for(i=0;i<4;i++) //adjacent vertexes
+				{
+					new_r = u.r + adjR[i];
+					new_c = u.c + adjC[i];
+					if(new_r >= 1 && new_r <= row && new_c >= 1 && new_c <= col)
+						if( u.dist_frm_src + weight[new_r][new_c] < dist[new_r][new_c])
+						{
+							dist[new_r][new_c] =  u.dist_frm_src + weight[new_r][new_c];
+							pq.add(new Vertex(new_r, new_c, dist[new_r][new_c]));
 						}
 
-						if(diff == 1){
-							List<String> adj2 = null;
-							if(adjList.get(key)!=null){
-								adj2 = adjList.get(key);
-							}else{
-								adj2 = new ArrayList<>();
-								adjList.put(key, adj2);
-							}
-
-							adj.add(key);
-							adjList.put(dic, adj);
-
-							adj2.add(dic);
-							adjList.put(key, adj2);
-						}
-					}
 				}
 			}
-
-//            printAdjList();
-
-			String line = getInput().nextLine();
-			while(!line.equals("")){
-				String[] q = line.split(" ");
-//                println(Arrays.toString(q));
-
-				initVisited();
-//            visited.clear();
-				System.out.println(q[0]+" "+q[1]+" "+bfs(q[0],q[1]));
-
-				if(!getInput().hasNext())
-					break;
-				line = getInput().nextLine();
-				if(line.equals("")){
-					break;
-				}
-			}
-
-			if(T!=0)
-				System.out.println("");
+			System.out.println(dist[row][col]);
 		}
 	}
 
-	int bfs(String start, String to){
-		Queue<String> s = new LinkedList<>();
-		s.offer(start);
-		visited.put(start, 0);
-		while(!s.isEmpty()){
-			String top = s.poll();
-			if(top.equals(to))
-				return visited.get(top);
-			int total = adjList.get(top).size();
-			for(int i=0;i<total;i++){
-				if(visited.get(adjList.get(top).get(i))==0){
-					visited.put(adjList.get(top).get(i), visited.get(top)+1);
-					s.offer(adjList.get(top).get(i));
-				}
-			}
+	class Vertex implements Comparable<Vertex>
+	{
+		public int r;
+		public int c;
+		public int dist_frm_src;
+		public Vertex(int r, int c, int d)
+		{
+			this.r=r;
+			this.c=c;
+			this.dist_frm_src=d;
 		}
-		return visited.get(to);
-	}
-
-	void initVisited(){
-		for(Iterator<String> it = adjList.keySet().iterator();it.hasNext();){
-			String next = it.next();
-			List<String> adj = adjList.get(next);
-			visited.put(next, 0);
+		@Override
+		public int compareTo(Vertex other) {
+			return this.dist_frm_src - other.dist_frm_src;
 		}
 	}
 
-	Map<String, List<String>> adjList;
-	Map<String, Integer> visited;
+	static final int INFINITY = Integer.MAX_VALUE;
+	static final int[] adjR = {-1,0,1,0};
+	static final int[] adjC = {0,-1,0,1};
+
+
+	class IntegerPair{
+		public int u, v, weigh;
+
+		public IntegerPair(int u, int v, int weigh) {
+			this.u = u;
+			this.v = v;
+			this.weigh = weigh;
+		}
+	}
 
 	/** Class for buffered reading int and double values */
 	static class Reader {

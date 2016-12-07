@@ -12,10 +12,10 @@ public class Start {
 		// hackerrank
 
 		// cutting board
-		template_factory.run(template_factory.greedy, template_factory.boardcutting);
+//		template_factory.run(template_factory.greedy, template_factory.boardcutting);
 
-        // number maze
-//        template_factory.run(template_factory.graph, template_factory.number_maze);
+        // number maze - uva djikstra
+        template_factory.run(template_factory.graph, template_factory.number_maze);
 
 		// greedy florist
 //		template_factory.run(template_factory.hackkerank, template_factory.greedy_florist);
