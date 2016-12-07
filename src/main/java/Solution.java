@@ -14,62 +14,80 @@ public class Solution {
 
 
     public static void main(String[] args) throws IOException{
-    	int N = getInput().nextInt();
-		int I = getInput().nextInt();
-		
-		id = new int[N];
-		marked = new boolean[N];
-		adjList = new ArrayList<List<Integer>>();
-		for(int i=0;i<N;i++){
-			adjList.add(new ArrayList<Integer>());
-		}
-		
-		compCount3 = new int[100_000];
-		
-		for(int i=0;i<I;i++){
-			int x = getInput().nextInt();
-			int y = getInput().nextInt();
-			adjList.get(x).add(y);
-			adjList.get(y).add(x);
-		}
-		
-		for(int i=0;i<N;i++){
-			if(!marked[i]){
-				compCount2 = 0;
-				dfs(i);
-				compCount3[count] = compCount2;
-				count++;
-			}
-		}
-		
-		long combination = 0;
-		for(int i=0;i<count;i++){
-			for(int j=i+1;j<count;j++){
-				combination += compCount3[i]*compCount3[j];//(compCount.get(i)*compCount.get(j));
-			}
-		}
-		System.out.println(combination);
-    }   
+		int q = getInput().nextInt();
+		while(q-- > 0){
+			int m = getInput().nextInt();
+			int n = getInput().nextInt();
 
-    static void dfs(int v){
-//		System.out.println("v "+v+" adjList : "+adjList.get(v));
-		marked[v] = true;
-		compCount2++;
-		id[v] = count;
-		for(int w : adjList.get(v)){
-//			System.out.println("w "+ w);
-			if(!marked[w]){
-				dfs(w);
+			String s = getInput().nextLine();
+
+			List<List<Integer>> v = new ArrayList<>();
+			v.add(new ArrayList<>());
+			v.add(new ArrayList<>());
+
+			List<Integer> cost = new ArrayList<>();
+			for(long i=0;i<m-1;i++){
+//                List<Integer> integers = v.get(1);
+				cost.add(getInput().nextInt());
 			}
+			Collections.sort(cost, (o1,o2)->(o2-o1));
+			v.set(1, cost);
+
+			cost = v.get(0);
+			for(long i=0;i<n-1;i++){
+				cost.add(getInput().nextInt());
+			}
+			Collections.sort(cost, (o1,o2)->(o2-o1));
+			v.set(0, cost);
+
+
+			int ym = 0, xm = 1;
+			long y=0,x=0;
+			long total = 0;
+			while (true){
+				if(v.get(ym).isEmpty() && v.get(xm).isEmpty()){
+					break;
+				}else if(v.get(ym).isEmpty() && !v.get(xm).isEmpty()){
+//                    println(String.format("xm filled && ym empty %d * %d", v.get(ym).get(0), y+1));
+					total += (v.get(xm).get(0)*(x+1));
+					remove(v, xm, 0);
+					y++;
+				}else if(v.get(xm).isEmpty() && !v.get(ym).isEmpty()){
+//                    println(String.format("xm empty && ym filled %d * %d", v.get(xm).get(0), x+1));
+					total += (v.get(ym).get(0) * (y+1));
+					remove(v, ym, 0);
+					x++;
+				}else if(v.get(ym).get(0) > v.get(xm).get(0)){
+					total += (v.get(ym).get(0) * (y+1));
+					remove(v, ym, 0);
+					x++;
+				}else if(v.get(ym).get(0) < v.get(xm).get(0)){
+					total += (v.get(xm).get(0)*(x+1));
+					remove(v, xm, 0);
+					y++;
+				}else if(v.get(ym).get(0).equals(v.get(xm).get(0))){
+					total += (v.get(ym).get(0) * (y+1));
+					remove(v, ym, 0);
+					x++;
+				}
+			}
+
+			int x1 = (int) (total % (Math.pow(10, 9) + 7));
+			System.out.println(x1);
 		}
+    }
+
+	/**
+	 * some how not really good looking
+	 * @param data
+	 * @param index
+	 * @param innerIndex
+	 */
+	static void remove(List<List<Integer>> data, int index, int innerIndex){
+		List<Integer> integers = data.get(index);
+		integers.remove(innerIndex);
+		data.set(index, integers);
 	}
-	
-	static List<List<Integer>> adjList;
-	static boolean[] marked;
-	static int[] id;
-	static int count;
-	static int compCount2;
-	static int[] compCount3;
     
 	// setup below here
 	static Scanner input = new Scanner(System.in);
