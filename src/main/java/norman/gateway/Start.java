@@ -11,11 +11,14 @@ public class Start {
 	public static void main(String[] args) {
 		// hackerrank
 
+		// knapsack learning algorithm
+		template_factory.run(template_factory.dynamic_programming, template_factory.knapsack);
+
 		// cutting board
 //		template_factory.run(template_factory.greedy, template_factory.boardcutting);
 
         // number maze - uva djikstra
-        template_factory.run(template_factory.graph, template_factory.number_maze);
+//        template_factory.run(template_factory.graph, template_factory.number_maze);
 
 		// greedy florist
 //		template_factory.run(template_factory.hackkerank, template_factory.greedy_florist);

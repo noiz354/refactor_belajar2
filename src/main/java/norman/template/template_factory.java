@@ -10,6 +10,7 @@ import norman.srin.algorithm.HighestPeak;
 import norman.unknown.BSTExample;
 import norman.unknown.DFSCyclicLearn;
 import norman.unknown.HMacTokopedia;
+import norman.unknown.Knapsack;
 import norman.uva.*;
 import norman.uva.Battleships;
 
@@ -40,7 +41,7 @@ public abstract class template_factory {
 			, critical_link = 56, racing = 57, highways = 58, acm_and_blackout = 59, audiophobia=60, transportation_system = 61
 			,dark_roads = 62, heavy_cycle_edges = 63, kahn_topological_sort = 64, beverages=65, shortestreach2=66
 			, word_transformation = 67, davis_staircase =68, balanced_brackets = 69, sherlock_and_the_cost=70, candies=71
-			, greedy_florist = 72, number_maze = 73, boardcutting = 74;
+			, greedy_florist = 72, number_maze = 73, boardcutting = 74, knapsack= 75;
 
     public static final void run(int category, int prob_num){
 		switch (category) {
@@ -58,6 +59,9 @@ public abstract class template_factory {
 			break;
 		case dynamic_programming:
 			switch(prob_num){
+				case knapsack:
+					new Knapsack();
+					break;
 				case davis_staircase:
 					new DarvisStaircase();
 					break;
