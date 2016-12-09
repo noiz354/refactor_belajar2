@@ -14,79 +14,40 @@ public class Solution {
 
 
     public static void main(String[] args) throws IOException{
-		int q = getInput().nextInt();
-		while(q-- > 0){
-			int m = getInput().nextInt();
-			int n = getInput().nextInt();
+		int i, j, T, G, ans;
 
-			String s = getInput().nextLine();
+		T = getInput().nextInt();
+		while (T-- > 0) {
+			for (i = 0; i < MAX_N; i++)
+				for (j = 0; j < MAX_W; j++)
+					memo[i][j] = -1;
 
-			List<List<Integer>> v = new ArrayList<>();
-			v.add(new ArrayList<>());
-			v.add(new ArrayList<>());
-
-			List<Integer> cost = new ArrayList<>();
-			for(long i=0;i<m-1;i++){
-//                List<Integer> integers = v.get(1);
-				cost.add(getInput().nextInt());
-			}
-			Collections.sort(cost, (o1,o2)->(o2-o1));
-			v.set(1, cost);
-
-			cost = v.get(0);
-			for(long i=0;i<n-1;i++){
-				cost.add(getInput().nextInt());
-			}
-			Collections.sort(cost, (o1,o2)->(o2-o1));
-			v.set(0, cost);
-
-
-			int ym = 0, xm = 1;
-			long y=0,x=0;
-			long total = 0;
-			while (true){
-				if(v.get(ym).isEmpty() && v.get(xm).isEmpty()){
-					break;
-				}else if(v.get(ym).isEmpty() && !v.get(xm).isEmpty()){
-//                    println(String.format("xm filled && ym empty %d * %d", v.get(ym).get(0), y+1));
-					total += (v.get(xm).get(0)*(x+1));
-					remove(v, xm, 0);
-					y++;
-				}else if(v.get(xm).isEmpty() && !v.get(ym).isEmpty()){
-//                    println(String.format("xm empty && ym filled %d * %d", v.get(xm).get(0), x+1));
-					total += (v.get(ym).get(0) * (y+1));
-					remove(v, ym, 0);
-					x++;
-				}else if(v.get(ym).get(0) > v.get(xm).get(0)){
-					total += (v.get(ym).get(0) * (y+1));
-					remove(v, ym, 0);
-					x++;
-				}else if(v.get(ym).get(0) < v.get(xm).get(0)){
-					total += (v.get(xm).get(0)*(x+1));
-					remove(v, xm, 0);
-					y++;
-				}else if(v.get(ym).get(0).equals(v.get(xm).get(0))){
-					total += (v.get(ym).get(0) * (y+1));
-					remove(v, ym, 0);
-					x++;
-				}
+			N = getInput().nextInt();
+			MW = getInput().nextInt();
+			for (i = 0; i < N; i++) {
+				V[i] = getInput().nextInt();
+				W[i] = getInput().nextInt();
 			}
 
-			int x1 = (int) (total % (Math.pow(10, 9) + 7));
-			System.out.println(x1);
+			ans = 0;
+			ans += value(0, MW);
+
+			System.out.printf("%d\n", ans);
+
 		}
     }
 
-	/**
-	 * some how not really good looking
-	 * @param data
-	 * @param index
-	 * @param innerIndex
-	 */
-	static void remove(List<List<Integer>> data, int index, int innerIndex){
-		List<Integer> integers = data.get(index);
-		integers.remove(innerIndex);
-		data.set(index, integers);
+	private static final int MAX_N = 1010;
+	private static final int MAX_W = 40;
+	private static int N, MW;
+	private static int[] V = new int[MAX_N], W = new int[MAX_N];
+	private static int[][] memo = new int[MAX_N][MAX_W];
+
+	private static int value(int id, int w) {
+		if (id == N || w == 0) return 0;
+		if (memo[id][w] != -1) return memo[id][w];
+		if (W[id] > w)         return memo[id][w] = value(id + 1, w);
+		return memo[id][w] = Math.max(value(id + 1, w), V[id] + value(id + 1, w - W[id]));
 	}
     
 	// setup below here

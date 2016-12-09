@@ -32,6 +32,15 @@ public class Knapsack extends template {
                 MW = getInput().nextInt();
                 ans += value(0, MW);
             }
+            for(i=0;i<5;i++){
+                for(j=0;j<5;j++){
+                    if(i==0)
+                        System.out.print(memo[i][j]);
+                    else
+                        System.out.print(" "+memo[i][j]);
+                }
+                System.out.println();
+            }
 
             System.out.printf("%d\n", ans);
         }

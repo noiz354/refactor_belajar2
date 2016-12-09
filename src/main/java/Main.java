@@ -15,126 +15,88 @@ class Main {
 
 	void go() throws IOException {
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		Scanner sc = new Scanner(br);
-		int[][] dist;
-		int[][] weight;
-		int row,col,i,j, new_r, new_c;
-		PriorityQueue<Vertex> pq;
-		Vertex u;
+		while(true){
+			int T = getInput().nextInt();
+			int w = getInput().nextInt();
 
-		int tc=sc.nextInt();
-		while(tc-->0)
-		{
-			//input processing
-			row=sc.nextInt();
-			col=sc.nextInt();
+			N = getInput().nextInt();
+			for(int i=0;i<N;i++){
+				d[i] = getInput().nextInt();
+				int a = getInput().nextInt();
 
-			dist=new int[row+1][col+1];
-			weight=new int[row+1][col+1];
-			pq = new PriorityQueue<Vertex>();
-
-			for(int r=1;r<=row;r++)
-			{
-				Arrays.fill(dist[r], INFINITY);
-				Arrays.fill(weight[r],INFINITY);
+				int td = w*d[i];
+				int ta = 2*w*d[i];
+				int t = ta + td;
+				W[i]= t;
+				V[i] = a;
 			}
 
-			for(int r=1;r<=row;r++)
-				for(int c=1;c<=col;c++)
-					weight[r][c] = sc.nextInt();
+			for (int i = 0; i < MAX_N; i++)
+				for (int j = 0; j < MAX_W; j++)
+					memo[i][j] = -1;
 
-			//Dijkstra Algorithm - SSSP
-			u = new Vertex(1, 1, weight[1][1]);
-			dist[1][1] = weight[1][1];
-			pq.add(u);
-			while(!pq.isEmpty())
-			{
-				u=pq.poll();
-				for(i=0;i<4;i++) //adjacent vertexes
-				{
-					new_r = u.r + adjR[i];
-					new_c = u.c + adjC[i];
-					if(new_r >= 1 && new_r <= row && new_c >= 1 && new_c <= col)
-						if( u.dist_frm_src + weight[new_r][new_c] < dist[new_r][new_c])
-						{
-							dist[new_r][new_c] =  u.dist_frm_src + weight[new_r][new_c];
-							pq.add(new Vertex(new_r, new_c, dist[new_r][new_c]));
-						}
+//            System.out.println(""+value(0, T));
+//            path(N, T, 0);
 
+			int[][] result = bottomUpDP(V, W, T);
+			memo = result;
+			System.out.println(memo[V.length][T]);
+			path(N-1, T, 0);
+			if(!getInput().hasNext()){
+				break;
+			}
+		}
+	}
+
+	void path(int n, int t, int cnt)
+	{
+		if ( n == 0 ) System.out.printf("%d\n",cnt);
+		else if ( memo[n][t] != -1)
+		{
+			path( n-1, t-W[n], cnt+1 );
+			System.out.printf("%d %d\n",d[n],V[n]);
+		}
+		else
+		{
+			path( n-1, t, cnt );
+		}
+	}
+
+	/**
+	 * Solves 0/1 knapsack in bottom up dynamic programming
+	 */
+	public int[][] bottomUpDP(int val[], int wt[], int W){
+		int K[][] = new int[val.length+1][W+1];
+		for(int i=0; i <= val.length; i++){
+			for(int j=0; j <= W; j++){
+				if(i == 0 || j == 0){
+					K[i][j] = 0;
+					continue;
+				}
+				if(j - wt[i-1] >= 0){
+					K[i][j] = Math.max(K[i-1][j], K[i-1][j-wt[i-1]] + val[i-1]);
+				}else{
+					K[i][j] = K[i-1][j];
 				}
 			}
-			System.out.println(dist[row][col]);
 		}
+		return K;
+//        return K[val.length][W];
 	}
 
-	class Vertex implements Comparable<Vertex>
-	{
-		public int r;
-		public int c;
-		public int dist_frm_src;
-		public Vertex(int r, int c, int d)
-		{
-			this.r=r;
-			this.c=c;
-			this.dist_frm_src=d;
-		}
-		@Override
-		public int compareTo(Vertex other) {
-			return this.dist_frm_src - other.dist_frm_src;
-		}
-	}
 
-	static final int INFINITY = Integer.MAX_VALUE;
-	static final int[] adjR = {-1,0,1,0};
-	static final int[] adjC = {0,-1,0,1};
-
-
-	class IntegerPair{
-		public int u, v, weigh;
-
-		public IntegerPair(int u, int v, int weigh) {
-			this.u = u;
-			this.v = v;
-			this.weigh = weigh;
-		}
-	}
-
-	/** Class for buffered reading int and double values */
-	static class Reader {
-		static BufferedReader reader;
-		static StringTokenizer tokenizer;
-
-		/** call this method to initialize reader for InputStream */
-		static void init(InputStream input) {
-			reader = new BufferedReader(
-					new InputStreamReader(input) );
-			tokenizer = new StringTokenizer("");
-		}
-
-		/** get next word */
-		static String next() throws IOException {
-			while ( ! tokenizer.hasMoreTokens() ) {
-				//TODO add check for eof if necessary
-				tokenizer = new StringTokenizer(
-						reader.readLine() );
-			}
-			return tokenizer.nextToken();
-		}
-
-		static int nextInt() throws IOException {
-			return Integer.parseInt( next() );
-		}
-
-		static double nextDouble() throws IOException {
-			return Double.parseDouble( next() );
-		}
-	}
+	static boolean tomar[][] = new boolean[ 33][1003];
+	static int d[] = new int[33];
+	private static final int MAX_N = 1010;
+	private static final int MAX_W = 1000;
+	private static int N, MW;
+	private static int[] V = new int[MAX_N], W = new int[MAX_N];
+	private static int[][] memo = new int[MAX_N][MAX_W];
 
 	BufferedReader reader;
 	Reader getInput2(){
 		reader = new BufferedReader(new InputStreamReader(System.in));
-		return new Reader();
+		return reader;
 	}
 
 	Scanner input;

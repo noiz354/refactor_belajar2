@@ -16,28 +16,21 @@ public class Candies extends template {
     public void doSomething() {
         while(true){
             int N = getInput().nextInt();
-            int p[] = new int[N], c[] = new int[N];
-            for(int i=0;i<N;i++){
+            int p[] = new int[N];
+            long c[] = new long[N];
+            p[0] = getInput().nextInt();
+            c[0] =1;
+            for(int i=1;i<N;i++){
                 p[i] = getInput().nextInt();
-            }
-
-            for(int i=0;i<N;i++){
-                c[i] = 1;
-            }
-
-            for(int i=1;i+1<p.length;i++){
-//                System.out.println((i-1)+" "+(i));
                 if(p[i]>p[i-1]){
-                    c[i] = c[i-1]+1;
+                    c[i]=c[i-1]+1;
+                }else{
+                    c[i]=1;
                 }
             }
-
-            System.out.println("increase "+Arrays.toString(c));
-
-            for(int i=p.length-2;i>=0;i--){
-//                System.out.println((i)+" "+(i+1));
-                if(p[i+1]<p[i]){
-                    c[i] = Math.max(c[i], c[i+1]+1);
+            for(int i=N-2;i>=0;i--){
+                if(p[i]>p[i+1] && c[i]<=c[i+1]){
+                    c[i]=c[i+1]+1;
                 }
             }
 
@@ -46,7 +39,7 @@ public class Candies extends template {
                 total += c[i];
             }
 
-            System.out.println(total+" "+Arrays.toString(c));
+            System.out.println(total);
 
             if(!getInput().hasNext()){
                 break;

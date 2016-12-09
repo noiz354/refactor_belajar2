@@ -11,8 +11,10 @@ public class Start {
 	public static void main(String[] args) {
 		// hackerrank
 
+		template_factory.run(template_factory.dynamic_programming, template_factory.diving_for_gold);
+
 		// knapsack learning algorithm
-		template_factory.run(template_factory.dynamic_programming, template_factory.knapsack);
+//		template_factory.run(template_factory.dynamic_programming, template_factory.knapsack);
 
 		// cutting board
 //		template_factory.run(template_factory.greedy, template_factory.boardcutting);
@@ -23,7 +25,8 @@ public class Start {
 		// greedy florist
 //		template_factory.run(template_factory.hackkerank, template_factory.greedy_florist);
 
-		// candies
+		// http://stackandqueue.com/?p=108
+		// candies - always failed
 //		template_factory.run(template_factory.hackkerank, template_factory.candies);
 
 		// sherlock and the cose
