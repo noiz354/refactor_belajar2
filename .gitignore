@@ -27,6 +27,7 @@
 
 # IntelliJ
 /out/
+/target/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -42,3 +43,6 @@ fabric.properties
 
 *.iml
 .idea
+custom_in/DivingForGold.txt
+custom_out/DivingForGold.txt
+target/
