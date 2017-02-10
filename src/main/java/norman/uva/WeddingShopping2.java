@@ -1,15 +1,19 @@
 package norman.uva;
 
-import norman.template.template;
+import norman.template.Template;
 
 /**
  * @author M Normansyah (m.normansyah@samsung.com)
  * Bottom-up Dynamic Programming, still learning about this
  */
-public class WeddingShopping2 extends template {
+public class WeddingShopping2 extends Template {
 
-	public WeddingShopping2() {
-		super("WeddingShopping", "WeddingShopping", LINUX);
+    int g, money, k, TC, M, C;
+    int price[][];
+    boolean reachable[][];
+
+    public WeddingShopping2() {
+        super("WeddingShopping", "WeddingShopping", LINUX);
 	}
 
 	@Override
@@ -54,8 +58,4 @@ public class WeddingShopping2 extends template {
 			}
 		}// end of while
 	}
-
-	int g, money, k, TC, M, C;
-	int price[][];
-	boolean reachable[][];
 }

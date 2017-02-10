@@ -1,16 +1,16 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.Arrays;
 import java.util.Comparator;
-
-import norman.template.template;
 
 /**
  * http://mathcentral.uregina.ca/mp/archives/previous2003/nov03sol.html
  * @author M Normansyah (m.normansyah@samsung.com)
  *
  */
-public class TheBusDriverProblem extends template {
+public class TheBusDriverProblem extends Template {
 
 	public TheBusDriverProblem() {
 		super("TheBusDriverProblem", "TheBusDriverProblem", LINUX);

@@ -1,11 +1,15 @@
 package norman.srin.algorithm;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import norman.template.template;
+public class Primadonuts extends Template {
 
-public class Primadonuts extends template {
+    // Computes the number of primes less than or equal to N using the Sieve of Eratosthenes.
+    boolean[] isPrime;
+    List<Integer> primesForPrint;
 
 	public Primadonuts() {
 		super("Primadonuts", "Primadonuts", LINUX);
@@ -82,10 +86,6 @@ public class Primadonuts extends template {
 		}
 //		System.out.println(prima(8, 7));// unrecommend solution to find prime number
 	}
-
-	// Computes the number of primes less than or equal to N using the Sieve of Eratosthenes.
-		boolean[] isPrime;
-		List<Integer> primesForPrint;
 
 		// unrecommend solution to find prime number
 		/*int[] primes;

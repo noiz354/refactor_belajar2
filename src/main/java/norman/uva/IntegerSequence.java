@@ -1,6 +1,6 @@
 package norman.uva;
 
-import norman.template.template;
+import norman.template.Template;
 
 /**
  *
@@ -11,7 +11,7 @@ import norman.template.template;
  * jawaban dari internet :
  * http://saicheems.wordpress.com/2013/07/16/uva-927-integer-sequences-from-addition-of-terms/
  */
-public class IntegerSequence extends template {
+public class IntegerSequence extends Template {
 
 	public IntegerSequence() {
 		super("integersequence","integersequence", LINUX);

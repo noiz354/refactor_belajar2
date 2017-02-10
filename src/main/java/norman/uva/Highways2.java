@@ -1,110 +1,21 @@
 package norman.uva;
 
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import static java.lang.Math.sqrt;
 
 /**
- * Created by normansyahputa on 11/11/16.
+ * Created @author normansyahputa  on 11/11/16.
  */
-public class Highways2 extends template {
+public class Highways2 extends Template {
 
-    public Highways2() {
-        super("Highways", "Highways", LINUX, true);
-    }
-
-    @Override
-    public void doSomething() {
-        T = getInput().nextInt();
-        while(T-- > 0){
-            edgeList = new ArrayList<>();
-
-            initP();
-
-            N = getInput().nextInt();
-            initCoor();
-            for(int i=0;i<N;i++){
-                cx[i] = getInput().nextInt();
-                cy[i] = getInput().nextInt();
-            }
-
-            for(int i=0;i<N;i++){
-                for( int j=i+1; j<N; j++){
-                    int srcX = cx[i];
-                    int srcY = cy[i];
-                    int dstX = cx[j];
-                    int dstY = cy[j];
-                    int diffX = srcX - dstX;
-                    int diffY = srcY - dstY;
-                    double dist = sqrt(diffX * diffX + diffY * diffY);
-                    edgeList.add(new Edge(dist, i, j));
-                }
-            }
-
-//            if(debug){
-//                print("before sorting ");
-//                for (Edge edge : edgeList) {
-//                    print(edge);
-//                }
-//            }
-
-            // sort menggunakan weight
-
-//            if(debug){
-//                print("\nafter sorting ");
-//                for (Edge edge : edgeList) {
-//                    print(edge);
-//                }
-//            }
-            initSet(N);
-
-            M = getInput().nextInt();
-
-            int d = 0;
-
-            for(int i=0;i<M;i++){
-//            while(M-- > 0){
-                x = getInput().nextInt();
-                y = getInput().nextInt();
-
-                if(!isSameSet(x-1,y-1)) {
-                    unionSet(x - 1, y - 1);
-                    d++;
-                }
-            }
-
-            if(d == N-1) {
-                if(debug){
-                    print("No new highways need\n");
-                    continue;
-                }
-            }
-
-            Collections.sort(edgeList);
-
-            for(int i=0;i<edgeList.size() && d < N-1;i++){
-                Edge edge = edgeList.get(i);
-                if(!isSameSet(edge.x, edge.y)){
-                    if(debug){
-                        print((edge.x+1)+" "+(edge.y+1));
-                    }
-                    d++;
-                    unionSet(edge.x, edge.y);
-                }
-            }
-            if(T > 0){
-                if(debug){
-                    print("\n");
-                }
-            }
-        }
-    }
+    int T, x, y, N, M;
+    List<Integer> p;
 
     // ordered is not right too
 //    @Override
@@ -190,9 +101,103 @@ public class Highways2 extends template {
 //            }
 //        }
 //    }
+    int cx[], cy[];
+    List<Edge> edgeList = new ArrayList<>();
+    private int _sc;
+
+    public Highways2() {
+        super("Highways", "Highways", LINUX, true);
+    }
+
+    @Override
+    public void doSomething() {
+        T = getInput().nextInt();
+        while (T-- > 0) {
+            edgeList = new ArrayList<>();
+
+            initP();
+
+            N = getInput().nextInt();
+            initCoor();
+            for (int i = 0; i < N; i++) {
+                cx[i] = getInput().nextInt();
+                cy[i] = getInput().nextInt();
+            }
+
+            for (int i = 0; i < N; i++) {
+                for (int j = i + 1; j < N; j++) {
+                    int srcX = cx[i];
+                    int srcY = cy[i];
+                    int dstX = cx[j];
+                    int dstY = cy[j];
+                    int diffX = srcX - dstX;
+                    int diffY = srcY - dstY;
+                    double dist = sqrt(diffX * diffX + diffY * diffY);
+                    edgeList.add(new Edge(dist, i, j));
+                }
+            }
+
+//            if(debug){
+//                print("before sorting ");
+//                for (Edge edge : edgeList) {
+//                    print(edge);
+//                }
+//            }
+
+            // sort menggunakan weight
+
+//            if(debug){
+//                print("\nafter sorting ");
+//                for (Edge edge : edgeList) {
+//                    print(edge);
+//                }
+//            }
+            initSet(N);
+
+            M = getInput().nextInt();
+
+            int d = 0;
+
+            for (int i = 0; i < M; i++) {
+//            while(M-- > 0){
+                x = getInput().nextInt();
+                y = getInput().nextInt();
+
+                if (!isSameSet(x - 1, y - 1)) {
+                    unionSet(x - 1, y - 1);
+                    d++;
+                }
+            }
+
+            if (d == N - 1) {
+                if (debug) {
+                    print("No new highways need\n");
+                    continue;
+                }
+            }
+
+            Collections.sort(edgeList);
+
+            for (int i = 0; i < edgeList.size() && d < N - 1; i++) {
+                Edge edge = edgeList.get(i);
+                if (!isSameSet(edge.x, edge.y)) {
+                    if (debug) {
+                        print((edge.x + 1) + " " + (edge.y + 1));
+                    }
+                    d++;
+                    unionSet(edge.x, edge.y);
+                }
+            }
+            if (T > 0) {
+                if (debug) {
+                    print("\n");
+                }
+            }
+        }
+    }
 
     private void print(Object object){
-        template_utility.print(getOutput(), object.toString(), true, true);
+        TemplateUtility.print(getOutput(), object.toString(), true, true);
     }
 
     int findSet(int i){
@@ -220,12 +225,6 @@ public class Highways2 extends template {
         _sc--;
     }
 
-    int T, x, y, N, M;
-    List<Integer> p;
-
-    int cx[], cy[];
-    private int _sc;
-
     void initSet(int N){
         for(int i=0;i<N;i++){
             p.set(i, i);
@@ -245,7 +244,6 @@ public class Highways2 extends template {
         }
     }
 
-    List<Edge> edgeList = new ArrayList<>();
     private class Edge implements Comparable<Edge>{
         double weight;
         int x, y;

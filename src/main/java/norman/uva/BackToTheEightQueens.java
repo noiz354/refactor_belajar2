@@ -1,6 +1,6 @@
 package norman.uva;
 
-import norman.template.template;
+import norman.template.Template;
 
 /**
  *
@@ -23,7 +23,19 @@ import norman.template.template;
  *         http://saicheems.wordpress.com/2013/08/06/uva-11085-back-to
  *         -the-8-queens/
  */
-public class BackToTheEightQueens extends template {
+public class BackToTheEightQueens extends Template {
+
+    public static String inputNames[][] = {
+            {"kolom", "baris"},
+            {"valid(n, i) : "},
+            {"tryrow", "queens[prevIndex]", "prevIndex",
+                    "(tryrow == queens[prevIndex])"},
+            {"Math.abs(col-prevIndex)", "Math.abs(tryrow-queens[prevIndex]))",
+                    "(Math.abs(col-prevIndex) == Math.abs(tryrow-queens[prevIndex]))"}};
+    static int count = 1;
+    int[] queens,// ini untuk referensi, kalau terjadi perpindahan maka
+    // 1+search.
+    path;// untuk yang pindah2.
 
 	public BackToTheEightQueens() {
 		super("BackToTheEightQueens", "BackToTheEightQueens", LINUX);
@@ -83,18 +95,5 @@ public class BackToTheEightQueens extends template {
 		}
 		return true;
 	}
-
-	int[] queens,// ini untuk referensi, kalau terjadi perpindahan maka
-					// 1+search.
-			path;// untuk yang pindah2.
-	static int count = 1;
-
-	public static String inputNames[][] = {
-			{ "kolom", "baris" },
-			{ "valid(n, i) : " },
-			{ "tryrow", "queens[prevIndex]", "prevIndex",
-					"(tryrow == queens[prevIndex])" },
-			{ "Math.abs(col-prevIndex)", "Math.abs(tryrow-queens[prevIndex]))",
-					"(Math.abs(col-prevIndex) == Math.abs(tryrow-queens[prevIndex]))" } };
 
 }

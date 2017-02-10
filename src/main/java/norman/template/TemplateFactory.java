@@ -1,20 +1,11 @@
 package norman.template;
 
 import norman.hackerrank.*;
-import norman.srin.algorithm.BiColoring;
-import norman.srin.algorithm.Bomberman;
-import norman.srin.algorithm.BugHunters;
-import norman.srin.algorithm.CellRemoval;
-import norman.srin.algorithm.Evenfibo;
-import norman.srin.algorithm.HighestPeak;
-import norman.unknown.BSTExample;
-import norman.unknown.DFSCyclicLearn;
-import norman.unknown.HMacTokopedia;
-import norman.unknown.Knapsack;
+import norman.srin.algorithm.*;
+import norman.unknown.*;
 import norman.uva.*;
-import norman.uva.Battleships;
 
-public abstract class template_factory {
+public abstract class TemplateFactory {
 	public final static int
 			dynamic_programming = 1,
 			greedy = 2,
@@ -37,16 +28,18 @@ public abstract class template_factory {
 			, journeytothemoon = 37, knightinthewargrid = 38, forwardingemails = 39, coinchangedp = 40
 			, dfscyclic = 41, ledtest = 42, banknotquiteocr = 43, ancientmessages = 44, llgiocodellx = 45
 			, hmactokopedia = 46, binarysearchtree = 47, continents = 48, battleship = 49, orderingtask = 50
-			, ordering = 51, followingorder = 52, reconnecting = 53, prim_mst_special_subtree = 54, network = 55
-			, critical_link = 56, racing = 57, highways = 58, acm_and_blackout = 59, audiophobia=60, transportation_system = 61
-			,dark_roads = 62, heavy_cycle_edges = 63, kahn_topological_sort = 64, beverages=65, shortestreach2=66
-			, word_transformation = 67, davis_staircase =68, balanced_brackets = 69, sherlock_and_the_cost=70, candies=71
-			, greedy_florist = 72, number_maze = 73, boardcutting = 74, knapsack= 75, diving_for_gold= 76;
+			, ordering = 51, followingorder = 52, reconnecting = 53, prim_mst_special_subtree = 54, network = 55, critical_link = 56, racing = 57, highways = 58, acm_and_blackout = 59, audiophobia = 60, transportation_system = 61, dark_roads = 62, heavy_cycle_edges = 63, kahn_topological_sort = 64, beverages = 65, shortestreach2 = 66, word_transformation = 67, davis_staircase = 68, balanced_brackets = 69, sherlock_and_the_cost = 70, candies = 71, greedy_florist = 72, number_maze = 73, boardcutting = 74, knapsack = 75, diving_for_gold = 76, wormhole = 77, barcodes = 78, max_sub_array = 79, word_justification = 80, flight_planner = 81, test_template = 82, sam_and_sub_strings = 83, blackjack = 84, brick_games = 85, how_to_add = 86, lowest_price_in_town = 87, y2k = 88, hanoitower = 89, history_grading = 90;
 
-    public static final void run(int category, int prob_num){
+	public static void run(int category, int prob_num) {
 		switch (category) {
 		case unknown:
 			switch (prob_num) {
+				case blackjack:
+					new BlackJack();
+					break;
+				case test_template:
+					new Template2Test();
+					break;
 			case hmactokopedia:
 				new HMacTokopedia();
 				break;
@@ -59,6 +52,33 @@ public abstract class template_factory {
 			break;
 		case dynamic_programming:
 			switch(prob_num){
+				case history_grading:
+					new HistoryGrading();
+					break;
+				case lowest_price_in_town:
+					new LowestPriceInTheTown();
+					break;
+				case how_to_add:
+					new HowToAdd();
+					break;
+				case brick_games:
+					new BrickGame();
+					break;
+				case flight_planner:
+					new FlightPlanner();
+					break;
+				case word_justification:
+					new WordJustification();
+					break;
+				case max_sub_array:
+					new MaximalSubArray();
+					break;
+				case barcodes:
+					new BarCodes();
+					break;
+				case wormhole:
+					new Wormholes();
+					break;
 				case diving_for_gold:
 					new DivingForGold();
 					break;
@@ -87,7 +107,14 @@ public abstract class template_factory {
 			}
 			break;
 		case backtrack:
-
+			switch (prob_num) {
+				case y2k:
+					new Y2K();
+					break;
+				case hanoitower:
+					new HanoiTower();
+					break;
+			}
 			break;
 		case recursive_backtrack:
 			switch (prob_num) {
@@ -196,7 +223,7 @@ public abstract class template_factory {
 		case sorting:
 			switch (prob_num) {
 			case introsorting:
-				new IntroSorting(template.LINUX);
+				new IntroSorting(Template.LINUX);
 				break;
 			case quicksortinplace:
 				new QuickSortInPlace();
@@ -214,7 +241,10 @@ public abstract class template_factory {
 				new CallForwarding();
 				break;
 			case cd:
-				new CD();
+				new CD2();
+				//[START] This is old code
+//				new CD();
+				//[END] This is old code
 				break;
 			case chestOfDrawers:
 				new ChestOfDrawers();
@@ -324,6 +354,9 @@ public abstract class template_factory {
 			break;
 		case hackkerank:
 			switch (prob_num) {
+				case sam_and_sub_strings:
+					new SamAndSubStrings();
+					break;
 				case greedy_florist:
 					new GreedyFlorist();
 					break;
@@ -347,7 +380,7 @@ public abstract class template_factory {
 				new GridChallenge();
 				break;
 			case introsorting:
-				new IntroSorting(template.LINUX);
+				new IntroSorting(Template.LINUX);
 				break;
 			case quicksortinplace:
 				new QuickSortInPlace();

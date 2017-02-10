@@ -1,15 +1,16 @@
 package norman.hackerrank;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
-import norman.template.template;
-import norman.template.template_utility;
+import java.util.*;
 
-public class ShortestReach extends template {
+public class ShortestReach extends Template {
+
+	List<List<Integer>> adjList;
+	boolean visited[];
+	int connected[];
+	int distTo[]; // jarak dari sumber ke tujuan
 
 	public ShortestReach() {
 		super("ShortestReach", "ShortestReach", WINDOWS);
@@ -35,7 +36,7 @@ public class ShortestReach extends template {
 				adjList.get(x).add(y);
 				adjList.get(y).add(x);
 			}
-			// print adjacency list 
+			// print adjacency list
 //			for(int j=0;j<N;j++){
 //				System.out.println(j+" "+adjList.get(j));
 //			}
@@ -48,17 +49,17 @@ public class ShortestReach extends template {
 			for(int j=0;j<distTo.length;j++){
 				if(j!=S){
 					if(distTo[j] == 0){
-						template_utility.print(getOutput(), "-1 ", false);
-					}else{
-						template_utility.print(getOutput(), distTo[j]*6+" ", false);
+						TemplateUtility.print(getOutput(), "-1 ", false);
+					} else {
+						TemplateUtility.print(getOutput(), distTo[j] * 6 + " ", false);
 					}
 				}
 			}
-			template_utility.print(getOutput(), "", true);
+			TemplateUtility.print(getOutput(), "", true);
 		}
 	}
-	
-	void bfs(int S){
+
+	void bfs(int S) {
 		Queue<Integer> queue = new LinkedList<Integer>();
 		queue.add(S);
 		visited[S] = true;
@@ -76,9 +77,4 @@ public class ShortestReach extends template {
 			}
 		}
 	}
-	
-	List<List<Integer>> adjList;
-	boolean visited[];
-	int connected[];
-	int distTo[]; // jarak dari sumber ke tujuan
 }

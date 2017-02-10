@@ -1,11 +1,44 @@
 package norman.srin.algorithm;
 
-import norman.template.template;
+import norman.template.Template;
 
-public class HighestPeak extends template {
+public class HighestPeak extends Template {
+
+	int w;
+	int[][] heights;
+	int[][] copyHeights;
 
 	public HighestPeak() {
 		super("HighestPeak", "HighestPeak", LINUX);
+	}
+
+	private static boolean max(int x, int y, int[][] heights) {
+		boolean ans = false;
+		// x-1 y+1
+		ans = heights[x][y] >= heights[x - 1][y + 1];
+//		System.out.println("x-1 y+1 "+ans);
+		// x-1 y
+		ans = ans && heights[x][y] >= heights[x - 1][y];
+//		System.out.println("x-1 y "+ans);
+		// x-1 y-1
+		ans = ans && heights[x][y] >= heights[x - 1][y - 1];
+//		System.out.println("x-1 y-1 "+ans);
+		// x y-1
+		ans = ans && heights[x][y] >= heights[x][y - 1];
+//		System.out.println("x y-1 "+ans);
+		// x y+1
+		ans = ans && heights[x][y] >= heights[x][y + 1];
+//		System.out.println("x y+1 "+ans);
+		// x+1 y-1
+		ans = ans && heights[x][y] >= heights[x + 1][y - 1];
+//		System.out.println("x+1 y-1 "+ans);
+		// x+1 y
+		ans = ans && heights[x][y] >= heights[x + 1][y];
+//		System.out.println("x+1 y "+ans);
+		// x+1 y+1
+		ans = ans && heights[x][y] >= heights[x + 1][y + 1];
+//		System.out.println("x+1 y+1 "+ans);
+		return ans;
 	}
 
 	@Override
@@ -55,37 +88,5 @@ public class HighestPeak extends template {
 			}
 			System.out.println(res);
 		}
-	}
-
-	int w;
-	int[][] heights;
-	int[][] copyHeights;
-	private static boolean max(int x, int y, int[][] heights){
-		boolean ans = false;
-		// x-1 y+1
-		ans = heights[x][y] >= heights[x-1][y+1];
-//		System.out.println("x-1 y+1 "+ans);
-		// x-1 y
-		ans = ans && heights[x][y] >= heights[x-1][y];
-//		System.out.println("x-1 y "+ans);
-		// x-1 y-1
-		ans = ans && heights[x][y] >= heights[x-1][y-1];
-//		System.out.println("x-1 y-1 "+ans);
-		// x y-1
-		ans = ans && heights[x][y] >= heights[x][y-1];
-//		System.out.println("x y-1 "+ans);
-		// x y+1
-		ans = ans && heights[x][y] >= heights[x][y+1];
-//		System.out.println("x y+1 "+ans);
-		// x+1 y-1
-		ans = ans && heights[x][y] >= heights[x+1][y-1];
-//		System.out.println("x+1 y-1 "+ans);
-		// x+1 y
-		ans = ans && heights[x][y] >= heights[x+1][y];
-//		System.out.println("x+1 y "+ans);
-		// x+1 y+1
-		ans = ans && heights[x][y] >= heights[x+1][y+1];
-//		System.out.println("x+1 y+1 "+ans);
-		return ans;
 	}
 }

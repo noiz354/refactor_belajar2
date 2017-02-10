@@ -1,7 +1,7 @@
 package norman.uva;
 
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -9,11 +9,14 @@ import java.util.PriorityQueue;
 import static java.lang.Math.sqrt;
 
 /**
- * Created by normansyahputa on 11/10/16.
+ * Created @author normansyahputa  on 11/10/16.
  * not correct answer {@link Highways2}
  */
 @Deprecated
-public class Highways extends template {
+public class Highways extends Template {
+
+    private int[] parent;
+    private int[][] coor;
 
     public Highways() {
         super("Highways", "Highways", LINUX, true);
@@ -46,9 +49,9 @@ public class Highways extends template {
             }
 
             // 3. read existing highways
-            existHighway = getInput().nextInt();
+            int existHighway = getInput().nextInt();
             int remainHighways = N;
-            for(int h=1;h<=existHighway;h++){
+            for (int h = 1; h <= existHighway; h++) {
                 int src = getInput().nextInt();
                 int dst = getInput().nextInt();
 
@@ -127,19 +130,15 @@ public class Highways extends template {
         }
     }
 
-    private int existHighway;
-    int[] parent;
-    int[][] coor;
-
     private void print(Object object){
-        template_utility.print(getOutput(), object.toString(), true, true);
+        TemplateUtility.print(getOutput(), object.toString(), true, true);
     }
 
     private class Edge{
         int x, y;
         double weight;
 
-        public Edge(int x, int y, double weight) {
+        Edge(int x, int y, double weight) {
             this.x = x;
             this.y = y;
             this.weight = weight;

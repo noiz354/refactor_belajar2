@@ -1,6 +1,6 @@
 package norman.hackerrank;
 
-import norman.template.template;
+import norman.template.Template;
 
 /**
  *
@@ -13,7 +13,9 @@ import norman.template.template;
  * 4/6/2015 fix kadane algorithm
  * only get 20/30
  */
-public class MaximumSubArray extends template {
+public class MaximumSubArray extends Template {
+
+    int[] data;
 
 	public MaximumSubArray() {
 		super("MaximumSubArray", "MaximumSubArray", LINUX);
@@ -28,8 +30,8 @@ public class MaximumSubArray extends template {
 			boolean isAllNegative = true;
 			for(int i=0;i<len;i++){
 				data[i] = getInput().nextInt();
-				isAllNegative = isAllNegative && data[i] < 0 ? true : false;
-			}
+                isAllNegative = isAllNegative && data[i] < 0;
+            }
 //			System.out.println(Arrays.toString(data)+" isAllNegative "+isAllNegative);
 
 			int sum =-9999, ans =0;
@@ -69,7 +71,5 @@ public class MaximumSubArray extends template {
 			System.out.println(sum);
 		}
 	}
-
-	int[] data;
 
 }

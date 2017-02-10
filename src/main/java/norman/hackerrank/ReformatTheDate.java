@@ -1,11 +1,11 @@
 package norman.hackerrank;
 
+import norman.template.Template;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import norman.template.template;
-
-public class ReformatTheDate extends template {
+public class ReformatTheDate extends Template {
 
 	public ReformatTheDate() {
 		super("ReformatTheDate", "ReformatTheDate", LINUX);

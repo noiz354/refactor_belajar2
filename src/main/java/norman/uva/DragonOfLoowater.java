@@ -1,10 +1,10 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.Arrays;
 
-import norman.template.template;
-
-public class DragonOfLoowater extends template {
+public class DragonOfLoowater extends Template {
 
 	public DragonOfLoowater() {
 		super("DragonOfLoowater", "DragonOfLoowater", LINUX);

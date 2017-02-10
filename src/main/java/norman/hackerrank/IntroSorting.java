@@ -1,10 +1,7 @@
 package norman.hackerrank;
 
-import java.io.IOException;
-import java.util.Arrays;
-
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 /**
  * problem : https://www.hackerrank.com/challenges/tutorial-intro
@@ -15,7 +12,7 @@ import norman.template.template_utility;
  * 
  * salah ngira soal, ini mah gampang
  */
-public class IntroSorting extends template {
+public class IntroSorting extends Template {
 
 	public IntroSorting(int envType) {
 		super("IntroSorting", "IntroSorting", envType, true);
@@ -35,15 +32,15 @@ public class IntroSorting extends template {
 			}
 			
 //			if(debug){
-//				template_utility.print(getOutput(), "before sorting :\n"+Arrays.toString(arr), true);
+//				TemplateUtility.print(getOutput(), "before sorting :\n"+Arrays.toString(arr), true);
 //			}
 //			Quicksort(arr, 0, arrSize-1);
 //			if(debug){
-//				template_utility.print(getOutput(), "after sorting :\n"+Arrays.toString(arr), true);
+//				TemplateUtility.print(getOutput(), "after sorting :\n"+Arrays.toString(arr), true);
 //			}
 			if(debug){
-				template_utility.print(getOutput(), ""+arr[V], true);
-			}
-		}
+                TemplateUtility.print(getOutput(), "" + arr[V], true);
+            }
+        }
 	}
 }

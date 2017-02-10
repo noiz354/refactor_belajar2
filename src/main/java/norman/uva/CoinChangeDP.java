@@ -1,8 +1,8 @@
 package norman.uva;
 
-import norman.template.template;
+import norman.template.Template;
 
-public class CoinChangeDP extends template {
+public class CoinChangeDP extends Template {
 
 	public CoinChangeDP() {
 		super("CoinChangeDP", "CoinChangeDP", WINDOWS);

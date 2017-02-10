@@ -1,20 +1,30 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import norman.template.template;
 
 /**
  * @author M Normansyah (m.normansyah@samsung.com)
  * Ternyata yang jadi recursive backtracking itu ternyata permutasi, karena posisi berbeda-beda.
  *
  * Ini yang diambil yang pertama kali ditemui, seharusnya juga dilihat dari jumlah yang diambil.
+ *
+ * get time limited.
  */
-public class CD extends template{
+@Deprecated
+public class CD extends Template {
 
-	public CD() {
-		super("CD", "CD", LINUX);
+    int not, n;
+    int[] tracks;
+    List<Integer> data;
+    int[] currentHighest;
+    int currentHighestLength;
+    boolean alreadyFind;
+
+    public CD() {
+        super("CD", "CD", LINUX);
 	}
 
 	@Override
@@ -62,7 +72,6 @@ public class CD extends template{
 			}System.out.println("sum:"+total);
 		}
 	}
-
 
 	/**
 	 * How to stop this method if it find the result.
@@ -115,11 +124,4 @@ public class CD extends template{
 			}
 		}
 	}
-
-	int not, n;
-	int[] tracks;
-	List<Integer> data;
-	int[] currentHighest;
-	int currentHighestLength;
-	boolean alreadyFind;
 }

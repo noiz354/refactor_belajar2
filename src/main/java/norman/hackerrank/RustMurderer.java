@@ -1,15 +1,8 @@
 package norman.hackerrank;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Set;
+import norman.template.Template;
 
-import norman.template.template;
-import norman.template.template_utility;
+import java.util.*;
 
 /**
  * 
@@ -18,14 +11,48 @@ import norman.template.template_utility;
  * https://www.hackerrank.com/challenges/rust-murderer
  * got 40.8 dari 50. ada salah kayaknya.
  */
-public class RustMurderer extends template {
+public class RustMurderer extends Template {
 
 	public RustMurderer() {
 		super("RustMurderer", "RustMurderer", LINUX);
 	}
 
-	@Override
-	public void doSomething() {
+    private static int[] getEdgelessMinDistances(final List<Set<Integer>> roads, final int origin, final int N) {
+
+        //Initialize distances
+        final int[] distances = new int[N];
+        for (int i = 0; i < N; distances[i++] = -1) {
+        }
+
+        //Create a list of unvisited cities
+        final List<Integer> unvisitedCities = new LinkedList<Integer>();
+        for (int i = 0; i < origin; unvisitedCities.add(i++)) {
+        }
+        for (int i = origin; ++i < N; unvisitedCities.add(i)) {
+        }
+
+        //Find min distances
+        final Queue<Integer> q = new LinkedList<Integer>();
+        q.add(origin);
+        do {
+            final int city = q.poll();
+            final int distance = ++distances[city];
+            final Set<Integer> cityRoads = roads.get(city);
+            for (Iterator<Integer> it = unvisitedCities.iterator(); it.hasNext(); ) {
+                final int unvisitedCity = it.next();
+                if (!cityRoads.contains(unvisitedCity)) {
+                    distances[unvisitedCity] = distance;
+                    it.remove();
+                    q.add(unvisitedCity);
+                }
+            }
+        } while (!q.isEmpty());
+
+        return distances;
+    }
+
+    @Override
+    public void doSomething() {
 		int TC = getInput().nextInt();
 		StringBuffer sb = new StringBuffer();
 		for(int tc=0;tc<TC;tc++){
@@ -36,7 +63,7 @@ public class RustMurderer extends template {
 		      for(int i = 0; i < N; ++i){
 		        roads.add(new HashSet<Integer>());
 		      }
-		      
+
 		      //Get edges
 		      for(int i=0;i<M;i++){
 		    	  int xTemp = getInput().nextInt();
@@ -46,57 +73,26 @@ public class RustMurderer extends template {
 		        roads.get(X).add(Y);
 		        roads.get(Y).add(X);
 		      }
-		      
+
 		    //Get Rust's starting position and find min distances
 		      final int S = getInput().nextInt() - 1;
 		      final int[] minDistances = getEdgelessMinDistances(roads, S, N);
-		      
+
 		      //Print output
 		      for(int i = 0; i < S; sb.append(minDistances[i++] + " ")){}
 		      for(int i = S; ++i < N; sb.append(minDistances[i] + " ")){}
 		      sb.append("\n");
-		      
-		      System.out.println(sb);
-		      
-//		      template_utility.print(getOutput(), distTo[i]+" ", false);
-		      
-			
+
+            System.out.println(sb);
+
+//		      TemplateUtility.print(getOutput(), distTo[i]+" ", false);
+
+
 		}
 	}
 	
-	private static int[] getEdgelessMinDistances(final List<Set<Integer>> roads, final int origin, final int N){
-	    
-	    //Initialize distances
-	    final int[] distances = new int[N];
-	    for(int i = 0; i < N; distances[i++] = -1){}
-	    
-	    //Create a list of unvisited cities
-	    final List<Integer> unvisitedCities = new LinkedList<Integer>();
-	    for(int i = 0; i < origin; unvisitedCities.add(i++)){}
-	    for(int i = origin; ++i < N; unvisitedCities.add(i)){}
-	    
-	    //Find min distances
-	    final Queue<Integer> q = new LinkedList<Integer>();
-	    q.add(origin);
-	    do {
-	      final int city = q.poll();
-	      final int distance = ++distances[city];
-	      final Set<Integer> cityRoads = roads.get(city);
-	      for(Iterator<Integer> it = unvisitedCities.iterator(); it.hasNext();){
-	        final int unvisitedCity = it.next();
-	        if(!cityRoads.contains(unvisitedCity)){
-	          distances[unvisitedCity] = distance;
-	          it.remove();
-	          q.add(unvisitedCity);
-	        }
-	      }
-	    } while (!q.isEmpty());
-	    
-	    return distances;
-	  }
-	
 	/*void oldWayComplementusingComplementGraph(){
-		int TC = getInput().nextInt();
+        int TC = getInput().nextInt();
 		for(int tc=0;tc<TC;tc++){
 			N = getInput().nextInt();// jumlah node
 			int M = getInput().nextInt();// jumlah edge
@@ -117,9 +113,9 @@ public class RustMurderer extends template {
 			bfs(S);
 			for(int i=0;i<distTo.length;i++){
 				if(i!=S)
-					template_utility.print(getOutput(), distTo[i]+" ", false);
+					TemplateUtility.print(getOutput(), distTo[i]+" ", false);
 			}
-			template_utility.print(getOutput(), "", true);
+			TemplateUtility.print(getOutput(), "", true);
 		}
 	}
 	

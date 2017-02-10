@@ -1,13 +1,13 @@
 package norman.hackerrank;
 
-import norman.template.template;
+import norman.template.Template;
 
 import java.util.Arrays;
 
 /**
- * Created by normansyahputa on 12/6/16.
+ * Created @author normansyahputa  on 12/6/16.
  */
-public class GreedyFlorist extends template {
+public class GreedyFlorist extends Template {
     public GreedyFlorist() {
         super("GreedyFlorist", "GreedyFlorist", LINUX, true);
     }

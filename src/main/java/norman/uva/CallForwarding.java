@@ -1,12 +1,15 @@
 package norman.uva;
 
+import norman.template.Template;
+import norman.template.TemplateUtility;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import norman.template.template;
-import norman.template.template_utility;
+public class CallForwarding extends Template {
 
-public class CallForwarding extends template {
+    int N, source, dtime, dext;
+    List<List<Integer>>[] intervals;
 
 	public CallForwarding() {
 		super("CallForwarding", "CallForwarding", LINUX	);
@@ -14,9 +17,9 @@ public class CallForwarding extends template {
 
 	@Override
 	public void doSomething() {
-		template_utility.print(getOutput(), "CALL FORWARDING OUTPUT", true);
-		N = getInput().nextInt();
-		A: for(int n = 1;n <= N; n++){
+        TemplateUtility.print(getOutput(), "CALL FORWARDING OUTPUT", true);
+        N = getInput().nextInt();
+        A: for(int n = 1;n <= N; n++){
 			intervals = new ArrayList[10000];
 			B: for(;;){
 				int ti, du, ta;
@@ -42,9 +45,10 @@ public class CallForwarding extends template {
 
 				intervals[source].add(temp);
 			}
-			template_utility.print(getOutput(), "SYSTEM "+n, true);
-			C: while(true){
-				if(!getInput().hasNext()){
+            TemplateUtility.print(getOutput(), "SYSTEM " + n, true);
+            C:
+            while (true) {
+                if(!getInput().hasNext()){
 					break A;
 				}
 				dtime = getInput().nextInt();
@@ -52,9 +56,9 @@ public class CallForwarding extends template {
 					break C;
 				}
 				dext = getInput().nextInt();
-				template_utility.printf(getOutput(), "AT %04d CALL TO RINGS %04d RINGS %04d", new Object[]{dtime, dext, transverse(0, dext, dtime, dext)}, true);
-			}
-		}
+                TemplateUtility.printf(getOutput(), "AT %04d CALL TO RINGS %04d RINGS %04d", new Object[]{dtime, dext, transverse(0, dext, dtime, dext)}, true);
+            }
+        }
 	}
 
 	private int transverse(int n, int o, int t, int e){
@@ -73,9 +77,6 @@ public class CallForwarding extends template {
 		}
 		return e;
 	}
-
-	int N, source, dtime, dext;
-	List<List<Integer>>[] intervals;
 
 
 }

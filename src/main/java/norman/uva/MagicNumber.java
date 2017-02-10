@@ -1,8 +1,8 @@
 package norman.uva;
 
-import java.math.BigInteger;
+import norman.template.Template;
 
-import norman.template.template;
+import java.math.BigInteger;
 
 /**
  * Solution Manual : http://f0rth3r3c0rd.wordpress.com/2011/09/12/uva-471-magic-numbers/
@@ -11,8 +11,8 @@ import norman.template.template;
  *
  * TODO perlu untuk mencari tahu kenapa max/N; tanya kenapa ?
  */
-public class MagicNumber extends template {
-	BigInteger N = BigInteger.valueOf(9876543210l);
+public class MagicNumber extends Template {
+    BigInteger N = BigInteger.valueOf(9876543210l);
 
 	public MagicNumber() {
 		super("MagicNumber", "MagicNumber", LINUX);

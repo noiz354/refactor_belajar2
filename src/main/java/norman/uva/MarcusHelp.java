@@ -1,20 +1,28 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import norman.template.template;
 
 /**
  * Started and Finished at 30-3-2015, need to be tested
  * @author M Normansyah (m.normansyah@samsung.com)
  *
  */
-public class MarcusHelp extends template {
+public class MarcusHelp extends Template {
 
-	public MarcusHelp() {
-		super("MarcusHelp", "MarcusHelp", LINUX);
+    boolean[] engravedStatus = new boolean[200];
+    char[] startEnd = {
+            '@' // start
+            , '#' // destination
+    };
+    char[] engraved = {'I', 'E', 'H', 'O', 'V', 'A', startEnd[1]};
+    char[][] m;
+
+    public MarcusHelp() {
+        super("MarcusHelp", "MarcusHelp", LINUX);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -110,12 +118,5 @@ public class MarcusHelp extends template {
 //		}
 //		return;
 	}
-	boolean[] engravedStatus = new boolean[200];
-	char[] startEnd = {
-			'@' // start
-			,'#' // destination
-	};
-	char[] engraved = {'I','E','H','O','V','A',startEnd[1]};
-	char[][] m;
 
 }

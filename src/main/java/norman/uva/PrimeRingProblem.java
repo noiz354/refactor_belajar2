@@ -1,13 +1,8 @@
 package norman.uva;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import norman.template.Template;
 
-import norman.template.template;
+import java.util.*;
 
 /**
  *
@@ -15,10 +10,15 @@ import norman.template.template;
  * finished ata 12-9-2014, masih ada bug lagi kalau 10 langsung jadi 0 perlu cari tahu kenapa ??
  * finised bug fix 14-09-2014, Minggu.
  */
-public class PrimeRingProblem extends template {
+public class PrimeRingProblem extends Template {
 
-	public PrimeRingProblem() {
-		super("PrimeRingProblem", "PrimeRingProblem", LINUX);
+    int[] result;
+    int count = 1;
+    private int num;
+    private List<Pair<int[], int[]>> filter;
+
+    public PrimeRingProblem() {
+        super("PrimeRingProblem", "PrimeRingProblem", LINUX);
 	}
 
 	@Override
@@ -78,81 +78,72 @@ public class PrimeRingProblem extends template {
 
 				//+ work code
 
-				A: while (true) {
-					filter = new ArrayList<>();
-					num = getInput().nextInt();
-					//+ delete this code before submit
-					if(num == 0){
-						break A;
-					}
-					//- delete this code before submit
-					result = new int[num+1];
-					result[1] = 1;// indeks 1 selalu 1
-					System.out.println("Case "+ count++ + ":");
-					backtrack(2);
+        while (true) {
+            filter = new ArrayList<>();
+            num = getInput().nextInt();
+            //+ delete this code before submit
+            if (num == 0) {
+                break;
+            }
+            //- delete this code before submit
+            result = new int[num + 1];
+            result[1] = 1;// indeks 1 selalu 1
+            System.out.println("Case " + count++ + ":");
+            backtrack(2);
 //					System.out.println("before filter size : "+ filter.size());
-					removeFilter();
+            removeFilter();
 //					System.out.println("filter size : "+ filter.size());
-					print();
-					if (!getInput().hasNext()) {
-						break A;
-					}
-				}
+            print();
+            if (!getInput().hasNext()) {
+                break;
+            }
+        }
 
 				//- work code
 
 	}
 
-	int num;
-	int[] result;
-	int count=1;
-	List<Pair<int[], int[]>> filter;
-
 	/**
 	 * This method is buggy
 	 */
 	void print(){
-		Map<Long, int[]> map = new TreeMap<Long, int[]>(new Comparator<Long>() {
-			@Override
-			public int compare(Long o1, Long o2) {
-				return o2.compareTo(o1);
-			}
-		});
-		for (int i = 0; i < filter.size(); i++) {
-			map.put(arrToInt2(filter.get(i).getFirst()), calculateDigit(convIntArrayToLongArray(filter.get(i).getFirst())));
-			map.put(arrToInt2(filter.get(i).getSecond()), calculateDigit(convIntArrayToLongArray(filter.get(i).getSecond())));
-		}
+        Map<Long, int[]> map = new TreeMap<>(Comparator.reverseOrder());
+        for (Pair<int[], int[]> aFilter : filter) {
+            map.put(arrToInt2(aFilter.getFirst()), calculateDigit(convIntArrayToLongArray(aFilter.getFirst())));
+            map.put(arrToInt2(aFilter.getSecond()), calculateDigit(convIntArrayToLongArray(aFilter.getSecond())));
+        }
 
 		for (Map.Entry<Long, int[]> entry : map.entrySet()) {
 			// below for demo
 //			System.out.println("Key : " + entry.getKey() + " Value : "
 //					+ Arrays.toString(entry.getValue()));
 			int[] conv = IntToArr2(entry.getKey(), entry.getValue());
-			for (int i = 0; i < conv.length; i++) {
-				System.out.print(conv[i] + " ");
-			}System.out.println();
-		}
-	}
+            for (int aConv : conv) {
+                System.out.print(aConv + " ");
+            }
+            System.out.println();
+        }
+    }
 
-	long[] convIntArrayToLongArray(int[] array){
-		long[] returnResult = new long[array.length-1];
-		for (int i = 0, j= 1; i < returnResult.length; i++, j++) {
+    private long[] convIntArrayToLongArray(int[] array) {
+        long[] returnResult = new long[array.length - 1];
+        for (int i = 0, j= 1; i < returnResult.length; i++, j++) {
 			returnResult[i] = array[j];
 		}
 		return returnResult;
 	}
 
-	int[] calculateDigit(long[] array){
-		int[] returnResult = new int[array.length];
-		for (int i = 0; i < returnResult.length; i++) {
+    private int[] calculateDigit(long[] array) {
+        int[] returnResult = new int[array.length];
+        for (int i = 0; i < returnResult.length; i++) {
 			returnResult[i] = getLength(array[i]);
 		}
 		return returnResult;
 	}
 
-	int getLength(Long value){
-		Long temp=value;// temporary
-		int len=0;// panjang
+    private int getLength(Long value) {
+        Long temp = value;// temporary
+        int len=0;// panjang
 		// hitung panjang integer
 		while(temp != 0){
 			temp = temp / 10;
@@ -161,12 +152,6 @@ public class PrimeRingProblem extends template {
 		return len;
 	}
 
-	/**
-	 * @deprecated
-	 * This should be fixed for 2 digit or more array
-	 * @param array
-	 * @return
-	 */
 //	int arrToInt(int[] array){
 //		int returnResult = 0;
 //		for (int i = array.length-1, j=0; i >= 0; i--, j++) {
@@ -181,10 +166,10 @@ public class PrimeRingProblem extends template {
 //		return returnResult;
 //	}
 
-	long arrToInt2(int[] array){
-		long returnResult = 0;
-		String temp = "";
-		for (int i = 1; i < array.length; i++) {
+    private long arrToInt2(int[] array) {
+        long returnResult;
+        String temp = "";
+        for (int i = 1; i < array.length; i++) {
 			temp += array[i];
 		}
 		returnResult = Long.parseLong(temp);
@@ -192,12 +177,13 @@ public class PrimeRingProblem extends template {
 	}
 
 	/**
-	 * @deprecated
-	 * @param value
-	 * @return
-	 */
-	int[] IntToArr( int value){
-		String temp = Integer.valueOf(value).toString();
+     * gak ngerti ini buat apaan ya?
+     * @param value nilai
+     * @return hahaha apa ini ya?
+     */
+    @Deprecated
+    int[] IntToArr(int value) {
+        String temp = Integer.valueOf(value).toString();
 		int[] returnResult = new int[temp.length()];
 		for (int j=0; j < returnResult.length; j++) {
 			returnResult[j] = Integer.parseInt(temp.charAt(j)+"");
@@ -207,19 +193,19 @@ public class PrimeRingProblem extends template {
 
 	/**
 	 * need to get fix digit
-	 * @param value
-	 * @param digit
-	 * @return
-	 */
-	int[] IntToArr2(long value, int[] digit){
-		// TODO Fix This Things
-		String temp = Long.valueOf(value).toString();
+     * @param value nilai
+     * @param digit digit dari nilai
+     * @return hasilnya
+     */
+    private int[] IntToArr2(long value, int[] digit) {
+        // TODO Fix This Things
+        String temp = Long.valueOf(value).toString();
 		int[] returnResult = new int[digit.length];
 		int ind = 0;
 		for (int j=0; j < returnResult.length; j++) {
-			int innerTemp = -1;
-			if(j==0)
-				innerTemp = Integer.parseInt(temp.substring(0, ind+digit[j])+"");
+            int innerTemp;
+            if (j == 0)
+                innerTemp = Integer.parseInt(temp.substring(0, ind+digit[j])+"");
 			else
 				innerTemp = Integer.parseInt(temp.substring(ind, ind+digit[j])+"");
 			returnResult[j] = innerTemp;
@@ -229,18 +215,18 @@ public class PrimeRingProblem extends template {
 	}
 
 
-	public void removeFilter(){
-		for (Iterator iterator = filter.iterator(); iterator.hasNext();) {
-			Pair<int[], int[]> pair = (Pair<int[], int[]>) iterator.next();
-			if(pair.getSecond() == null){
-				iterator.remove();
+    private void removeFilter() {
+        for (Iterator<Pair<int[], int[]>> iterator = filter.iterator(); iterator.hasNext(); ) {
+            Pair<int[], int[]> pair = iterator.next();
+            if (pair.getSecond() == null) {
+                iterator.remove();
 			}
 		}
 	}
 
-	boolean isPrime(int i){
-		if(result[i]==1){
-			return true;
+    private boolean isPrime(int i) {
+        if (result[i] == 1) {
+            return true;
 		}
 		int temp = result[i] + result[i-1];
 		for (int j = 2; j < temp; j++) {
@@ -253,12 +239,12 @@ public class PrimeRingProblem extends template {
 
 	/**
 	 * Cara ini digunakan karena cuma 16 bilangan
-	 * @param indexValue
-	 * @return false jika sudah ada yang sama, true jika tidak ada yang sama.
-	 */
-	boolean isAlreadyInArray(int indexValue){
-		for (int i = 1; i < indexValue; i++) {
-			if(result[i] == result[indexValue]){
+     * @param indexValue hahaha what this for
+     * @return false jika sudah ada yang sama, true jika tidak ada yang sama.
+     */
+    private boolean isAlreadyInArray(int indexValue) {
+        for (int i = 1; i < indexValue; i++) {
+            if(result[i] == result[indexValue]){
 				return false;
 			}
 		}
@@ -266,34 +252,34 @@ public class PrimeRingProblem extends template {
 	}
 
 	/**
-	 * @param input
-	 * @return false jika ditambahkan sebagai pasangannya dan true jika membuat baru.
-	 */
-	boolean filter(int[] input){
-		boolean isAlreadyAdd = false;
-		int index =0;
+     * @param input input of something
+     * @return false jika ditambahkan sebagai pasangannya dan true jika membuat baru.
+     */
+    private boolean filter(int[] input) {
+        boolean isAlreadyAdd = false;
+        int index =0;
 		// menggunakan linear searh
-		B: for (int i = 0; i < filter.size(); i++) {// 0-jumlah data
-			int[] temp = filter.get(i).getFirst();
+        for (int i = 0; i < filter.size(); i++) {// 0-jumlah data
+            int[] temp = filter.get(i).getFirst();
 
-			A: for (int j = 2, k=temp.length-1; j < temp.length; j++, k--) {
+            for (int j = 2, k = temp.length - 1; j < temp.length; j++, k--) {
 //				System.out.println(""+input[k] + " != "+ temp[j] + " "+ (input[k] != temp[j]));
-				if(input[k] != temp[j]){
-					isAlreadyAdd = false;
-					break A;
-				}
-				isAlreadyAdd= true;
-			}
+                if (input[k] != temp[j]) {
+                    isAlreadyAdd = false;
+                    break;
+                }
+                isAlreadyAdd = true;
+            }
 
-			if(isAlreadyAdd){// jika sama
-				index = i;
-				break B;
-			}
-		}
+            if (isAlreadyAdd) {// jika sama
+                index = i;
+                break;
+            }
+        }
 		if(!isAlreadyAdd){
-			Pair<int[], int[]> temp = new Pair<int[], int[]>(input, null);
-			filter.add(temp);
-			return true;
+            Pair<int[], int[]> temp = new Pair<>(input, null);
+            filter.add(temp);
+            return true;
 		}else{
 			filter.get(index).setSecond(input);
 			return false;
@@ -302,9 +288,9 @@ public class PrimeRingProblem extends template {
 
 	/**
 	 * This is buggy to save data
-	 * @param i
-	 */
-	void backtrack(int i){
+     * @param i wow what this for
+     */
+    private void backtrack(int i) {
 //		if(i == result.length){
 //			result[i-1] = 0;// this will zeroed last index
 //			return;
@@ -333,10 +319,8 @@ public class PrimeRingProblem extends template {
 					System.out.println(filter(tempresult) ? "create new one" : "set second");
 					*/
 					int[] tempresult = new int[result.length];
-					for (int j2 = 0; j2 < result.length; j2++) {
-						tempresult[j2] = result[j2];
-					}
-					filter(tempresult);
+                    System.arraycopy(result, 0, tempresult, 0, result.length);
+                    filter(tempresult);
 //					System.out.print(Arrays.toString(result));// "masuk sini : "+
 //					System.out.println();
 					result[i] = 0;

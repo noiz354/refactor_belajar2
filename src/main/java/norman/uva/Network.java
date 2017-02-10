@@ -1,17 +1,17 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import norman.template.template;
 
 /**
  * uva 315
  * @author m.normansyah
  *
  */
-public class Network extends template {
-	
+public class Network extends Template {
+
 	private static final int UNVISITED = 0;
 	private static final int EXPLORED = 1;
 	private static final int VISITED = 2;

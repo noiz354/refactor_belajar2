@@ -1,13 +1,13 @@
 package norman.hackerrank;
 
-import norman.template.template;
+import norman.template.Template;
 
 import java.util.Arrays;
 
 /**
- * Created by normansyahputa on 12/6/16.
+ * Created @author normansyahputa  on 12/6/16.
  */
-public class SherlockAndTheCost2 extends template {
+public class SherlockAndTheCost2 extends Template {
     public SherlockAndTheCost2() {
         super("SherlockAndTheCost", "SherlockAndTheCost", LINUX, true);
     }

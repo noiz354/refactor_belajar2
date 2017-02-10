@@ -1,13 +1,19 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import norman.template.template;
+public class GrandDinner extends Template {
 
-public class GrandDinner extends template {
+	int m, n, i, j, temp, temp1;
+	boolean flag;
+	Seat[] s;
+	Team[] t;
+	List<List<Integer>> ans;
 
 	public GrandDinner() {
 		super("GrandDinner", "GrandDinner", LINUX);
@@ -80,11 +86,6 @@ public class GrandDinner extends template {
 		}
 	}
 
-	int m, n, i, j, temp, temp1;
-	boolean flag;
-	Seat[] s;
-	Team[] t;
-	List<List<Integer>> ans;
 	class Seat implements Comparable<Seat>{
 		int val, id;
 		public Seat(int val, int id){

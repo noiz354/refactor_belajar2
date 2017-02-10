@@ -1,8 +1,8 @@
 package norman.template;
 
-public interface template_const {
-	/**
-	 * linux slash
+public interface TemplateConst {
+    /**
+     * linux slash
 	 */
 	String LINUX_SLASH = "/";
 

@@ -1,12 +1,17 @@
 package norman.hackerrank;
 
+import norman.template.Template;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import norman.template.template;
+public class VisitedCell extends Template {
 
-public class VisitedCell extends template {
+	static final int ATAS_UP = 0, ATAS_RIGHT = 1, ATAS_LEFT = 2, ATAS_BOTTOM = 3;
+	int res;
+	int[][] grid;
+	Map<Integer, Pair> movement;
 
 	public VisitedCell() {
 		super("VisitedCell", "VisitedCell", LINUX);
@@ -33,22 +38,7 @@ public class VisitedCell extends template {
 		}
 
 	}
-	
-	int res;
-	int[][] grid;
-	static final int ATAS_UP = 0, ATAS_RIGHT = 1, ATAS_LEFT = 2, ATAS_BOTTOM=3;
-	Map<Integer, Pair> movement ;
-	class Pair{
-		int addX, addY;
-		int RIGHT_STATUS;
 
-		public Pair(int addX, int addY, int RIGHT) {
-			this.addX = addX;
-			this.addY = addY;
-			this.RIGHT_STATUS = RIGHT;
-		}
-		
-	}
 	void transverse(int x, int y, int count, int up){
 //		if(count == 10){
 //			return;
@@ -57,15 +47,15 @@ public class VisitedCell extends template {
 		Pair adder = movement.get(up);
 //		whichWay(adder);
 //		System.out.println("keluar zona : "+exitZone(x, y, adder));
-//		int upTemp =up; 
+//		int upTemp =up;
 //		while(exitZone(x, y, adder)){
 //			adder = rotate(upTemp);
 //			upTemp = rotateStatus(upTemp);
 //			whichWay(adder);
 //		}
 		int counter =0;
-		int upTemp =up; 
-		while ( exitZone(x, y, adder) || grid[x+adder.addX][y+adder.addY] != 0){// selama tidak 0
+		int upTemp = up;
+		while (exitZone(x, y, adder) || grid[x + adder.addX][y + adder.addY] != 0) {// selama tidak 0
 			if(counter > 3){
 				res = count;
 				return;
@@ -75,12 +65,12 @@ public class VisitedCell extends template {
 //			whichWay(adder);
 			counter++;
 		}
-		
+
 		grid[x+adder.addX][y+adder.addY] = ++count;
 		transverse(x+adder.addX, y+adder.addY, count, adder.RIGHT_STATUS);
 	}
-	
-	void printGrid(int[][] grid){
+
+	void printGrid(int[][] grid) {
 		for(int i=0;i<grid.length;i++){
 			System.out.println(Arrays.toString(grid[i]));
 		}
@@ -149,5 +139,17 @@ public class VisitedCell extends template {
 		default:
 			break;
 		}
+	}
+
+	class Pair {
+		int addX, addY;
+		int RIGHT_STATUS;
+
+		public Pair(int addX, int addY, int RIGHT) {
+			this.addX = addX;
+			this.addY = addY;
+			this.RIGHT_STATUS = RIGHT;
+		}
+
 	}
 }

@@ -1,17 +1,20 @@
 package norman.hackerrank;
 
+import norman.template.Template;
+import norman.template.TemplateUtility;
+
 import java.io.IOException;
 import java.util.Arrays;
-
-import norman.template.template;
-import norman.template.template_utility;
 
 /**
  * Greedy problem
  * @author M Normansyah (m.normansyah@samsung.com)
  * https://www.hackerrank.com/challenges/angry-children
  */
-public class MaxMin extends template {
+public class MaxMin extends Template {
+
+	int[] n;
+	int K, N;
 
 	public MaxMin() {
 		super("MaxMin", "MaxMin", LINUX);
@@ -34,7 +37,7 @@ public class MaxMin extends template {
 				if(i!=(N-1))
 					printSomething +=",";
 			}
-			template_utility.print(getOutput(), printSomething, true);
+			TemplateUtility.print(getOutput(), printSomething, true);
 
 			Arrays.sort(n);
 
@@ -48,7 +51,7 @@ public class MaxMin extends template {
 			}
 
 			printSomething = "" + result;
-			template_utility.print(getOutput(), printSomething, true);
+			TemplateUtility.print(getOutput(), printSomething, true);
 
 		}
 
@@ -58,8 +61,5 @@ public class MaxMin extends template {
 			e.printStackTrace();
 		}
 	}
-
-	int[] n;
-	int K, N;
 
 }

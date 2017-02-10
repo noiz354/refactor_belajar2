@@ -1,8 +1,8 @@
 package norman.uva;
 
-import java.util.Arrays;
+import norman.template.Template;
 
-import norman.template.template;
+import java.util.Arrays;
 
 /**
  *
@@ -10,7 +10,7 @@ import norman.template.template;
  * started at 22-2-2015
  * finished converted at 24-2-2015
  */
-public class WateringGrass extends template {
+public class WateringGrass extends Template {
 
 	public WateringGrass() {
 		super("WateringGrass", "WateringGrass", LINUX);
@@ -113,8 +113,8 @@ public class WateringGrass extends template {
 		double l, r;
 
 		/**
-		 * @param l
-		 * @param r
+		 * @param l left position
+		 * @param r right position
 		 */
 		public Sprinkler(double l, double r) {
 			this.l = l;
@@ -122,7 +122,7 @@ public class WateringGrass extends template {
 		}
 		@Override
 		public int compareTo(Sprinkler o) {
-			return Double.valueOf(l).compareTo(Double.valueOf(o.l));
+			return Double.valueOf(l).compareTo(o.l);
 		}
 		@Override
 		public String toString() {

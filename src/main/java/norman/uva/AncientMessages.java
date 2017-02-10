@@ -1,11 +1,11 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-
-import norman.template.template;
 
 /**
  * 
@@ -28,19 +28,52 @@ import norman.template.template;
  * kalau baca codingan orang, yang salah itu adalah directionnya harusnya 4. 
  * diubah 4 malah jawabannya aneh.
  */
-public class AncientMessages extends template {
+public class AncientMessages extends Template {
 
-	public AncientMessages() {
-		super("AncientMessages", "AncientMessages", WINDOWS);
+    static final int[] dr = {-1, 0, 1, 0};// trick to explore an implicit 2D Grid
+    static final int[] dc = {0, -1, 0, 1}; // S, SE, E, NE, N, NW, W, SW neighbors
+    static final int[][] hex = {
+            {0, 0, 0, 0},// 0
+            {0, 0, 0, 1},// 1
+            {0, 0, 1, 0},// 2
+            {0, 0, 1, 1},// 3
+            {0, 1, 0, 0},// 4
+            {0, 1, 0, 1},// 5
+            {0, 1, 1, 0},// 6
+            {0, 1, 1, 1},// 7
+            {1, 0, 0, 0},// 8
+            {1, 0, 0, 1},// 9
+            {1, 0, 1, 0},// 10
+            {1, 0, 1, 1},// 11
+            {1, 1, 0, 0},// 12
+            {1, 1, 0, 1},// 13
+            {1, 1, 1, 0},// 14
+            {1, 1, 1, 1},// 15
+    };
+    Pair start;
+    int H, W;
+    int[][] map;
+    Set<Pair> lvl1;
+    boolean[] visited1;
+    Set<Pair> lvl2;
+    boolean[] visited2;
+    int color_to_saved;
+    int level;
+
+    public AncientMessages() {
+        super("AncientMessages", "AncientMessages", WINDOWS);
 	}
 
-	@Override
-	public void doSomething() {
+//	static final int[] dr = {1,1,0,-1,-1,-1,0,1};// trick to explore an implicit 2D Grid
+//	static final int[] dc = {0,1,1,1,0,-1,-1,-1}; // S, SE, E, NE, N, NW, W, SW neighbors
+
+    @Override
+    public void doSomething() {
 		int countTest = 1;
 		while((H=getInput().nextInt())!=0 &&(W=getInput().nextInt())!=0){
 			getInput().nextLine();
 			map = new int[H][4*W];
-			
+
 			for(int i=0;i<H;i++){
 				String temp = getInput().next();
 //				System.out.println(temp);
@@ -55,18 +88,18 @@ public class AncientMessages extends template {
 			}
 			printMap();
 			System.out.println();
-			
+
 //			System.out.print("Case "+countTest++ +": ");
 			lvl1 = new HashSet<>();
 			color_to_saved = 1;
 			level = 1;
 			floodfill(start.x, start.y, 0, 2);
-			
-			printMap();
-			System.out.println();
-			
-			lvl2 = new HashSet<>();
-			color_to_saved =0;
+
+            printMap();
+            System.out.println();
+
+            lvl2 = new HashSet<>();
+            color_to_saved =0;
 			level = 2;
 			for(Iterator<Pair> i=lvl1.iterator();i.hasNext();){
 				Pair temp = i.next();
@@ -107,77 +140,12 @@ public class AncientMessages extends template {
 			System.out.println();
 		}// emd of while
 	}
-	
-	void printMap(){
-		for(int i=0;i<map.length;i++){
+
+    void printMap() {
+        for(int i=0;i<map.length;i++){
 			System.out.println(Arrays.toString(map[i]));
 		}
 	}
-	
-	Pair start;
-	int H, W;
-	int[][] map;
-	Set<Pair> lvl1;
-	boolean[] visited1;
-	Set<Pair> lvl2;
-	boolean[] visited2;
-	int color_to_saved;
-	int level;
-	
-	class Pair{
-		int x, y;
-
-		public Pair(int x, int y) {
-			super();
-			this.x = x;
-			this.y = y;
-		}
-
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + getOuterType().hashCode();
-			result = prime * result + x;
-			result = prime * result + y;
-			return result;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Pair other = (Pair) obj;
-			if (!getOuterType().equals(other.getOuterType()))
-				return false;
-			if (x != other.x)
-				return false;
-			if (y != other.y)
-				return false;
-			return true;
-		}
-
-		private AncientMessages getOuterType() {
-			return AncientMessages.this;
-		}
-
-		@Override
-		public String toString() {
-			return "Pair [x=" + x + ", y=" + y + "]";
-		}
-		
-		
-	}
-	
-//	static final int[] dr = {1,1,0,-1,-1,-1,0,1};// trick to explore an implicit 2D Grid
-//	static final int[] dc = {0,1,1,1,0,-1,-1,-1}; // S, SE, E, NE, N, NW, W, SW neighbors
-	
-	static final int[] dr = {-1,0,1,0};// trick to explore an implicit 2D Grid
-	static final int[] dc = {0,-1,0,1}; // S, SE, E, NE, N, NW, W, SW neighbors
 	
 	int floodfill(int r, int c, int c1, int c2 ){// return the size of CC
 //		if(r<0||r>=H||c<0||c>=W)// outside grid
@@ -231,23 +199,51 @@ public class AncientMessages extends template {
 		}
 		return -99;
 	}
-	
-	static final int[][] hex = {
-			{0,0,0,0},// 0
-			{0,0,0,1},// 1
-			{0,0,1,0},// 2
-			{0,0,1,1},// 3
-			{0,1,0,0},// 4
-			{0,1,0,1},// 5
-			{0,1,1,0},// 6
-			{0,1,1,1},// 7
-			{1,0,0,0},// 8
-			{1,0,0,1},// 9
-			{1,0,1,0},// 10
-			{1,0,1,1},// 11
-			{1,1,0,0},// 12
-			{1,1,0,1},// 13
-			{1,1,1,0},// 14
-			{1,1,1,1},// 15
-	};
+
+    class Pair {
+        int x, y;
+
+        public Pair(int x, int y) {
+            super();
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public int hashCode() {
+            final int prime = 31;
+            int result = 1;
+            result = prime * result + getOuterType().hashCode();
+            result = prime * result + x;
+            result = prime * result + y;
+            return result;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj)
+                return true;
+            if (obj == null)
+                return false;
+            if (getClass() != obj.getClass())
+                return false;
+            Pair other = (Pair) obj;
+            if (!getOuterType().equals(other.getOuterType()))
+                return false;
+            if (x != other.x)
+                return false;
+            return y == other.y;
+        }
+
+        private AncientMessages getOuterType() {
+            return AncientMessages.this;
+        }
+
+        @Override
+        public String toString() {
+            return "Pair [x=" + x + ", y=" + y + "]";
+        }
+
+
+    }
 }

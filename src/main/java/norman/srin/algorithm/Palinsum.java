@@ -1,8 +1,8 @@
 package norman.srin.algorithm;
 
-import norman.template.template;
+import norman.template.Template;
 
-public class Palinsum extends template {
+public class Palinsum extends Template {
 
 	public Palinsum() {
 		super("Palinsum", "Palinsum", LINUX);

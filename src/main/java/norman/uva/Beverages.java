@@ -1,6 +1,6 @@
 package norman.uva;
 
-import norman.template.template;
+import norman.template.Template;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,17 +8,17 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by normansyahputa on 12/2/16.
+ * Created @author normansyahputa  on 12/2/16.
  */
-public class Beverages extends template {
+public class Beverages extends Template {
+    HashMap<String, Integer> map;
+    HashMap<Integer, String> unmap;
+    KahnTopSort.KahnTopSortUtil kahnTopSortUtil;
+    private ArrayList<List<Integer>> adjList;
+
     public Beverages() {
         super("Beverages", "Beverages", LINUX, true);
     }
-
-    HashMap<String, Integer> map;
-    private ArrayList<List<Integer>> adjList;
-    HashMap<Integer, String> unmap;
-    KahnTopSort.KahnTopSortUtil kahnTopSortUtil;
 
     @Override
     public void doSomething() {

@@ -1,6 +1,6 @@
 package norman.uva;
 
-import norman.template.template;
+import norman.template.Template;
 
 
 /**
@@ -8,7 +8,7 @@ import norman.template.template;
  * @author M Normansyah (m.normansyah@samsung.com)
  * Accepted wkwk
  */
-public class ExpertEnough extends template {
+public class ExpertEnough extends Template {
 
 	public ExpertEnough() {
 		super("expertenough","expertenough", LINUX);

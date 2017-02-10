@@ -1,15 +1,18 @@
 package norman.uva;
 
-import java.io.IOException;
+import norman.template.Template;
 
-import norman.template.template;
+import java.io.IOException;
 
 /**
  * @author M Normansyah (m.normansyah@samsung.com)
  * 11407 - Squares
  * started at 8-4-2015
  */
-public class Squares extends template {
+public class Squares extends Template {
+
+	int list[];
+	int[] dp;
 
 	public Squares() {
 		super("Squares", "Squares", LINUX);
@@ -35,11 +38,8 @@ public class Squares extends template {
 		}
 	}
 
-int list[];
-
 	/**
 	 * https://kimox2.wordpress.com/2011/10/10/uva-11407-squares/
-	 * @param N
 	 */
 	private void findSmallN(){
 		list = new int[10005];
@@ -66,8 +66,6 @@ int list[];
 		}
 	}
 
-
-	int[] dp;
 	/**
 	 * top-down approach, more readable for me
 	 * @param n

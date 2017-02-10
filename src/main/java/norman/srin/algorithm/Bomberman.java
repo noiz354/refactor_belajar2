@@ -1,10 +1,10 @@
 package norman.srin.algorithm;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import norman.template.template;
 
 /**
  * Soal latihan so-tong
@@ -13,7 +13,11 @@ import norman.template.template;
  * cara ke-2, simpan dalama list dan sort dari yang paling besar, setiap ngebomb update data-data.
  *
  */
-public class Bomberman extends template{
+public class Bomberman extends Template {
+
+    char[][] map;
+    List<coor> coords;
+    int M, N, largest, i_largest, j_largest, real_count, prev, after, enemy_count, bomb_count;
 
 	public Bomberman() {
 		super("Bomberman", "Bomberman", LINUX);
@@ -108,7 +112,6 @@ public class Bomberman extends template{
 		}//end of while Test Case
 	}
 
-
 	private void bomb(int i, int j){
 //		System.out.println("i_bomb "+i+" j_bomb "+j);
 
@@ -188,10 +191,6 @@ public class Bomberman extends template{
 	private boolean detEnemy(int i, int j, char[][] map){
 		return map[i][j] == 'x';
 	}
-
-	char[][] map;
-	List<coor> coords;
-	int M,N, largest, i_largest, j_largest, real_count, prev,after, enemy_count, bomb_count;
 
 	static class coor implements Comparable<coor>{
 		int x,y,number;

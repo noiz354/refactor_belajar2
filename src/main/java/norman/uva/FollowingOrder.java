@@ -1,24 +1,29 @@
 package norman.uva;
 
-import java.util.*;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
-import norman.template.template;
-import norman.template.template_utility;
+import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  * 
  * @author m.normansyah
  * https://f0rth3r3c0rd.wordpress.com/2012/01/25/uva-124-following-orders/
  */
-public class FollowingOrder extends template {
+public class FollowingOrder extends Template {
 
-	 LinkedList<Integer>[] G;
-	 int[] indegree;
-	 static int[] map = new int[128];
+    static int[] map = new int[128];
+    LinkedList<Integer>[] G;
+    int[] indegree;
 	 char[] unmap;
 	 int n;
 	 StringBuilder out;
 	 char[] res;
+
+    public FollowingOrder() {
+        super("FollowingOrder", "FollowingOrder", LINUX);
+    }
 
 	public  void dfs(int left) {
 		if (left == 0)
@@ -37,9 +42,6 @@ public class FollowingOrder extends template {
 		}
 	}
 
-	public FollowingOrder() {
-		super("FollowingOrder", "FollowingOrder", LINUX);
-	}
 	@Override
 	public void doSomething() {
 		boolean flag = false;
@@ -74,11 +76,11 @@ public class FollowingOrder extends template {
 	}
 
 	private void print(Object o){
-		template_utility.print(getOutput(), o.toString(), false, true);
-	}
+        TemplateUtility.print(getOutput(), o.toString(), false, true);
+    }
 
 	private void println(Object o){
-		template_utility.print(getOutput(), o.toString(), true, true);
-	}
+        TemplateUtility.print(getOutput(), o.toString(), true, true);
+    }
 
 }

@@ -1,14 +1,17 @@
 package norman.uva;
 
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 import java.util.*;
 
 /**
- * Created by normansyahputa on 12/5/16.
+ * Created @author normansyahputa  on 12/5/16.
  */
-public class WordTransformation extends template {
+public class WordTransformation extends Template {
+    Map<String, List<String>> adjList;
+    Map<String, Integer> visited;
+
     public WordTransformation() {
         super("WordTransformation", "WordTransformation", LINUX, true);
     }
@@ -124,9 +127,6 @@ public class WordTransformation extends template {
         }
     }
 
-    Map<String, List<String>> adjList;
-    Map<String, Integer> visited;
-
     void printAdjList(){
         for(Iterator<String> it = adjList.keySet().iterator();it.hasNext();){
             String next = it.next();
@@ -136,10 +136,10 @@ public class WordTransformation extends template {
     }
 
     void print(Object object){
-        template_utility.print(getOutput(), object.toString(), false, true);
+        TemplateUtility.print(getOutput(), object.toString(), false, true);
     }
 
     void println(Object object){
-        template_utility.print(getOutput(), object.toString(), true, true);
+        TemplateUtility.print(getOutput(), object.toString(), true, true);
     }
 }

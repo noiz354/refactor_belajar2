@@ -1,9 +1,9 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import norman.template.template;
 
 /**
  * started at 24-3-2015
@@ -11,10 +11,14 @@ import norman.template.template;
  * converted from
  * https://saicheems.wordpress.com/2013/08/06/uva-10276-hanoi-tower-troubles-again/
  */
-public class HanoiTowerProblemAgain extends template {
+public class HanoiTowerProblemAgain extends Template {
 
-	public HanoiTowerProblemAgain() {
-		super("HanoiTowerProblemAgain", "HanoiTowerProblemAgain", LINUX);
+    int T, N, tot;
+    int peg[];
+    List<List<Integer>> pegMap;
+
+    public HanoiTowerProblemAgain() {
+        super("HanoiTowerProblemAgain", "HanoiTowerProblemAgain", LINUX);
 	}
 
 	@Override
@@ -41,9 +45,6 @@ public class HanoiTowerProblemAgain extends template {
 //	}
 	}
 
-	int T, N, tot;
-	int peg[];
-	List<List<Integer>> pegMap;
 	void simul(int v, int p){
 		if(p == N) return;
 

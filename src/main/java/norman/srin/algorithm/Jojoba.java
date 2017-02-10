@@ -1,10 +1,13 @@
 package norman.srin.algorithm;
 
+import norman.template.Template;
+
 import java.io.IOException;
 
-import norman.template.template;
+public class Jojoba extends Template {
 
-public class Jojoba extends template {
+    boolean[][] data;
+    int[] result;
 
 	public Jojoba() {
 		super("Jojoba", "Jojoba", LINUX);
@@ -64,10 +67,6 @@ public class Jojoba extends template {
 			}
 		}// end of while
 	}
-
-	boolean[][] data;
-	int[] result;
-
 
 	private void printToFile(String text){
 		try {

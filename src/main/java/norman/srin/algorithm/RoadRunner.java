@@ -1,15 +1,19 @@
 package norman.srin.algorithm;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import norman.template.template;
+public class RoadRunner extends Template {
 
-public class RoadRunner extends template {
+    int T, C;
+    int[] width;
+    List<Pair> coordinates;
 
-	public RoadRunner() {
-		super("RoadRunner", "RoadRunner", LINUX);
+    public RoadRunner() {
+        super("RoadRunner", "RoadRunner", LINUX);
 	}
 
 	@Override
@@ -46,9 +50,6 @@ public class RoadRunner extends template {
 //			}
 		}
 	}
-	int T, C;
-	int[] width;
-	List<Pair> coordinates;
 
 	private static class Pair{
 		int x,y;
@@ -56,12 +57,15 @@ public class RoadRunner extends template {
 		public int getX() {
 			return x;
 		}
-		public int getY() {
-			return y;
-		}
+
 		public void setX(int x) {
 			this.x = x;
 		}
+
+        public int getY() {
+            return y;
+        }
+
 		public void setY(int y) {
 			this.y = y;
 		}

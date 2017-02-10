@@ -1,9 +1,9 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.ArrayDeque;
 import java.util.Queue;
-
-import norman.template.template;
 
 /**
  * UVa 439: Knight moves
@@ -11,10 +11,16 @@ import norman.template.template;
  * convert from : https://saicheems.wordpress.com/2013/11/13/uva-439-knight-moves/
  *
  */
-public class KnightMoves extends template {
+public class KnightMoves extends Template {
 
-	public KnightMoves() {
-		super("KnightMoves", "KnightMoves", LINUX);
+    char a, b;
+    int sx, sy, ex, ey;
+    int kx[] = {-1, -1, 1, 1, -2, -2, 2, 2};
+    int ky[] = {2, -2, 2, -2, 1, -1, 1, -1};
+    int A[][];
+
+    public KnightMoves() {
+        super("KnightMoves", "KnightMoves", LINUX);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -54,10 +60,10 @@ public class KnightMoves extends template {
 					}
 				}
 			}
-			System.out.println("To get from "+(char)a+""+(sy+1)
-					+" to "+(char)b+""+(ey+1)+" takes "+
-					A[ex][ey]+" knights moves\n");
-			// takes %d knights moves, ,A[ex][ey]
+            System.out.println("To get from " + a + "" + (sy + 1)
+                    + " to " + b + "" + (ey + 1) + " takes " +
+                    A[ex][ey] + " knights moves\n");
+            // takes %d knights moves, ,A[ex][ey]
 		}while(getInput().hasNext());
 	}
 
@@ -70,20 +76,17 @@ public class KnightMoves extends template {
 		public int getX() {
 			return x;
 		}
-		public int getY() {
-			return y;
-		}
+
 		public void setX(int x) {
 			this.x = x;
 		}
+
+        public int getY() {
+            return y;
+        }
+
 		public void setY(int y) {
 			this.y = y;
 		}
 	}
-
-	char a, b;
-	int sx, sy, ex, ey;
-	int kx[] = { -1, -1, 1, 1, -2, -2, 2, 2 };
-	int ky[] = { 2, -2, 2, -2, 1, -1, 1, -1 };
-	int A[][];
 }

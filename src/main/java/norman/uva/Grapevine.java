@@ -1,10 +1,10 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.Arrays;
 
-import norman.template.template;
-
-public class Grapevine extends template {
+public class Grapevine extends Template {
 
 	public Grapevine() {
 		super("Grapevine", "Grapevine", LINUX);

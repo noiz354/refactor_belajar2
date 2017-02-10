@@ -1,8 +1,8 @@
 package norman.uva;
 
-import java.util.Arrays;
+import norman.template.Template;
 
-import norman.template.template;
+import java.util.Arrays;
 
 /**
  * 
@@ -17,12 +17,11 @@ import norman.template.template;
  * jadi sebenarnya antara x dan . saja. tinggal O(N^2) dengan n adalah dfs
  *
  */
-public class Battleships extends template {
-	int N;
-	char[][] map;
-	
-	static final int dr [] = {-1, -1, 0, 1, 1, 1, 0, -1};
-	static final int dc [] = {0, 1, 1, 1, 0, -1, -1, -1};
+public class Battleships extends Template {
+    static final int dr[] = {-1, -1, 0, 1, 1, 1, 0, -1};
+    static final int dc [] = {0, 1, 1, 1, 0, -1, -1, -1};
+    int N;
+    char[][] map;
 
 	public Battleships() {
 		super("Battleships", "Battleships", WINDOWS);

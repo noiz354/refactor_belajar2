@@ -1,8 +1,8 @@
 package norman.uva;
 
-import norman.template.template;
+import norman.template.Template;
 
-public class ScareCrow extends template {
+public class ScareCrow extends Template {
 
 	public ScareCrow() {
 		super("ScareCrow", "ScareCrow", LINUX);

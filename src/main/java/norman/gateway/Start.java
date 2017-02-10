@@ -1,6 +1,6 @@
 package norman.gateway;
 
-import norman.template.template_factory;
+import norman.template.TemplateFactory;
 
 /**
  * This is the execution for all algorithm implementation
@@ -9,238 +9,281 @@ import norman.template.template_factory;
  */
 public class Start {
 	public static void main(String[] args) {
+		// mit ocw
+//		TemplateFactory.run(TemplateFactory.unknown, TemplateFactory.blackjack);
+
 		// hackerrank
 
-		template_factory.run(template_factory.dynamic_programming, template_factory.diving_for_gold);
+		// lowest price in town
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.lowest_price_in_town);
+
+		// how to add - dynamic programming
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.how_to_add);
+
+		// brick games - dynamic programming
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.brick_games);
+
+		// mathematics
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.sam_and_sub_strings);
+
+		// renew Template
+//		TemplateFactory.run(TemplateFactory.unknown, TemplateFactory.test_template);
+
+		// flight planner - dp TSP ( Travel Salesman Problem )
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.flight_planner);
+
+		// word justification - dynamic programming
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.word_justification);
+
+		// maximum subarray
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.max_sub_array);
+
+		// barcodes
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.barcodes);
+
+		// wormholes - bellman ford
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.wormhole);
+
+		// diving for gold - print the dynamic programming also challenging
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.diving_for_gold);
 
 		// knapsack learning algorithm
-//		template_factory.run(template_factory.dynamic_programming, template_factory.knapsack);
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.knapsack);
 
 		// cutting board
-//		template_factory.run(template_factory.greedy, template_factory.boardcutting);
+//		TemplateFactory.run(TemplateFactory.greedy, TemplateFactory.boardcutting);
 
         // number maze - uva djikstra
-//        template_factory.run(template_factory.graph, template_factory.number_maze);
+//        TemplateFactory.run(TemplateFactory.graph, TemplateFactory.number_maze);
 
 		// greedy florist
-//		template_factory.run(template_factory.hackkerank, template_factory.greedy_florist);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.greedy_florist);
 
 		// http://stackandqueue.com/?p=108
 		// candies - always failed
-//		template_factory.run(template_factory.hackkerank, template_factory.candies);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.candies);
 
 		// sherlock and the cose
-//		template_factory.run(template_factory.hackkerank, template_factory.sherlock_and_the_cost);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.sherlock_and_the_cost);
 
         // balanced brackets - failed
-//        template_factory.run(template_factory.hackkerank, template_factory.balanced_brackets);
+//        TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.balanced_brackets);
 
 		// recursive
-//		template_factory.run(template_factory.dynamic_programming, template_factory.davis_staircase);
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.davis_staircase);
 
 		// shortest reach 2 - testcase 7 failed - input output reading
-//		template_factory.run(template_factory.graph, template_factory.shortestreach2);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.shortestreach2);
 
 		// Prim's (MST) : Special Subtree
-//		template_factory.run(template_factory.greedy, template_factory.prim_mst_special_subtree);
+//		TemplateFactory.run(TemplateFactory.greedy, TemplateFactory.prim_mst_special_subtree);
 		
 		// count luck
-//		template_factory.run(template_factory.hackkerank, template_factory.countLuck);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.countLuck);
 
 		// even tree
-//		template_factory.run(template_factory.hackkerank, template_factory.eventree);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.eventree);
 
 		// grid challenge
-//		template_factory.run(template_factory.hackkerank, template_factory.gridchallenge);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.gridchallenge);
 		
 		// very easy - not sorting
-//		template_factory.run(template_factory.hackkerank, template_factory.introsorting);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.introsorting);
 		
 		// TODO don't know below problem status
 		// easy quick sort simulation 
-//		template_factory.run(template_factory.hackkerank, template_factory.quicksortinplace);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.quicksortinplace);
 		
 		// easy problem, just addition
-//		template_factory.run(template_factory.hackkerank, template_factory.averybigsum);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.averybigsum);
 		
 		// easy problem, just addition in matrix
-//		template_factory.run(template_factory.hackkerank, template_factory.diagonaldifference);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.diagonaldifference);
 		
 		// tokopedia entrance test
-//		template_factory.run(template_factory.hackkerank, template_factory.reformatthedate);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.reformatthedate);
 		
 		// tokopedia entrance test #2
-//		template_factory.run(template_factory.hackkerank, template_factory.visitedcell);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.visitedcell);
 		
 		// tokopedia entrance test #3
-//		template_factory.run(template_factory.hackkerank, template_factory.pascaltriangle);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.pascaltriangle);
 		
 		// breadth first search : shortest reach
-//		template_factory.run(template_factory.hackkerank, template_factory.shortestreach);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.shortestreach);
 		
 		// rush murderer ( already 100% )
-//		template_factory.run(template_factory.hackkerank, template_factory.rushmurderer);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.rushmurderer);
 		
 		// following order - uva 124
-//		template_factory.run(template_factory.uva, template_factory.followingorder);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.followingorder);
 		
 		// UVa 00908 - Re-connecting
-//		template_factory.run(template_factory.graph, template_factory.reconnecting);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.reconnecting);
 		
 		// journey to the moon, connected component
-//		template_factory.run(template_factory.hackkerank, template_factory.journeytothemoon);
+//		TemplateFactory.run(TemplateFactory.hackkerank, TemplateFactory.journeytothemoon);
 
 		// uva problem
 
 		// word transformation - uva 429
-//		template_factory.run(template_factory.graph, template_factory.word_transformation);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.word_transformation);
 
 		// standard mst problem - but the weightest from its choice
-//		template_factory.run(template_factory.graph, template_factory.heavy_cycle_edges);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.heavy_cycle_edges);
 
 		// standard mst problem - but difficult to understand
-//		template_factory.run(template_factory.graph, template_factory.dark_roads);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.dark_roads);
 
 		// transportation system 11228 - tricky problem
-//		template_factory.run(template_factory.graph, template_factory.transportation_system);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.transportation_system);
 
 		// acm and blackout - minimax - minimum spanning tree
-//		template_factory.run(template_factory.graph, template_factory.audiophobia);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.audiophobia);
 
 		// acm and blackout - second minimum spanning tree
-//		template_factory.run(template_factory.graph, template_factory.acm_and_blackout);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.acm_and_blackout);
 
 		// highway 10147 - minimum spanning subgraph
-//		template_factory.run(template_factory.graph, template_factory.highways);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.highways);
 
 		// racing uva 1234
-//		template_factory.run(template_factory.graph, template_factory.racing);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.racing);
 
 		// critical link - find bridge 
-//		template_factory.run(template_factory.graph, template_factory.critical_link);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.critical_link);
 		// network - find articulation 
-//		template_factory.run(template_factory.graph, template_factory.network);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.network);
 		
 		// hamming distance
-//		template_factory.run(template_factory.uva, template_factory.hammingdistance);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.hammingdistance);
 
 		// hanoi tower problem again
-//		template_factory.run(template_factory.uva, template_factory.hanoitowerproblemagain);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.hanoitowerproblemagain);
 
 		// grand dinner
-//		template_factory.run(template_factory.uva, template_factory.grapevine);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.grapevine);
 
 		// grand dinner
-//		template_factory.run(template_factory.uva, template_factory.granddiner);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.granddiner);
 
 		// expert enough
-//		template_factory.run(template_factory.uva, template_factory.expertEnough);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.expertEnough);
 
 		// eight queen of problem
-//		template_factory.run(template_factory.uva, template_factory.eightqueenproblem);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.eightqueenproblem);
 
 		// dominator
-//		template_factory.run(template_factory.uva, template_factory.dominator);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.dominator);
 
 		// division by me only
-//		template_factory.run(template_factory.uva, template_factory.division);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.division);
 
 		// back to eight queens, input is empty
 		// TODO please add input for backtoeight
-//		template_factory.run(template_factory.uva, template_factory.backtoeightqueens);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.backtoeightqueens);
 
 		// call forwarding
-//		template_factory.run(template_factory.uva, template_factory.callforwarding);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.callforwarding);
 
+		// y2k - 31 jan 2017
+//		TemplateFactory.run(TemplateFactory.backtrack, TemplateFactory.y2k);
+
+		// hanoi tower - 1 feb 2017
+//		TemplateFactory.run(TemplateFactory.backtrack, TemplateFactory.hanoitower);
+
+		// 27 Jan 2017, jumat - done
 		// CD
-		// TODO input is problem here
-//		template_factory.run(template_factory.uva, template_factory.cd);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.cd);
 
 		// Chest Of Drawers
 		// TODO still couldn't solve it even cheat using google
-//		template_factory.run(template_factory.uva, template_factory.chestOfDrawers);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.chestOfDrawers);
 		
 		// graph floodfill
-//		template_factory.run(template_factory.uva, template_factory.wetlandofflorida);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.wetlandofflorida);
 		
 		// graph dfs theseus and the minotaur
-//		template_factory.run(template_factory.uva, template_factory.theseusandtheminotaur);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.theseusandtheminotaur);
 		
 		// graph dfs easy
-//		template_factory.run(template_factory.uva, template_factory.vertex);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.vertex);
 		
 		// sticker collector robot
-//		template_factory.run(template_factory.uva, template_factory.stickercollectorrobot);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.stickercollectorrobot);
 		
 		// mapping the route, graph transversal
-//		template_factory.run(template_factory.uva, template_factory.mappingtheroute);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.mappingtheroute);
 		
 		// Knight in War Grid, dfs tricky, failed ( runtime error )
-//		template_factory.run(template_factory.uva, template_factory.knightinthewargrid);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.knightinthewargrid);
 		
 		// forwarding emails
-//		template_factory.run(template_factory.uva, template_factory.forwardingemails);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.forwardingemails);
 		
 		// recursive backtracking / try all
-//		template_factory.run(template_factory.uva, template_factory.ledtest);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.ledtest);
 		
 		// recursive backtracking / try all, failed in java : Map don't know which order 
-//		template_factory.run(template_factory.uva, template_factory.banknotquiteocr);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.banknotquiteocr);
 		
 		// graph - connected component , failed at some test cases and stackoverflow
-//		template_factory.run(template_factory.uva, template_factory.ancientmessages);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.ancientmessages);
 		
 		// graph - connected component , 6 ways to move
-//		template_factory.run(template_factory.uva, template_factory.llgiocodellx);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.llgiocodellx);
 		
 		// example of coin change dp
-//		template_factory.run(template_factory.dynamic_programming, template_factory.coinchangedp);
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.coinchangedp);
 		
 		// example of checking cyclic using dfs 
-//		template_factory.run(template_factory.graph, template_factory.dfscyclic);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.dfscyclic);
 		
 		// connected component - graph uva 11094
-//		template_factory.run(template_factory.graph, template_factory.continents);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.continents);
 		
 		// connected component - graph uva 11953 - BattleShips
-//		template_factory.run(template_factory.graph, template_factory.battleship);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.battleship);
 		
 		// topologycal sort - modified dfs uva 10305
-//		template_factory.run(template_factory.graph, template_factory.orderingtask);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.orderingtask);
 		
 		// alike topological sort uva 872
-//		template_factory.run(template_factory.graph, template_factory.ordering);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.ordering);
 
 		// SRIN Sotong exerices 2015
 
 		// Bomberman Problem
-//		 template_factory.run(template_factory.srin_sotong, template_factory.bomberman);
+//		 TemplateFactory.run(TemplateFactory.srin_sotong, TemplateFactory.bomberman);
 
 		// bughunter isn't solve yet
-//		 template_factory.run(template_factory.srin_sotong,template_factory.bughunter);
+//		 TemplateFactory.run(TemplateFactory.srin_sotong,TemplateFactory.bughunter);
 
 		// cell removal
-//		template_factory.run(template_factory.srin_sotong, template_factory.cellRemoval);
+//		TemplateFactory.run(TemplateFactory.srin_sotong, TemplateFactory.cellRemoval);
 
 		// even fibo
-//		template_factory.run(template_factory.srin_sotong, template_factory.evenfibo);
+//		TemplateFactory.run(TemplateFactory.srin_sotong, TemplateFactory.evenfibo);
 
 		// highest peak
-//		template_factory.run(template_factory.srin_sotong, template_factory.highestpeak);
+//		TemplateFactory.run(TemplateFactory.srin_sotong, TemplateFactory.highestpeak);
 		
 		// bicoloring ( uva dfs or bfs )
-//		template_factory.run(template_factory.srin_sotong, template_factory.bicoloring);
+//		TemplateFactory.run(TemplateFactory.srin_sotong, TemplateFactory.bicoloring);
 		
 		// tokopedia hmac 
-//		template_factory.run(template_factory.unknown, template_factory.hmactokopedia);
+//		TemplateFactory.run(TemplateFactory.unknown, TemplateFactory.hmactokopedia);
 		
 		// binary search tree example
-		// template_factory.run(template_factory.unknown, template_factory.binarysearchtree);
+		// TemplateFactory.run(TemplateFactory.unknown, TemplateFactory.binarysearchtree);
 
 		// general knowledge
-//		template_factory.run(template_factory.graph, template_factory.kahn_topological_sort);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.kahn_topological_sort);
 
 		// uva 11060 - beverages
-//		template_factory.run(template_factory.graph, template_factory.beverages);
+//		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.beverages);
+
+		// https://uva.onlinejudge.org/external/1/111.pdf
+		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.history_grading);
 	}
 }

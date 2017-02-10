@@ -1,10 +1,12 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.Arrays;
 
-import norman.template.template;
+public class ChestOfDrawers extends Template {
 
-public class ChestOfDrawers extends template {
+    long arr[][][];
 
 	public ChestOfDrawers() {
 		super("ChestOfDrawers" ,"ChestOfDrawers", LINUX);
@@ -27,7 +29,6 @@ public class ChestOfDrawers extends template {
 		}
 	}
 
-	long arr[][][];
 	long dp(int n, int s, int x){
 		System.out.println("n "+n+" s "+s+" x "+x);
 		if(n == 1)

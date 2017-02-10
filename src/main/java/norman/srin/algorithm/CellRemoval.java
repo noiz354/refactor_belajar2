@@ -1,51 +1,55 @@
 package norman.srin.algorithm;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import norman.template.template;
 
+public class CellRemoval extends Template {
 
-public class CellRemoval extends template {
+    int[] C;
+    int head;
+    List<List<Integer>> adjs;
 
-	public CellRemoval() {
-		super("CellRemoval", "CellRemoval", LINUX);
-	}
+    public CellRemoval() {
+        super("CellRemoval", "CellRemoval", LINUX);
+    }
 
-	@Override
-	public void doSomething() {
-		int TC = getInput().nextInt();
-		int total = TC;
-		while(TC-- > 0){
-			System.out.println("Case #"+(total-TC));
+    @Override
+    public void doSomething() {
+        int TC = getInput().nextInt();
+        int total = TC;
+        while (TC-- > 0) {
+            System.out.println("Case #" + (total - TC));
 
-			adjs = new ArrayList<List<Integer>>(100);
-			for(int i=0;i<100;i++){
-				adjs.add(null);
-			}
+            adjs = new ArrayList<List<Integer>>(100);
+            for (int i = 0; i < 100; i++) {
+                adjs.add(null);
+            }
 
 //			System.out.println(adjs.get(0).equals(adjs.equals(o)));
 
-			int CSize = getInput().nextInt();
-			C = new int[CSize];
-			for(int i=0;i<CSize;i++){
-				C[i] = getInput().nextInt();
+            int CSize = getInput().nextInt();
+            C = new int[CSize];
+            for (int i = 0; i < CSize; i++) {
+                C[i] = getInput().nextInt();
 
-				if(C[i] == -1){
-					head = i;
-				}else{
-					List<Integer> temp = null;
-					if(adjs.get(C[i]) == null){
-						temp = new ArrayList<>();
-					}else{
-						temp = adjs.get(C[i]);
-					}
+                if (C[i] == -1) {
+                    head = i;
+                } else {
+                    List<Integer> temp = null;
+                    if (adjs.get(C[i]) == null) {
+                        temp = new ArrayList<>();
+                    } else {
+                        temp = adjs.get(C[i]);
+                    }
 
-					temp.add(i);
+                    temp.add(i);
 
-					adjs.set(C[i], temp);
-				}
-			}
+                    adjs.set(C[i], temp);
+                }
+            }
 //			System.out.println(Arrays.toString(C));
 
 //			System.out.println("before deletion");
@@ -53,45 +57,42 @@ public class CellRemoval extends template {
 //				System.out.println("index ["+i+"] value "+ adjs.get(i)+"");
 //			}
 //			System.out.println("head " + head);
-			int deletedCell = getInput().nextInt();
+            int deletedCell = getInput().nextInt();
 //			System.out.println(deletedCell);
 
-			// performed deletedCell in here
-			for(int i=0;i<CSize;i++){
-				if(adjs.get(i) != null){
-					List<Integer> temp = adjs.get(i);
-					for(int j=0;j<temp.size();j++){
-						if(deletedCell == temp.get(j)){
-							temp.remove(j);
-						}
-					}
-					adjs.set(i, temp);
-				}
-			}
+            // performed deletedCell in here
+            for (int i = 0; i < CSize; i++) {
+                if (adjs.get(i) != null) {
+                    List<Integer> temp = adjs.get(i);
+                    for (int j = 0; j < temp.size(); j++) {
+                        if (deletedCell == temp.get(j)) {
+                            temp.remove(j);
+                        }
+                    }
+                    adjs.set(i, temp);
+                }
+            }
 //			System.out.println("after deletion");
 //			for(int i=0;i<CSize;i++){
 //				System.out.println("index ["+i+"] value "+ adjs.get(i)+"");
 //			}
 
-			// start transverse
-			int result = getCount(head);
-			System.out.println(result);
-		}// end of test case
-	}
+            // start transverse
+            int result = getCount(head);
+            System.out.println(result);
+        }// end of test case
+    }
 
-	int[] C;
-	int head;
-	List<List<Integer>> adjs;
-	private int getCount(int index){
-		if(adjs.get(index) == null){
-			return 1;
-		}
+    private int getCount(int index) {
+        if (adjs.get(index) == null) {
+            return 1;
+        }
 
-		int ans = 0;
+        int ans = 0;
 
-		for(int i=0;i<adjs.get(index).size();i++){
-			ans += getCount(adjs.get(index).get(i));
-		}
-		return ans;
-	}
+        for (int i = 0; i < adjs.get(index).size(); i++) {
+            ans += getCount(adjs.get(index).get(i));
+        }
+        return ans;
+    }
 }

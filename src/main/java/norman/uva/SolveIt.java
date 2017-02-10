@@ -1,8 +1,11 @@
 package norman.uva;
 
-import norman.template.template;
+import norman.template.Template;
 
-public class SolveIt extends template {
+public class SolveIt extends Template {
+
+    final double EPS = 0.0000001;
+    int p, q, r, s, t, u;
 
 	public SolveIt() {
 		super("SolveIt", "SolveIt", LINUX);
@@ -25,9 +28,6 @@ public class SolveIt extends template {
 			}
 		}
 	}
-
-	final double EPS = 0.0000001;
-	int p,q,r,s,t,u;
 
 	private double f(double x){
 		return p*Math.exp(-x)+q*Math.sin(x)+r*Math.cos(x)+s*Math.tan(x)+t*x*x+u;

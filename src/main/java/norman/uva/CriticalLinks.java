@@ -1,16 +1,15 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import norman.template.template;
+public class CriticalLinks extends Template {
 
-public class CriticalLinks extends template {
-	
-	private static final int UNVISITED = 0;
-	private static final int EXPLORED = 1;
+    private static final int UNVISITED = 0;
+    private static final int EXPLORED = 1;
 	private static final int VISITED = 2;
 	
 	List<List<Integer>> adjList;

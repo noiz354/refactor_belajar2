@@ -1,19 +1,72 @@
 package norman.uva;
 
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 import java.util.*;
 
 import static java.lang.Math.max;
 
 /**
- * Created by normansyahputa on 11/13/16.
+ * Created @author normansyahputa  on 11/13/16.
  */
-public class AudioPhobia extends template {
+public class AudioPhobia extends Template {
 
+    boolean findThePath;
+    boolean[] visited;
+    List<List<Integer>> tree;
+    int[][] weightTable;
+
+    /*void dfs(int pos){
+        visited[pos] = true;
+
+        if(pos == e){
+            findThePath = true;
+            // set all flag to true
+            for(int k=0;k<visited.length;k++){
+                visited[k] = true;
+            }
+            return;
+        }
+
+        for(int j=0;j<tree.get(pos).size() && !findThePath;j++){
+            int neigh = tree.get(pos).get(j);
+            if(debug){
+                print(pos+" "+neigh+" try to visited");
+            }
+            if(!visited[neigh]){
+
+                dfs(neigh);
+
+                if(debug){
+                    print(pos+" "+neigh+" not visited ", false);
+                    print("weight "+weightTable[pos][neigh]);
+                }
+                if()
+                edgeRank.add(weightTable[pos][neigh]);
+
+//                if(debug){
+//                    print(pos+" "+neigh+"xx ", false);
+//                    print("weight "+weightTable[pos][neigh]);
+//                }
+//                edgeRank.add(weightTable[pos][neigh]);
+            }else{
+                if(debug){
+                    print(pos+" "+neigh+" already visited ");
+                }
+            }
+        }
+    }*/
+    Queue<Integer> edgeRank;
+    List<Edge> edges;
+    int C, // number of crossing <= 100
+            S, // number of street <= 1_000
+            Q; // number of queries <= 10_000
+    int s, e, sol;
+    int i, j;
+    int c1, c2, d;
+    int[] p;
     private int T;
-
     public AudioPhobia() {
         super("AudioPhobia", "AudioPhobia", LINUX, false);
     }
@@ -136,63 +189,6 @@ public class AudioPhobia extends template {
         return found;
     }
 
-    /*void dfs(int pos){
-        visited[pos] = true;
-
-        if(pos == e){
-            findThePath = true;
-            // set all flag to true
-            for(int k=0;k<visited.length;k++){
-                visited[k] = true;
-            }
-            return;
-        }
-
-        for(int j=0;j<tree.get(pos).size() && !findThePath;j++){
-            int neigh = tree.get(pos).get(j);
-            if(debug){
-                print(pos+" "+neigh+" try to visited");
-            }
-            if(!visited[neigh]){
-
-                dfs(neigh);
-
-                if(debug){
-                    print(pos+" "+neigh+" not visited ", false);
-                    print("weight "+weightTable[pos][neigh]);
-                }
-                if()
-                edgeRank.add(weightTable[pos][neigh]);
-
-//                if(debug){
-//                    print(pos+" "+neigh+"xx ", false);
-//                    print("weight "+weightTable[pos][neigh]);
-//                }
-//                edgeRank.add(weightTable[pos][neigh]);
-            }else{
-                if(debug){
-                    print(pos+" "+neigh+" already visited ");
-                }
-            }
-        }
-    }*/
-
-    boolean findThePath;
-    boolean[] visited;
-    List<List<Integer>> tree;
-
-    int[][] weightTable;
-    Queue<Integer> edgeRank;
-    List<Edge> edges;
-    int C, // number of crossing <= 100
-        S, // number of street <= 1_000
-        Q; // number of queries <= 10_000
-
-    int s,e, sol;
-    int i, j;
-    int c1, c2, d;
-    int[] p;
-
     int findSet(int i){
         return p[i] == i ? i : (p[i] = findSet(p[i]));
     }
@@ -211,11 +207,11 @@ public class AudioPhobia extends template {
     }
 
     private void print(Object object, boolean withoutNewLine){
-        template_utility.print(getOutput(), object.toString(), withoutNewLine, true);
+        TemplateUtility.print(getOutput(), object.toString(), withoutNewLine, true);
     }
 
     private void print(Object object){
-        template_utility.print(getOutput(), object.toString(), true, true);
+        TemplateUtility.print(getOutput(), object.toString(), true, true);
     }
 
     private class Edge implements Comparable<Edge>{

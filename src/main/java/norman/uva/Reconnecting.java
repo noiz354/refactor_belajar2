@@ -1,21 +1,16 @@
 package norman.uva;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Vector;
+import norman.template.Template;
 
-import norman.template.template;
-import norman.template.template_utility;
+import java.util.*;
 
 /**
  * not totally right
  * @author m.normansyah
  *
  */
-public class Reconnecting  extends template {
-	
+public class Reconnecting extends Template {
+
 	List<ArrayList<Pair>> AdjList;
 	List<Boolean> taken;
 	PriorityQueue<PairThird> pq; 
@@ -92,10 +87,10 @@ public class Reconnecting  extends template {
 //				result += pt +"\n";
 //				System.out.println(pt);
 //			}
-//			template_utility.print(getOutput(), result+"", true);// print to a file
-			
+//			TemplateUtility.print(getOutput(), result+"", true);// print to a file
+
 			int mst_cost = 0;           // all V are disjoint sets at the beginning
-		    UnionFind UF = new UnionFind(M+K);
+			UnionFind UF = new UnionFind(M+K);
 		    for (int i = 0; i < EdgeList.size(); i++) {                   // for each edge, O(E)
 		    	PairThird front = EdgeList.get(i);
 		      if (!UF.isSameSet(front.b.b, front.b.c)) {          // check

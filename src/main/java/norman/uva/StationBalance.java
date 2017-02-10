@@ -1,10 +1,10 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.Arrays;
 
-import norman.template.template;
-
-public class StationBalance extends template {
+public class StationBalance extends Template {
 
 	public StationBalance() {
 		super("StationBalance", "StationBalance", LINUX);

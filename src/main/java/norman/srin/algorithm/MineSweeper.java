@@ -1,12 +1,72 @@
 package norman.srin.algorithm;
 
-import norman.template.template;
+import norman.template.Template;
 
-public class MineSweeper extends template {
+public class MineSweeper extends Template {
+
+    char[][] map;
+    int[][] result;
 
 	public MineSweeper() {
 		super("MineSweeper", "MineSweeper", LINUX);
 	}
+
+    private static int countMine(int x, int y, char[][] map) {
+        int ans = 0;
+        // x-1 y+1
+        if (outSideZone(x - 1, y + 1, map.length, map[x].length) &&
+                map[x - 1][y + 1] == '*') {
+            ans++;
+        }
+//		System.out.println("x-1 y+1 "+ans);
+        // x-1 y
+        if (outSideZone(x - 1, y, map.length, map[x].length) &&
+                map[x - 1][y] == '*') {
+            ans++;
+        }
+//		System.out.println("x-1 y "+ans);
+        // x-1 y-1
+        if (outSideZone(x - 1, y - 1, map.length, map[x].length) &&
+                map[x - 1][y - 1] == '*') {
+            ans++;
+        }
+//		System.out.println("x-1 y-1 "+ans);
+        // x y-1
+        if (outSideZone(x, y - 1, map.length, map[x].length) &&
+                map[x][y - 1] == '*') {
+            ans++;
+        }
+//		System.out.println("x y-1 "+ans);
+        // x y+1
+        if (outSideZone(x, y + 1, map.length, map[x].length) &&
+                map[x][y + 1] == '*') {
+            ans++;
+        }
+//		System.out.println("x y+1 "+ans);
+        // x+1 y-1
+        if (outSideZone(x + 1, y - 1, map.length, map[x].length) &&
+                map[x + 1][y - 1] == '*') {
+            ans++;
+        }
+//		System.out.println("x+1 y-1 "+ans);
+        // x+1 y
+        if (outSideZone(x + 1, y, map.length, map[x].length) &&
+                map[x + 1][y] == '*') {
+            ans++;
+        }
+//		System.out.println("x+1 y "+ans);
+        // x+1 y+1
+        if (outSideZone(x + 1, y + 1, map.length, map[x].length) &&
+                map[x + 1][y + 1] == '*') {
+            ans++;
+        }
+//		System.out.println("x+1 y+1 "+ans);
+        return ans;
+    }
+
+    private static boolean outSideZone(int x, int y, int x_limit, int y_limit) {
+        return x >= 0 && x <= x_limit - 1 && y >= 0 && y <= y_limit - 1;
+    }
 
 	@Override
 	public void doSomething() {
@@ -73,67 +133,6 @@ public class MineSweeper extends template {
 //			}
 		}// end of while
 
-	}
-
-	char[][] map;
-	int[][] result;
-
-
-	private static int countMine(int x, int y, char[][] map){
-		int ans = 0;
-		// x-1 y+1
-		if(outSideZone(x-1, y+1, map.length, map[x].length) &&
-				map[x-1][y+1] == '*'){
-			ans++;
-		}
-//		System.out.println("x-1 y+1 "+ans);
-		// x-1 y
-		if(outSideZone(x-1, y, map.length, map[x].length) &&
-				map[x-1][y]== '*'){
-			ans++;
-		}
-//		System.out.println("x-1 y "+ans);
-		// x-1 y-1
-		if(outSideZone(x-1, y-1, map.length, map[x].length) &&
-				map[x-1][y-1]== '*'){
-			ans++;
-		}
-//		System.out.println("x-1 y-1 "+ans);
-		// x y-1
-		if(outSideZone(x, y-1, map.length, map[x].length) &&
-				map[x][y-1]== '*'){
-			ans++;
-		}
-//		System.out.println("x y-1 "+ans);
-		// x y+1
-		if(outSideZone(x, y+1, map.length, map[x].length) &&
-				map[x][y+1]== '*'){
-			ans++;
-		}
-//		System.out.println("x y+1 "+ans);
-		// x+1 y-1
-		if(outSideZone(x+1, y-1, map.length, map[x].length) &&
-				map[x+1][y-1]== '*'){
-			ans++;
-		}
-//		System.out.println("x+1 y-1 "+ans);
-		// x+1 y
-		if(outSideZone(x+1, y, map.length, map[x].length) &&
-				map[x+1][y]== '*'){
-			ans++;
-		}
-//		System.out.println("x+1 y "+ans);
-		// x+1 y+1
-		if(outSideZone(x+1, y+1, map.length, map[x].length) &&
-				map[x+1][y+1]== '*'){
-			ans++;
-		}
-//		System.out.println("x+1 y+1 "+ans);
-		return ans;
-	}
-
-	private static boolean outSideZone(int x, int y, int x_limit, int y_limit){
-		return x>=0&&x<=x_limit-1&&y>=0&&y<=y_limit-1;
 	}
 
 }

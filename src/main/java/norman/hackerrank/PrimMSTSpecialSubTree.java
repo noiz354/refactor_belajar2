@@ -1,14 +1,14 @@
 package norman.hackerrank;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
 
-import norman.template.template;
+public class PrimMSTSpecialSubTree extends Template {
 
-public class PrimMSTSpecialSubTree extends template {
-	
 	List<ArrayList<Pair>> AdjList;
 
 	public PrimMSTSpecialSubTree() {
@@ -57,52 +57,6 @@ public class PrimMSTSpecialSubTree extends template {
 
 	}
 	
-	class Pair implements Comparable<Pair>{
-
-		public int b = -1,c = -1;
-
-		public Pair(int b, int c) {
-			super();
-			this.b = b;
-			this.c = c;
-		}
-		
-		public Pair(){}
-
-		@Override
-		public int compareTo(Pair o) {
-			if(!(this.b==o.b)){
-				return this.b - o.b;
-			}else{
-				return this.c - o.c;
-			}
-		}
-
-		@Override
-		public String toString() {
-			return "Pair [b=" + (b+1) + ", c=" + (c+1) + "]";
-		}
-	}
-	
-	class PairThird implements Comparable<PairThird>{
-		public int a = -1;
-		public Pair b = new Pair();
-		@Override
-		public int compareTo(PairThird o) {
-			if(!(this.a==o.a)){
-				return this.a - o.a;
-			}else{
-				return this.b.compareTo(o.b);
-			}
-		}
-		@Override
-		public String toString() {
-			return "PairThird [a=" + a + ", b=" + b + "]";
-		}
-		
-		
-	}
-	
 	// Union-Find Disjoint Sets Library written in OOP manner, using both path compression and union by rank heuristics
 	public static class UnionFind {                                              // OOP style
 	  private Vector<Integer> p, rank, setSize;
@@ -128,15 +82,65 @@ public class PrimMSTSpecialSubTree extends template {
 
 	  public Boolean isSameSet(int i, int j) { return findSet(i) == findSet(j); }
 
-	  public void unionSet(int i, int j) { 
-	    if (!isSameSet(i, j)) { numSets--; 
-	    int x = findSet(i), y = findSet(j);
-	    // rank is used to keep the tree short
+		public void unionSet(int i, int j) {
+			if (!isSameSet(i, j)) {
+				numSets--;
+				int x = findSet(i), y = findSet(j);
+				// rank is used to keep the tree short
 	    if (rank.get(x) > rank.get(y)) { p.set(y, x); setSize.set(x, setSize.get(x) + setSize.get(y)); }
 	    else                           { p.set(x, y); setSize.set(y, setSize.get(y) + setSize.get(x));
 	                                     if (rank.get(x) == rank.get(y)) rank.set(y, rank.get(y) + 1); } } }
 	  public int numDisjointSets() { return numSets; }
 	  public int sizeOfSet(int i) { return setSize.get(findSet(i)); }
+	}
+
+	class Pair implements Comparable<Pair> {
+
+		public int b = -1, c = -1;
+
+		public Pair(int b, int c) {
+			super();
+			this.b = b;
+			this.c = c;
+		}
+
+		public Pair() {
+		}
+
+		@Override
+		public int compareTo(Pair o) {
+			if (!(this.b == o.b)) {
+				return this.b - o.b;
+			} else {
+				return this.c - o.c;
+			}
+		}
+
+		@Override
+		public String toString() {
+			return "Pair [b=" + (b + 1) + ", c=" + (c + 1) + "]";
+		}
+	}
+
+	class PairThird implements Comparable<PairThird> {
+		public int a = -1;
+		public Pair b = new Pair();
+
+		@Override
+		public int compareTo(PairThird o) {
+			if (!(this.a == o.a)) {
+				return this.a - o.a;
+			} else {
+				return this.b.compareTo(o.b);
+			}
+		}
+
+		@Override
+		public String toString() {
+			return "PairThird [a=" + a + ", b=" + b + "]";
+		}
+
+
 	}
 
 }

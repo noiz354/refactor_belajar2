@@ -1,16 +1,21 @@
 package norman.uva;
 
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by normansyahputa on 11/15/16.
+ * Created @author normansyahputa  on 11/15/16.
  */
-public class DarkRoads extends template {
+public class DarkRoads extends Template {
+
+    int par[];
+    List<Edge> ed;
+    int m, n;
+    private double max_save, total;
 
     public DarkRoads() {
         super("DarkRoads", "DarkRoads", LINUX, true);
@@ -60,9 +65,8 @@ public class DarkRoads extends template {
     }
 
     private void print(Object object){
-        template_utility.print(getOutput(), object.toString(), true, true);
+        TemplateUtility.print(getOutput(), object.toString(), true, true);
     }
-
 
     boolean isSameSet(int i, int j){
 //        if(debug){
@@ -74,11 +78,6 @@ public class DarkRoads extends template {
     int findPar(int x){
         return (par[x]==x)?x:(par[x] = findPar(par[x]));
     }
-
-    private double max_save, total;
-    int par[];
-    List<Edge> ed;
-    int m, n;
 
     private class Edge implements Comparable<Edge>{
 

@@ -1,9 +1,9 @@
 package norman.hackerrank;
 
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
-public class AVeryBigSum extends template {
+public class AVeryBigSum extends Template {
 
 	public AVeryBigSum() {
 		super("AVeryBigSum", "AVeryBigSum", LINUX);
@@ -21,7 +21,7 @@ public class AVeryBigSum extends template {
 				result += getInput().nextLong();
 			}
 //			System.out.println(result);
-			template_utility.print(getOutput(), result+"", true);// print to a file
-		}
-	}
+            TemplateUtility.print(getOutput(), result + "", true);// print to a file
+        }
+    }
 }

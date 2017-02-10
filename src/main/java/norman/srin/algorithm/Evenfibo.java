@@ -1,8 +1,11 @@
 package norman.srin.algorithm;
 
-import norman.template.template;
+import norman.template.Template;
 
-public class Evenfibo extends template {
+public class Evenfibo extends Template {
+
+    int result_total;
+    int[] tables;
 
 	public Evenfibo() {
 		super("Evenfibo", "Evenfibo", LINUX);
@@ -24,8 +27,6 @@ public class Evenfibo extends template {
 		}
 	}
 
-	int result_total;
-	int[] tables;
 	private int fib(int index){
 //		System.out.println("index "+index);
 		if(index == 1 || index == 2){

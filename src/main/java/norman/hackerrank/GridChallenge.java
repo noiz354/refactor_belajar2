@@ -1,8 +1,8 @@
 package norman.hackerrank;
 
-import java.util.Arrays;
+import norman.template.Template;
 
-import norman.template.template;
+import java.util.Arrays;
 
 /**
  * https://www.hackerrank.com/challenges/grid-challenge
@@ -10,7 +10,10 @@ import norman.template.template;
  * started at 11-6-2015
  *
  */
-public class GridChallenge extends template {
+public class GridChallenge extends Template {
+
+    int[][] map;
+    boolean[][] bolMap;
 
 	public GridChallenge() {
 		super("GridChallenge", "GridChallenge", LINUX);
@@ -97,8 +100,5 @@ public class GridChallenge extends template {
 			}
 		}
 	}
-
-	int[][] map;
-	boolean[][] bolMap;
 
 }

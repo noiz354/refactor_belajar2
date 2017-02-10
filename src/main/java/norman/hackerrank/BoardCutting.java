@@ -1,16 +1,16 @@
 package norman.hackerrank;
 
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by normansyahputa on 12/6/16.
+ * Created @author normansyahputa  on 12/6/16.
  */
-public class BoardCutting extends template {
+public class BoardCutting extends Template {
     public BoardCutting() {
         super("BoardCutting", "BoardCutting", LINUX, true);
     }
@@ -119,11 +119,11 @@ public class BoardCutting extends template {
 
     void print(Object object){
         if(debug)
-            template_utility.print(getOutput(), object.toString(), false, true);
+            TemplateUtility.print(getOutput(), object.toString(), false, true);
     }
 
     void println(Object object){
         if(debug)
-            template_utility.print(getOutput(), object.toString(), true, true);
+            TemplateUtility.print(getOutput(), object.toString(), true, true);
     }
 }

@@ -1,9 +1,9 @@
 package norman.unknown;
 
-import norman.template.template_utility;
+import norman.template.TemplateUtility;
 
 public class RecursiveExample {
 	public static void main(String[] args) {
-		template_utility.f(2, 5);
-	}
+        TemplateUtility.f(2, 5);
+    }
 }

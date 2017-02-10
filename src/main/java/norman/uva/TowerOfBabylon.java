@@ -1,8 +1,8 @@
 package norman.uva;
 
-import java.util.Arrays;
+import norman.template.Template;
 
-import norman.template.template;
+import java.util.Arrays;
 
 /**
  * source :
@@ -13,7 +13,7 @@ import norman.template.template;
  * @author M Normansyah (m.normansyah@samsung.com)
  *
  */
-public class TowerOfBabylon extends template {
+public class TowerOfBabylon extends Template {
 
 	public TowerOfBabylon() {
 		super("TowerOfBabylon", "TowerOfBabylon", LINUX);

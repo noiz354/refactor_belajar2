@@ -1,19 +1,36 @@
 package norman.uva;
 
-import com.oracle.tools.packager.Log;
 import norman.hackerrank.PrimMSTSpecialSubTree;
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
-import java.util.*;
-
-import static norman.uva.TheseusAndTheMinotaur.N;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
- * Created by normansyahputa on 11/1/16.
+ * Created @author normansyahputa  on 11/1/16.
  */
 @Deprecated
-public class Racing extends template{
+public class Racing extends Template {
+
+    final static Comparator<Pair<Integer, Pair<Integer, Integer>>> comparator = new Comparator<Pair<Integer, Pair<Integer, Integer>>>() {
+        @Override
+        public int compare(Pair<Integer, Pair<Integer, Integer>> o1, Pair<Integer, Pair<Integer, Integer>> o2) {
+            if (o2.u != o1.u)
+                return o2.u - o1.u;
+
+            Pair<Integer, Integer> v1 = o2.v;
+            Pair<Integer, Integer> v = o1.v;
+
+            if (v1.u != v.u)
+                return v1.u - v.u;
+            else
+                return v1.v - v.v;
+        }
+    };
+    List<Pair<Integer, Pair<Integer, Integer>>> edgeList;
 
     public Racing() {
         super("racing", "racing", LINUX);
@@ -129,29 +146,11 @@ public class Racing extends template{
         }
     }
 
-    List<Pair<Integer, Pair<Integer, Integer>>> edgeList;
-
-    final static Comparator<Pair<Integer, Pair<Integer, Integer>>> comparator = new Comparator<Pair<Integer, Pair<Integer, Integer>>>() {
-        @Override
-        public int compare(Pair<Integer, Pair<Integer, Integer>> o1, Pair<Integer, Pair<Integer, Integer>> o2) {
-            if(o2.u != o1.u)
-                return o2.u - o1.u;
-
-            Pair<Integer, Integer> v1 = o2.v;
-            Pair<Integer, Integer> v = o1.v;
-
-            if(v1.u != v.u)
-                return v1.u - v.u;
-            else
-                return v1.v - v.v;
-        }
-    };
-
     void print(Object object){
         if(object==null || getOutput() == null)
             return;
 
-        template_utility.printCon(getOutput(), object.toString(), true);
+        TemplateUtility.printCon(getOutput(), object.toString(), true);
     }
 
     private static class Pair<E, V>{

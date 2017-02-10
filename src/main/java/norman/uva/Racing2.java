@@ -1,15 +1,16 @@
 package norman.uva;
 
-import norman.template.template;
-import norman.template.template_utility;
-
-import java.util.Collections;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 /**
- * Created by normansyahputa on 11/4/16.
+ * Created @author normansyahputa  on 11/4/16.
  * replacement of {@link Racing}
  */
-public class Racing2 extends template {
+public class Racing2 extends Template {
+    edge D[], E[];
+    int p[], r[];
+
     public Racing2() {
         super("racing", "racing", LINUX, true);
     }
@@ -106,7 +107,7 @@ public class Racing2 extends template {
         if(object==null || getOutput() == null)
             return;
 
-        template_utility.printCon(getOutput(), object.toString(), true);
+        TemplateUtility.printCon(getOutput(), object.toString(), true);
     }
 
     void sort(int n){
@@ -131,8 +132,4 @@ public class Racing2 extends template {
             return x + "," + y +"," + v;
         }
     }
-
-    edge D[], E[];
-
-    int p[], r[];
 }

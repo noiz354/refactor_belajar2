@@ -1,11 +1,14 @@
 package norman.hackerrank;
 
-import norman.template.template;
+import norman.template.Template;
 
 /**
- * Created by normansyahputa on 12/5/16.
+ * Created on 12/5/16.
+ * @author normansyahputa
  */
-public class DarvisStaircase extends template {
+public class DarvisStaircase extends Template {
+    private int[] memo;
+
     public DarvisStaircase() {
         super("DarvisStaircase", "DarvisStaircase", LINUX, true);
     }
@@ -25,8 +28,7 @@ public class DarvisStaircase extends template {
         }
     }
 
-    int[] memo;
-    int climb(int cl){
+    private int climb(int cl) {
         if(cl < 0)
             return 0;
 
@@ -37,7 +39,6 @@ public class DarvisStaircase extends template {
             return memo[cl];
         }
 
-        int ret = memo[cl] = climb(cl - 1) + climb(cl - 2) + climb(cl - 3);
-        return ret;
+        return memo[cl] = climb(cl - 1) + climb(cl - 2) + climb(cl - 3);
     }
 }

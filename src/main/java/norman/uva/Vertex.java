@@ -1,17 +1,20 @@
 package norman.uva;
 
+import norman.template.Template;
+import norman.template.TemplateUtility;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import norman.template.template;
-import norman.template.template_utility;
 
 /**
  * https://uva.onlinejudge.org/external/2/280.pdf
  * @author Normansyah Putra
  *
  */
-public class Vertex extends template {
+public class Vertex extends Template {
+
+	List<List<Integer>> adjList;
+	boolean visited[];
 
 	public Vertex() {
 		super("Vertex", "Vertex", WINDOWS);
@@ -24,7 +27,7 @@ public class Vertex extends template {
 		for(int i=0;i<v;i++){
 			adjList.add(new ArrayList<Integer>());
 		}
-		
+
 		int node, next;
 		while((node = getInput().nextInt())>0){
 			if(node == 0)
@@ -35,9 +38,9 @@ public class Vertex extends template {
 				adjList.get(node-1).add(next-1);
 			}
 		}
-		
+
 		printAdjList();
-		
+
 		int q = getInput().nextInt();
 		for(int i=0;i<q;i++){
 			visited = new boolean[v];
@@ -58,15 +61,15 @@ public class Vertex extends template {
 			}
 		}
 		if(notReach==0)
-			template_utility.print(getOutput(), "0", true);
+			TemplateUtility.print(getOutput(), "0", true);
 		else
-			template_utility.print(getOutput(), ""+notReach+" ", false);
-		
+			TemplateUtility.print(getOutput(), "" + notReach + " ", false);
+
 		for(int x=0;x<out.size();x++){
 			if(out.size()-1 == x)
-				template_utility.print(getOutput(), ""+out.get(x), true);
+				TemplateUtility.print(getOutput(), "" + out.get(x), true);
 			else
-				template_utility.print(getOutput(), ""+out.get(x)+" ", false);
+				TemplateUtility.print(getOutput(), "" + out.get(x) + " ", false);
 		}
 	}
 	
@@ -89,10 +92,10 @@ public class Vertex extends template {
 //					break;
 				// after inner while true
 				// because it read the input and let away that
-				
+
 //				do{
 //					int count = 0, index_prnt = -1;
-//					
+//
 //					while(true){
 //						int tmp = getInput().nextInt();
 //						if(tmp==0)
@@ -108,14 +111,10 @@ public class Vertex extends template {
 //				}while(true);
 				// wrong way to read the input
 	}
-	
-	void printAdjList(){
+
+	void printAdjList() {
 		for(int i=0;i<adjList.size();i++){
 			System.out.println(i+ " : " + adjList.get(i));
 		}
 	}
-	
-	
-	List<List<Integer>> adjList;
-	boolean visited[];
 }

@@ -1,8 +1,8 @@
 package norman.uva;
 
-import java.util.Arrays;
+import norman.template.Template;
 
-import norman.template.template;
+import java.util.Arrays;
 
 /**
  * Example of dynamic Programming
@@ -12,7 +12,10 @@ import norman.template.template;
  * started at 4-42015, using recursive backtracking
  * started at 6-4-2015, using Top-down Dynamic Programming
  */
-public class WeddingShopping extends template {
+public class WeddingShopping extends Template {
+
+	int[][] memo;
+	private int max = 0, min = 1000;
 
 	public WeddingShopping() {
 		super("WeddingShopping", "WeddingShopping", LINUX);
@@ -55,7 +58,6 @@ public class WeddingShopping extends template {
 		}
 	}
 
-	private int max = 0, min = 1000;
 	/**
 	 * recursive backtracking using void using decrement style
 	 * @param money
@@ -138,7 +140,6 @@ public class WeddingShopping extends template {
 		return ans;
 	}
 
-	int[][] memo;
 	// Bottom Up approach
 	private int shopDP(int money, int g, int[][] categories, int C, int M){
 //		System.out.println("money "+money+" g "+g+" C "+ C+" M "+M);

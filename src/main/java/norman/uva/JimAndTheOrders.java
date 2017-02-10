@@ -1,10 +1,12 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.Arrays;
 
-import norman.template.template;
+public class JimAndTheOrders extends Template {
 
-public class JimAndTheOrders extends template {
+    Order[] orders;
 
 	public JimAndTheOrders() {
 		super("JimAndTheOrders", "JimAndTheOrders", LINUX);
@@ -35,7 +37,6 @@ public class JimAndTheOrders extends template {
 		}
 	}
 
-	Order[] orders;
 	class Order implements Comparable<Order>{
 		int id;
 		int time;

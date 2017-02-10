@@ -1,15 +1,14 @@
 package norman.hackerrank;
 
-import norman.template.template;
+import norman.template.Template;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Stack;
 
 /**
- * Created by normansyahputa on 12/5/16.
+ * Created @author normansyahputa  on 12/5/16.
  */
-public class BalancedBrackets extends template {
+public class BalancedBrackets extends Template {
 
     public BalancedBrackets() {
         super("BalancedBrackets", "BalancedBrackets", LINUX, true);

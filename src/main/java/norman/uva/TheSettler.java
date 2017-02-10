@@ -1,9 +1,9 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import norman.template.template;
 
 /**
  *
@@ -12,10 +12,30 @@ import norman.template.template;
  * modified at 20-3-2015, using sacheem answer
  * default DFS unable to solve the problem, visited flag need to reset after used
  */
-public class TheSettler extends template {
+public class TheSettler extends Template {
+
+	boolean visited[][];
+	boolean visited2[];
 
 	public TheSettler() {
 		super("TheSettler", "TheSettler", LINUX);
+	}
+
+	private static void dfs_rec(List<List<Integer>> adjLists, boolean[] visited, int v, int move) {
+		visited[v] = true;
+		System.out.print(v + " ");
+		int jumlah_tetangga = 0;
+		for (int w : adjLists.get(v)) {
+			if (!visited[w]) {
+				dfs_rec(adjLists, visited, w, ++move);
+				jumlah_tetangga++;
+			}
+		}
+
+		System.out.println("jumlah tetangga " + jumlah_tetangga);
+		if (jumlah_tetangga == 0) {
+			System.out.println("move " + move);
+		}
 	}
 
 	@Override
@@ -73,7 +93,6 @@ public class TheSettler extends template {
 		}
 	}
 
-	boolean visited[][];
 	private int dfs_rec(List<List<Integer>> adjLists, int v){
 		int cmax = 0;
 		System.out.println("enter index : "+ v);
@@ -88,7 +107,6 @@ public class TheSettler extends template {
 		return cmax;
 	}
 
-	boolean visited2[];
 	private int dfs_rec2(List<List<Integer>> adjLists, int v){
 		int cmax = 0;
 		System.out.println("enter index : "+ v);
@@ -102,23 +120,6 @@ public class TheSettler extends template {
 		System.out.println("leave index : "+ v+" cmax : "+cmax);
 		return cmax;
 	}
-
-	private static void dfs_rec(List<List<Integer>> adjLists, boolean[] visited, int v, int move){
-		visited[v] = true;
-        System.out.print(v + " ");
-		int jumlah_tetangga = 0;
-        for(int w : adjLists.get(v)){
-            if(!visited[w]){
-                dfs_rec(adjLists, visited, w, ++move);
-				jumlah_tetangga++;
-            }
-        }
-
-        System.out.println("jumlah tetangga "+ jumlah_tetangga);
-		if (jumlah_tetangga==0){
-			System.out.println("move "+move);
-		}
-    }
 
     // Usually dfs_rec() would be sufficient. However, if we don't want to pass
     // a boolean array to our function, we can use another function dfs().

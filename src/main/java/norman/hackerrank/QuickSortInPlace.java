@@ -1,9 +1,9 @@
 package norman.hackerrank;
 
-import java.util.Arrays;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
-import norman.template.template;
-import norman.template.template_utility;
+import java.util.Arrays;
 
 /**
  * Print the entire array on a new line at the end of every partitioning method. 
@@ -11,7 +11,7 @@ import norman.template.template_utility;
  * @author M. Normansyah
  * 3:13:21 PM
  */
-public class QuickSortInPlace extends template {
+public class QuickSortInPlace extends Template {
 
 	public QuickSortInPlace() {
 		super("QuickSortInPlace", "QuickSortInPlace", LINUX, true);
@@ -37,13 +37,13 @@ public class QuickSortInPlace extends template {
 			int pivot_location = Partition(array, low, high);
 			Quicksort(array, low, pivot_location-1);
 			if(debug){
-				template_utility.print(getOutput(), ""+Arrays.toString(array), true);
-			}
-			Quicksort(array, pivot_location+1, high);
+                TemplateUtility.print(getOutput(), "" + Arrays.toString(array), true);
+            }
+            Quicksort(array, pivot_location+1, high);
 			if(debug){
-				template_utility.print(getOutput(), ""+Arrays.toString(array), true);
-			}
-		}
+                TemplateUtility.print(getOutput(), "" + Arrays.toString(array), true);
+            }
+        }
 	}
 	
 	int Partition(int[] array, int low, int high){

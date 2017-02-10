@@ -1,10 +1,13 @@
 package norman.srin.algorithm;
 
+import norman.template.Template;
+
 import java.util.Arrays;
 
-import norman.template.template;
+public class BugHunters extends Template {
 
-public class BugHunters extends template {
+    Coor[] coors;
+    int str, fin, l;
 
 	public BugHunters() {
 		super("BugHunters", "BugHunters", LINUX);
@@ -57,8 +60,6 @@ public class BugHunters extends template {
 		}// end of test case
 	}
 
-	Coor[] coors;
-	int str, fin, l;
 	static class Coor implements Comparable<Coor>{
 		int x, y, length;
 		public Coor(int x, int y){

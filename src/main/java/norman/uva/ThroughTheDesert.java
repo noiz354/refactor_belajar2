@@ -1,12 +1,15 @@
 package norman.uva;
 
+import norman.template.Template;
+import norman.unknown.Pair;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import norman.template.template;
-import norman.unknown.Pair;
+public class ThroughTheDesert extends Template {
 
-public class ThroughTheDesert extends template {
+	final static double EPS = 0.000_001;
+	List<Pair<Integer, Pair<String, Integer>>> road;
 
 	public ThroughTheDesert() {
 		super("ThroughTheDesert", "ThroughTheDesert", LINUX);
@@ -58,9 +61,6 @@ public class ThroughTheDesert extends template {
 			System.out.println((hV+lV)/2);
 		}
 	}
-
-	final static double EPS = 0.000_001;
-	List<Pair<Integer, Pair<String, Integer>>> road;
 
 	double journeySuccess(double v){
 		double g = v, c =0, l =0, prevPos = 0;

@@ -1,14 +1,17 @@
 package norman.hackerrank;
 
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 import java.util.*;
 
 /**
- * Created by normansyahputa on 12/3/16.
+ * Created @author normansyahputa  on 12/3/16.
  */
-public class ShortestReach2 extends template {
+public class ShortestReach2 extends Template {
+    static final int INF = 1000000000;
+    List<List<IntegerPair>> adjList;
+
     public ShortestReach2() {
         super("ShortestReach2", "ShortestReach2", LINUX, true);
     }
@@ -104,8 +107,13 @@ public class ShortestReach2 extends template {
         }
     }
 
-    static final int INF = 1000000000;
-    List<List<IntegerPair>> adjList;
+    void print(Object object) {
+        TemplateUtility.print(getOutput(), object.toString(), false, true);
+    }
+
+    void println(Object object) {
+        TemplateUtility.print(getOutput(), object.toString(), true, true);
+    }
 
     static class IntegerPair{
         public int first,second;
@@ -114,14 +122,6 @@ public class ShortestReach2 extends template {
             this.first = first;
             this.second = second;
         }
-    }
-
-    void print(Object object){
-        template_utility.print(getOutput(), object.toString(), false, true);
-    }
-
-    void println(Object object){
-        template_utility.print(getOutput(), object.toString(), true, true);
     }
 }
 

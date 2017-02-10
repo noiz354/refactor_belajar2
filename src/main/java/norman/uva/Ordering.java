@@ -1,22 +1,17 @@
 package norman.uva;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import norman.template.Template;
 
-import norman.template.template;
+import java.util.*;
 
 /**
  * 
  * @author m.normansyah
  * uva 872 
  */
-public class Ordering extends template {
-	List<Character> characters;
-	List<List<Character>> adj;
+public class Ordering extends Template {
+    List<Character> characters;
+    List<List<Character>> adj;
 	Map<Character, Boolean> vis;
 
 	public Ordering() {
@@ -66,7 +61,7 @@ public class Ordering extends template {
 				char to = temp.charAt(2);
 //				System.out.println(from+" > "+ to);
 				List<Character> setAgain = adj.get(from);// 'A'
-				setAgain.add((char)(to));//-'A'
+                setAgain.add(to);//-'A'
 //				System.out.println(setAgain);
 				adj.set(from-'A', setAgain);
 			}

@@ -1,48 +1,21 @@
 package norman.uva;
 
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 import java.util.*;
 
 /**
- * Created by normansyahputa on 11/17/16.
+ * Created @author normansyahputa  on 11/17/16.
  */
-public class HeavyCycleEdges extends template {
+public class HeavyCycleEdges extends Template {
 
-    private int n, // 1-1_000
-            m,// 0-25_000
-            u,v,w;
     int par[];
     Queue<Double> rank;
-
     List<Edge> edgeList = new ArrayList<>();
-    private class Edge implements Comparable<Edge>{
-        double weight;
-        int x, y;
-
-        public Edge(double weight, int x, int y) {
-            this.weight = weight;
-            this.x = x;
-            this.y = y;
-        }
-
-        @Override
-        public String toString() {
-            return
-                    weight +
-                            ": " + x +
-                            "," + y;
-        }
-
-        @Override
-        public int compareTo(Edge o) {
-            if(this.weight < o.weight) return -1;
-            if(this.weight > o.weight) return 1;
-            return 0;
-        }
-    }
-
+    private int n, // 1-1_000
+            m,// 0-25_000
+            u, v, w;
     public HeavyCycleEdges() {
         super("HeavyCycleEdges", "HeavyCycleEdges", LINUX, true);
     }
@@ -104,10 +77,11 @@ public class HeavyCycleEdges extends template {
     }
 
     private void println(Object object){
-        template_utility.print(getOutput(), object.toString(), true, true);
+        TemplateUtility.print(getOutput(), object.toString(), true, true);
     }
+
     private void print(Object object){
-        template_utility.print(getOutput(), object.toString(), false, true);
+        TemplateUtility.print(getOutput(), object.toString(), false, true);
     }
 
     boolean isSameSet(int i, int j){
@@ -119,5 +93,31 @@ public class HeavyCycleEdges extends template {
 
     int findPar(int x){
         return (par[x]==x)?x:(par[x] = findPar(par[x]));
+    }
+
+    private class Edge implements Comparable<Edge> {
+        double weight;
+        int x, y;
+
+        public Edge(double weight, int x, int y) {
+            this.weight = weight;
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public String toString() {
+            return
+                    weight +
+                            ": " + x +
+                            "," + y;
+        }
+
+        @Override
+        public int compareTo(Edge o) {
+            if (this.weight < o.weight) return -1;
+            if (this.weight > o.weight) return 1;
+            return 0;
+        }
     }
 }

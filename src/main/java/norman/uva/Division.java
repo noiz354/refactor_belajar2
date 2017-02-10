@@ -1,11 +1,11 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.io.IOException;
 import java.util.HashSet;
 
-import norman.template.template;
-
-public class Division extends template {
+public class Division extends Template {
 
 	public Division() {
 		super("Division", "Division", LINUX);
@@ -129,12 +129,9 @@ public class Division extends template {
 				return true;
 			}
 		}
-		if(hash.size() == joinedArray.length){
-			return false;
-		}
-		return true;
-		/*
-		Arrays.sort(newOtherValue);// yang dicari disort
+        return hash.size() != joinedArray.length;
+        /*
+        Arrays.sort(newOtherValue);// yang dicari disort
 		for (int i = 0; i < newValue.length; i++) {
 			int temp = newValue[i];
 //			System.out.println(i+" : "+temp);
@@ -216,10 +213,7 @@ public class Division extends template {
 				return true;
 		}
 
-		if(hash.size() == value.length){
-			return false;
-		}
-		return true;
+        return hash.size() != value.length;
 
 		/*
 		for (int i = 0; i < value.length; i++) {

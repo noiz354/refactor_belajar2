@@ -1,8 +1,8 @@
 package norman.uva;
 
-import java.util.Arrays;
+import norman.template.Template;
 
-import norman.template.template;
+import java.util.Arrays;
 
 /**
  * started at 5/4/2015, using common backtrack, non-recursive backtrack unable to solve problem
@@ -10,7 +10,34 @@ import norman.template.template;
  * @author M Normansyah (m.normansyah@samsung.com)
  *
  */
-public class LowestPriceInTheTown extends template {
+public class LowestPriceInTheTown extends Template {
+
+	int[] a;
+	double[][] dp;
+
+	/* non-recursive wrong answer
+	double[] prices;// use index 1-100
+    List<Price> results;
+    int[] itemNumbers;
+    int count, testCase_count;
+    static class Price implements Comparable<Price>{
+        int itemNumber;
+        double price;
+        public Price(int i, double j){
+            itemNumber = i;
+            price = j;
+        }
+        @Override
+        public int compareTo(Price o) {
+            return (int)(price-o.price);
+        }
+        @Override
+        public String toString() {
+            return "Price [itemNumber=" + itemNumber + ", price=" + price + "]";
+        }
+    }*/
+	double[] b;
+	private int MAX = 1_000_000_000;
 
 	public LowestPriceInTheTown() {
 		super("LowestPriceInTheTown", "LowestPriceInTheTown", LINUX);
@@ -118,33 +145,6 @@ public class LowestPriceInTheTown extends template {
 				}*/
 
 	}
-
-	/* non-recursive wrong answer
-	double[] prices;// use index 1-100
-	List<Price> results;
-	int[] itemNumbers;
-	int count, testCase_count;
-	static class Price implements Comparable<Price>{
-		int itemNumber;
-		double price;
-		public Price(int i, double j){
-			itemNumber = i;
-			price = j;
-		}
-		@Override
-		public int compareTo(Price o) {
-			return (int)(price-o.price);
-		}
-		@Override
-		public String toString() {
-			return "Price [itemNumber=" + itemNumber + ", price=" + price + "]";
-		}
-	}*/
-
-	private int MAX = 1_000_000_000;
-	int[] a;
-	double[][] dp;
-	double[] b;
 
 	 private double go(int index, int items) {
 		 System.out.println("index "+index+" items "+items);

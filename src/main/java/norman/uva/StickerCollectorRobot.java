@@ -1,19 +1,27 @@
 package norman.uva;
 
-import java.util.Arrays;
-
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 /**
  * uva 11831
  * @author m.normansyah
  * need to test head of input.
  */
-public class StickerCollectorRobot extends template {
+public class StickerCollectorRobot extends Template {
 
-	public StickerCollectorRobot() {
-		super("StickerCollectorRobot", "StickerCollectorRobot", WINDOWS);
+    // baris, kolom, instruksi
+    int N, M, S;
+    char[][] map;
+    boolean[][] vis;
+    int counter;
+    char[] instruction;
+    Coor start;
+    Coor curPos;
+
+
+    public StickerCollectorRobot() {
+        super("StickerCollectorRobot", "StickerCollectorRobot", WINDOWS);
 	}
 
 	@Override
@@ -36,9 +44,9 @@ public class StickerCollectorRobot extends template {
 				for(int j=0;j<map[i].length;j++){
 					if(map[i][j]=='N'||map[i][j]== 'S'||map[i][j]== 'L'||map[i][j]== 'O')
 					{
-						start = new Coor(i, j, map[i][j]); 
-					}
-				}
+                        start = new Coor(i, j, map[i][j]);
+                    }
+                }
 //				printCharArray(map[i]);
 //				System.out.println();
 			}
@@ -49,22 +57,22 @@ public class StickerCollectorRobot extends template {
 			transverse();
 //			System.out.println("counter : "+counter);
 //			System.out.println(counter);
-			template_utility.print(getOutput(), ""+counter, true);
-		}
-	}
-	
+            TemplateUtility.print(getOutput(), "" + counter, true);
+        }
+    }
+
 	void transverse(){
 		curPos = start;
 		for(int i=0;i<instruction.length;i++){
 //			System.out.println("before curPos "+curPos+" i "+i);
 			switch (instruction[i]) {
 			case 'D':// putar 90 derajat kanan
-				curPos.dir = rotate(curPos.dir, 'D'); 
-				break;
-			case 'E':// putar 90 derajat kiri
-				curPos.dir = rotate(curPos.dir, 'E'); 
-				break;
-			case 'F':// maju satu langkah
+                curPos.dir = rotate(curPos.dir, 'D');
+                break;
+                case 'E':// putar 90 derajat kiri
+                curPos.dir = rotate(curPos.dir, 'E');
+                break;
+                case 'F':// maju satu langkah
 				if(move(curPos))
 					isFlag(curPos);
 				break;
@@ -73,14 +81,14 @@ public class StickerCollectorRobot extends template {
 //			System.out.println();
 		}
 	}
-	
+
 	/**
-	 * 
-	 * @param cur
-	 * @return
-	 * true jika tidak dihalangi 
-	 * false jika dihalangi
-	 */
+     *
+     * @param cur
+     * @return
+     * true jika tidak dihalangi
+     * false jika dihalangi
+     */
 	boolean move(Coor cur){
 		boolean isBlocked = false;
 		Coor temp = new Coor(cur.x, cur.y, cur.dir);
@@ -113,11 +121,11 @@ public class StickerCollectorRobot extends template {
 		}
 		return isBlocked;
 	}
-	
-	/**
-	 * fix this checker wkwkwk 
-	 * @param cur
-	 * @return
+
+    /**
+     * fix this checker wkwkwk
+     * @param cur
+     * @return
 	 * true jika tidak block
 	 * false jika di block
 	 */
@@ -134,9 +142,9 @@ public class StickerCollectorRobot extends template {
 			return false;
 		}
 	}
-	
-	/**
-	 * counter up up
+
+    /**
+     * counter up up
 	 * @return
 	 */
 	boolean isFlag(Coor cur){
@@ -147,9 +155,9 @@ public class StickerCollectorRobot extends template {
 		}
 		return true;
 	}
-	
-	char rotate(char in, char act){
-		switch (in) {
+
+    char rotate(char in, char act) {
+        switch (in) {
 		case 'N':
 			if(act == 'D')
 				return 'L';
@@ -172,24 +180,14 @@ public class StickerCollectorRobot extends template {
 			else
 				return 'S';
 		}
-		
-	}
-	
 
-	// baris, kolom, instruksi
-	int N,M,S;
-	char[][] map;
-	boolean[][] vis;
-	int counter;
-	char[] instruction;
-	Coor start;
-	Coor curPos;
-	
-	void printCharArray(char[] array){
+    }
+
+    void printCharArray(char[] array){
 		for (int i = 0; i < array.length; i++) {
-			System.out.print((char)array[i]);
-		}
-	}
+            System.out.print(array[i]);
+        }
+    }
 	
 	class Coor{
 		int x,y;

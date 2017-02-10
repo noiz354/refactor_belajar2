@@ -1,11 +1,17 @@
 package norman.srin.algorithm;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import norman.template.template;
+public class BiColoring extends Template {
 
-public class BiColoring extends template {
+	final int UNKNOWN = -1;
+	final int BLACK = 0, WHITE = 1;
+	List<List<Integer>> adjLists;
+	boolean possible;
+	int[] vertexs;
 
 	public BiColoring() {
 		super("BiColoring", "BiColoring", WINDOWS);
@@ -37,13 +43,13 @@ public class BiColoring extends template {
 					colorify(j, BLACK, WHITE);
 				}
 			}
-			
-			System.out.print("#"+i+" ");
+
+			System.out.print("#" + i + " ");
 			System.out.println(possible?"BICOLORABLE.":"NOT BICOLORABLE.");
 		}
 	}
-	
-	void colorify(int v, int c1, int c2){
+
+	void colorify(int v, int c1, int c2) {
 		vertexs[v] = c1;
 //		System.out.println("v "+v+" color "+color(c1));
 		for(int v2 : adjLists.get(v)){
@@ -52,14 +58,14 @@ public class BiColoring extends template {
 				possible = false;
 				return;
 			}
-			
-			if(vertexs[v2]==UNKNOWN)
+
+			if (vertexs[v2] == UNKNOWN)
 				colorify(v2, c2, c1);
 		}
 		return;
 	}
-	
-	public String color(int color){
+
+	public String color(int color) {
 		switch (color) {
 		default:
 			return "UNKNOWN";
@@ -69,10 +75,4 @@ public class BiColoring extends template {
 			return "WHITE";
 		}
 	}
-	
-	List<List<Integer>> adjLists;
-	boolean possible;
-	final int UNKNOWN = -1;
-	final int BLACK = 0, WHITE = 1;
-	int[] vertexs;
 }

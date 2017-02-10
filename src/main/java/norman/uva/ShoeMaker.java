@@ -1,8 +1,8 @@
 package norman.uva;
 
-import java.util.Arrays;
+import norman.template.Template;
 
-import norman.template.template;
+import java.util.Arrays;
 
 /**
  * started at 13-5-2015, using greedy ( uva 10026 )
@@ -10,7 +10,9 @@ import norman.template.template;
  * Question remain :
  * 	why should sort that way ????
  */
-public class ShoeMaker extends template {
+public class ShoeMaker extends Template {
+
+	Fee[] fees;
 
 	public ShoeMaker() {
 		super("ShoeMaker", "ShoeMaker", LINUX);
@@ -37,8 +39,6 @@ public class ShoeMaker extends template {
 			System.out.println();
 		}
 	}
-
-	Fee[] fees;
 
 	static class Fee implements Comparable<Fee>{
 		int T, S, id;

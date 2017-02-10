@@ -1,11 +1,19 @@
 package norman.uva;
 
-import norman.template.template;
+import norman.template.Template;
 
 /**
- * Created by normansyahputa on 12/9/16.
+ * Created on 12/9/16.
+ * @author normansyahputa
  */
-public class DivingForGold extends template {
+public class DivingForGold extends Template {
+    private static final int MAX_N = 1010;
+    private static final int MAX_W = 1000;
+    static boolean tomar[][] = new boolean[33][1003];
+    static int d[] = new int[33];
+    private static int N, MW;
+    private static int[] V = new int[MAX_N], W = new int[MAX_N];
+    private static int[][] memo = new int[MAX_N][MAX_W];
     public DivingForGold() {
         super("DivingForGold", "DivingForGold", LINUX, true);
     }
@@ -35,8 +43,7 @@ public class DivingForGold extends template {
 //            System.out.println(""+value(0, T));
 //            path(N, T, 0);
 
-            int[][] result = bottomUpDP(V, W, T);
-            memo = result;
+            memo = bottomUpDP(V, W, T);
             System.out.println(memo[V.length][T]);
             path(N-1, T, 0);
             if(!getInput().hasNext()){
@@ -45,7 +52,7 @@ public class DivingForGold extends template {
         }
     }
 
-    void path(int n, int t, int cnt)
+    private void path(int n, int t, int cnt)
     {
         if ( n == 0 ) System.out.printf("%d\n",cnt);
         else if ( memo[n][t] != -1)
@@ -62,7 +69,7 @@ public class DivingForGold extends template {
     /**
      * Solves 0/1 knapsack in bottom up dynamic programming
      */
-    public int[][] bottomUpDP(int val[], int wt[], int W){
+    private int[][] bottomUpDP(int val[], int wt[], int W) {
         int K[][] = new int[val.length+1][W+1];
         for(int i=0; i <= val.length; i++){
             for(int j=0; j <= W; j++){
@@ -80,15 +87,6 @@ public class DivingForGold extends template {
         return K;
 //        return K[val.length][W];
     }
-
-
-    static boolean tomar[][] = new boolean[ 33][1003];
-    static int d[] = new int[33];
-    private static final int MAX_N = 1010;
-    private static final int MAX_W = 1000;
-    private static int N, MW;
-    private static int[] V = new int[MAX_N], W = new int[MAX_N];
-    private static int[][] memo = new int[MAX_N][MAX_W];
 
     private int value(int id, int t) {
         System.out.println("id "+ id+" t "+t);

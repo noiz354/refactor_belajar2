@@ -1,13 +1,15 @@
 package norman.hackerrank;
 
-import norman.template.template;
+import norman.template.Template;
 
 /**
- * Created by normansyahputa on 12/6/16.
+ * Created @author normansyahputa  on 12/6/16.
  *
  * naive solution
  */
-public class SherlockAndTheCost extends template {
+public class SherlockAndTheCost extends Template {
+    int max;
+
     public SherlockAndTheCost() {
         super("SherlockAndTheCost", "SherlockAndTheCost", LINUX, true);
     }
@@ -30,8 +32,6 @@ public class SherlockAndTheCost extends template {
             System.out.println(max);
         }
     }
-
-    int max;
 
     int calculateMax(int b[], int index, int total){
         if(index+1 > b.length-1) {

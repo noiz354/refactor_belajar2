@@ -1,5 +1,7 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +11,11 @@ import java.util.List;
  * @author SRIN
  * started at 15-6-2015, too many PLM to look after, so slowly progress for this
  */
-public class Dominator extends norman.template.template {
+public class Dominator extends Template {
+
+    List<List<Integer>> adjList;
+    int adjN;
+    boolean vis[];
 
 	public Dominator() {
 		super("Dominator", "Dominator", LINUX);
@@ -49,12 +55,9 @@ public class Dominator extends norman.template.template {
 				Arrays.fill(vis, false);
 				dfs(0, i);// karena inputnya hanya <= 100 maka bisa di dfs terus-terusan
 				for(int j=0;j<adjN;j++){
-					if(firstVis[j] & !vis[j])
-						output[i][j] = true;
-					else
-						output[i][j] = false;
-				}
-				output[i][i] = firstVis[i];
+                    output[i][j] = firstVis[j] & !vis[j];
+                }
+                output[i][i] = firstVis[i];
 			}
 
 			System.out.println("Case "+(++cases)+":");
@@ -93,8 +96,4 @@ public class Dominator extends norman.template.template {
 				dfs(adjList.get(at).get(i), absent);
 		}
 	}
-
-	List<List<Integer>> adjList;
-	int adjN;
-	boolean vis[];
 }

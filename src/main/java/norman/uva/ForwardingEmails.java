@@ -1,10 +1,10 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import norman.template.template;
 
 /**
  * 
@@ -17,8 +17,39 @@ import norman.template.template;
  * to know the algorithm. 
  * Need to switch to C, currently java not fast.
  */
-public class ForwardingEmails extends template {
+public class ForwardingEmails extends Template {
 
+    List<List<Integer>> adjList;
+    boolean visited[];
+    int K;
+
+	/*
+     * ini salah
+	int go(int i){
+		Ks[i] = 1;
+		visited[i] = true;
+		for(int j=1;j<=adjList.get(i).size();j++){
+			if(!visited[adjList.get(i).get(j-1)]){
+				Ks[i] += go(adjList.get(i).get(j-1));
+			}
+		}
+		return Ks[i];
+	}
+	*/
+
+    /*
+    void go(int i){
+        visited[i] = true;
+//		System.out.println("cur : "+i);
+        for(int j=1;j<=adjList.get(i).size();j++){
+            if(!visited[adjList.get(i).get(j-1)]){
+                ++K;
+                go(adjList.get(i).get(j-1));
+            }
+        }
+    }
+    */
+    int[] Ks;
 	public ForwardingEmails() {
 		super("ForwardingEmails", "ForwardingEmails", WINDOWS);
 	}
@@ -46,10 +77,10 @@ public class ForwardingEmails extends template {
 //			for(int i=1;i<=N;i++){
 //				System.out.println(i+" : "+adjList.get(i));
 //			}
-			
 
-			int ans = 0, best_len = 0;
-			visited = new boolean[N+1];
+
+            int ans = 0, best_len = 0;
+            visited = new boolean[N+1];
 			for(int i=1;i<=N;i++){
 //				visited = new boolean[N+1];
 //				K = 0;
@@ -61,18 +92,18 @@ public class ForwardingEmails extends template {
 				}
 //				System.out.println("i "+i+" K "+K);
 			}
-			
+
 //			for(int i=1;i<Ks.length;i++){
 //				System.out.print(Ks[i]+" ");
 //			}
 //			System.out.println();
-			
-			System.out.println("Case "+(total-T)+": "+(ans));
-		}// end of while
+
+            System.out.println("Case " + (total - T) + ": " + (ans));
+        }// end of while
 	}
-	
-	int go(int i){
-		visited[i]=true;
+
+    int go(int i) {
+        visited[i]=true;
 		int tot = 0;
 		for(int j=1;j<=adjList.get(i).size();j++){
 			if(!visited[adjList.get(i).get(j-1)]){
@@ -81,38 +112,6 @@ public class ForwardingEmails extends template {
 		}
 		visited[i]=false;
 		return Ks[i] = tot;
-		
-	}
-	
-	/*
-	 * ini salah
-	int go(int i){
-		Ks[i] = 1;
-		visited[i] = true;
-		for(int j=1;j<=adjList.get(i).size();j++){
-			if(!visited[adjList.get(i).get(j-1)]){
-				Ks[i] += go(adjList.get(i).get(j-1));
-			}
-		}
-		return Ks[i];
-	}
-	*/
-	
-	/*
-	void go(int i){
-		visited[i] = true;
-//		System.out.println("cur : "+i);
-		for(int j=1;j<=adjList.get(i).size();j++){
-			if(!visited[adjList.get(i).get(j-1)]){
-				++K;
-				go(adjList.get(i).get(j-1));
-			}
-		}
-	}
-	*/
-	
-	List<List<Integer>> adjList;
-	boolean visited[];
-	int K;
-	int[] Ks;
+
+    }
 }

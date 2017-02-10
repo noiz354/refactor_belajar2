@@ -1,23 +1,24 @@
 package norman.uva;
 
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by normansyahputa on 11/12/16.
+ * Created @author normansyahputa  on 11/12/16.
  */
-public class ACMAndBlackout extends template {
+public class ACMAndBlackout extends Template {
 
+    List<Edge> edges;
+    List<Edge> bannedEdges;
+    int[][] bannedEdgeFlag;
+    int[] p;
     private int T,
             N,// number of school in the city 3 < N < 100
             M;// number of possible connections among them
-
-    List<Edge> edges;
-
     public ACMAndBlackout() {
         super("ACMAndBlackout", "ACMAndBlackout", LINUX, true);
     }
@@ -115,10 +116,6 @@ public class ACMAndBlackout extends template {
         }
     }
 
-    List<Edge> bannedEdges;
-    int[][] bannedEdgeFlag;
-    int[] p;
-
     int findSet(int i){
         return p[i] == i ? i : (p[i] = findSet(p[i]));
     }
@@ -137,11 +134,11 @@ public class ACMAndBlackout extends template {
     }
 
     private void print(Object object, boolean withoutNewLine){
-        template_utility.print(getOutput(), object.toString(), withoutNewLine, true);
+        TemplateUtility.print(getOutput(), object.toString(), withoutNewLine, true);
     }
 
     private void print(Object object){
-        template_utility.print(getOutput(), object.toString(), true, true);
+        TemplateUtility.print(getOutput(), object.toString(), true, true);
     }
 
     private class Edge implements Comparable<Edge>{

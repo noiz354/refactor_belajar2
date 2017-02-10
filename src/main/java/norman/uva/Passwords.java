@@ -1,6 +1,6 @@
 package norman.uva;
 
-import norman.template.template;
+import norman.template.Template;
 
 /**
  * uva 628, Passwords
@@ -11,7 +11,11 @@ import norman.template.template;
  * @author M Normansyah (m.normansyah@samsung.com)
  * Finished at 11/3/2015, 4:33 PM
  */
-public class Passwords extends template {
+public class Passwords extends Template {
+
+    int nWord, nPattern, lastIndex;
+    String[] words, patterns;
+    int[] numbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 	public Passwords() {
 		super("Passwords", "Passwords", LINUX);
@@ -64,9 +68,5 @@ public class Passwords extends template {
 			break;
 		}
 	}
-
-	int nWord, nPattern, lastIndex;
-	String[] words, patterns;
-	int[] numbers = {0,1,2,3,4,5,6,7,8,9};
 
 }

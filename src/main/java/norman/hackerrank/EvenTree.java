@@ -1,14 +1,16 @@
 package norman.hackerrank;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Queue;
+import norman.template.Template;
 
-import norman.template.template;
+import java.util.*;
 
-public class EvenTree extends template {
+public class EvenTree extends Template {
+
+	List<List<Integer>> adjList;
+	boolean[] marked;
+	int tree[];
+	int count[];
+	int N, M;
 
 	public EvenTree() {
 		super("EvenTree", "EvenTree", LINUX);
@@ -70,9 +72,6 @@ public class EvenTree extends template {
 		}
 	}
 
-	List<List<Integer>> adjList;
-	boolean[] marked;
-
 	/**
 	 * using Tree Transversal
 	 */
@@ -119,8 +118,4 @@ public class EvenTree extends template {
 			}
 		}
 	}
-
-	int tree[];
-	int count[];
-	int N, M;
 }

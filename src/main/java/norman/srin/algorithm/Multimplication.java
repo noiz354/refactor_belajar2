@@ -1,12 +1,15 @@
 package norman.srin.algorithm;
 
+import norman.template.Template;
+
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import norman.template.template;
+public class Multimplication extends Template {
 
-public class Multimplication extends template {
+	int[] values = {3, 5};
+	Set<Integer> temp;
 
 	public Multimplication() {
 		super("Multimplication", "Multimplication", LINUX);
@@ -48,7 +51,4 @@ public class Multimplication extends template {
 			System.out.println(result);
 		}
 	}
-
-	int[] values = {3,5};
-	Set<Integer> temp;
 }

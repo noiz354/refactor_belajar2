@@ -1,6 +1,6 @@
 package norman.uva;
 
-import norman.template.template;
+import norman.template.Template;
 
 /**
  *
@@ -9,7 +9,9 @@ import norman.template.template;
  *
  * ada bug nih setelah masuk 390 keatas.
  */
-public class SqrtLogSin extends template {
+public class SqrtLogSin extends Template {
+
+    int[] table;
 
 	public SqrtLogSin() {
 		super("SqrtLogSin", "SqrtLogSin", LINUX);
@@ -53,7 +55,6 @@ public class SqrtLogSin extends template {
 		return ans;
 	}
 
-	int[] table;
 	private int SqrtLogSinCalc(int index){
 //		System.out.println("enter index "+index);
 		if(index == 0){

@@ -1,16 +1,9 @@
 package norman.uva;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.TreeMap;
+import norman.template.Template;
 
-import norman.template.template;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * 
@@ -19,21 +12,46 @@ import norman.template.template;
  * uva 433
  *
  */
-public class BankNotQuiteOCR extends template {
+public class BankNotQuiteOCR extends Template {
 
+	int[][] input;
+	private List<Integer> possible;
+	private int[] inputInt;
+	private String line;
+	private Map<Integer, Integer> codeDig;
+	
 	public BankNotQuiteOCR() {
 		super("BankNotQuiteOCR", "BankNotQuiteOCR", WINDOWS);
+	}
+
+	//Method for sorting the TreeMap based on values
+	public static <K, V extends Comparable<V>> Map<K, V>
+	sortByValues(final Map<K, V> map) {
+		Comparator<K> valueComparator =
+				(k1, k2) -> {
+					int compare =
+							map.get(k1).compareTo(map.get(k2));
+					if (compare == 0)
+						return 1;
+					else
+						return compare;
+				};
+
+		Map<K, V> sortedByValues =
+				new TreeMap<>(valueComparator);
+		sortedByValues.putAll(map);
+		return sortedByValues;
 	}
 
 	@Override
 	public void doSomething() {
 		int TC = getInput().nextInt();
 		getInput().nextLine();
-		
-		
+
+
 		for(int z=0;z<TC;z++){
 			input = new int[9][7];
-			
+
 			// code digit
 			codeDig = new TreeMap<>();
 			codeDig.put(126, 0);
@@ -49,7 +67,7 @@ public class BankNotQuiteOCR extends template {
 //			codeDig = sortByValues(codeDig);
 //			System.out.println(codeDig);
 //			System.out.println(codeDig.containsKey(48));
-			
+
 			for(int i=0;i<3;i++){
 				line = getInput().nextLine();
 				if(line.length()<=27){
@@ -57,7 +75,7 @@ public class BankNotQuiteOCR extends template {
 					for(int j=0;j<j2;j++)
 						line = line+ " ";
 				}
-				
+
 				parseInput(i, 1, 0);
 			}
 //			int tot = 0;
@@ -79,7 +97,7 @@ public class BankNotQuiteOCR extends template {
 //				System.out.println(i+" "+Integer.toBinaryString(inputInt[i])+" : "+inputInt[i]+" : "+codeDig.get(inputInt[i]));
 			}
 //			System.out.println(tot);
-			
+
 			System.out.println("valid "+Valid());
 			if(Valid()){
 //				System.out.println("valid hehehe");
@@ -88,8 +106,8 @@ public class BankNotQuiteOCR extends template {
 //				System.out.println("tidak valid hehehe");
 				Solve();
 			}
-			
-			
+
+
 //			System.out.println(CanFixGarbled(121, 121));
 //			System.out.println(CanFixGarbled(121, 127));
 //			System.out.println(CanFixGarbled(121, 123));
@@ -100,52 +118,30 @@ public class BankNotQuiteOCR extends template {
 //			System.out.println(121 >> 2);
 //			System.out.println(121 >> 8);
 //			System.out.println(121 << 1);
-			
+
 		}
 	}
-	
-	  //Method for sorting the TreeMap based on values
-	  public static <K, V extends Comparable<V>> Map<K, V> 
-	    sortByValues(final Map<K, V> map) {
-	    Comparator<K> valueComparator = 
-	             new Comparator<K>() {
-	      public int compare(K k1, K k2) {
-	        int compare = 
-	              map.get(k1).compareTo(map.get(k2));
-	        if (compare == 0) 
-	          return 1;
-	        else 
-	          return compare;
-	      }
-	    };
-	 
-	    Map<K, V> sortedByValues = 
-	      new TreeMap<K, V>(valueComparator);
-	    sortedByValues.putAll(map);
-	    return sortedByValues;
-	  }
-	
-	void SolveImpl(int i)
+
+	private void SolveImpl(int i)
 	{
 		int orig = inputInt[i];
-		for(Iterator<Entry<Integer, Integer>> iter = codeDig.entrySet().iterator();iter.hasNext();){
-			Entry<Integer, Integer> temp = iter.next();
-			if(orig == temp.getKey())
+		for (Entry<Integer, Integer> temp : codeDig.entrySet()) {
+			if (orig == temp.getKey())
 				continue;
-			
-			if(!CanFixGarbled(orig, temp.getKey()))
+
+			if (!CanFixGarbled(orig, temp.getKey()))
 				continue;
-			
-			inputInt[i]= temp.getKey();
-			if(Valid()){
+
+			inputInt[i] = temp.getKey();
+			if (Valid()) {
 				possible.add(CodeToInt());
-				if(possible.size()>1)
+				if (possible.size() > 1)
 					return;
 			}
 		}
 	}
-	
-	int CodeToInt(){
+
+	private int CodeToInt() {
 		int ret = 0;
 		int m = 1;
 		for(int i=8;i>=0;i--){
@@ -158,8 +154,8 @@ public class BankNotQuiteOCR extends template {
 	boolean CanFixGarbledV2(int src, int dst){
 		return ((src ^ dst)&src)==0;
 	}
-	
-	boolean CanFixGarbled(int src, int dst){
+
+	private boolean CanFixGarbled(int src, int dst) {
 		int diff = src ^ dst;// ambil perbedaannya
 //		System.out.println("#1 diff "+Integer.toBinaryString(diff)
 //				+ " src "+Integer.toBinaryString(src)
@@ -170,32 +166,32 @@ public class BankNotQuiteOCR extends template {
 //			System.out.println("b "+b+" c "+c);
 			if(b && c)
 				return false;
-			
+
 //			System.out.println("src "+Integer.toBinaryString(src)
 //					+" dst "+Integer.toBinaryString(dst)
 //					+" diff "+Integer.toBinaryString(diff));
 			src = src >> 1;
 			dst = dst >> 1;
 			diff = diff >> 1;
-			
+
 		}
 		return true;
 	}
-	
-	int test(int v, int i){
+
+	private int test(int v, @SuppressWarnings("unused") int i) {
 //		System.out.println(
 //				"v "+Integer.toBinaryString(v)
 //				+" i "+Integer.toBinaryString(i)
 //				+" : "+Integer.toBinaryString((v & (1 << i))));
 		return (v & (1 << i));
 	}
-	
-	void Solve(){
+
+	private void Solve() {
 		possible = new ArrayList<>();
-		
+
 		for(int i=0;i<9;i++)
 			SolveImpl(i);
-		
+
 		if(possible.isEmpty())
 			System.out.println("failure");
 		else if(possible.size()>1)
@@ -203,8 +199,8 @@ public class BankNotQuiteOCR extends template {
 		else
 			System.out.println(possible.get(0));
 	}
-	
-	boolean Valid(){
+
+	private boolean Valid() {
 		int ret = 0;
 		for(int i=8;i>=0;--i){
 			if(!codeDig.containsKey(inputInt[i]))
@@ -214,14 +210,8 @@ public class BankNotQuiteOCR extends template {
 		System.out.println("ret%11==0 "+(ret%11 == 0));
 		return ret%11 == 0;
 	}
-	
-	List<Integer> possible;
-	int[] inputInt;
-	int[][] input;
-	String line, temp;
-	Map<Integer, Integer> codeDig;
-	
-	void parseInput(int i, int iter, int start){
+
+	private void parseInput(int i, int iter, int start) {
 		if(iter>9)
 			return;
 		switch (i) {

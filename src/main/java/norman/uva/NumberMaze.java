@@ -1,28 +1,29 @@
 package norman.uva;
 
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 import java.util.PriorityQueue;
 
 /**
- * Created by normansyahputa on 12/6/16.
+ * Created @author normansyahputa  on 12/6/16.
  *
  * uva 929 - djikstra
  * using list is slow
  *
  *
  */
-public class NumberMaze extends template {
+public class NumberMaze extends Template {
+    static final int INF = 1000000000;
+    static final int adjR[] = {-1, 0, 1, 0};
+    static final int adjC[] = {0, -1, 0, 1};
+    List<List<Integer>> weight;
+
     public NumberMaze() {
         super("NumberMaze", "NumberMaze", LINUX, true);
     }
-
-    List<List<Integer>> weight;
-    static final int INF = 1000000000;
 
     @Override
     public void doSomething() {
@@ -88,9 +89,6 @@ public class NumberMaze extends template {
 
     }
 
-    static final int adjR[] = {-1,  0, 1, 0};
-    static final int adjC[] = { 0, -1, 0, 1};
-
     void put(List<List<Integer>> data, int src_index_x, int src_index_y, int value){
         List<Integer> datas = data.get(src_index_x);
         datas.set(src_index_y, value);
@@ -98,6 +96,15 @@ public class NumberMaze extends template {
         data.set(src_index_x, datas);
     }
 
+    void print(Object object) {
+        if (debug)
+            TemplateUtility.print(getOutput(), object.toString(), false, true);
+    }
+
+    void println(Object object) {
+        if (debug)
+            TemplateUtility.print(getOutput(), object.toString(), true, true);
+    }
 
     class IntegerPair{
         public int u, v, weigh;
@@ -107,15 +114,5 @@ public class NumberMaze extends template {
             this.v = v;
             this.weigh = weigh;
         }
-    }
-
-    void print(Object object){
-        if(debug)
-            template_utility.print(getOutput(), object.toString(), false, true);
-    }
-
-    void println(Object object){
-        if(debug)
-            template_utility.print(getOutput(), object.toString(), true, true);
     }
 }

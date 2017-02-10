@@ -1,9 +1,7 @@
 package norman.uva;
 
-import java.util.Arrays;
-
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
 /**
  * 
@@ -15,10 +13,15 @@ import norman.template.template_utility;
  * misalkan row 0 sebagai start contoh 0,1 maka 0,2 tidak boleh diakses harus maju kedepan,
  * kayaknya itu yang buat gagal deh, besok lanjut lagi
  */
-public class llGiocoDellX extends template {
+public class llGiocoDellX extends Template {
 
-	public llGiocoDellX() {
-		super("llGiocoDellX", "llGiocoDellX", WINDOWS);
+    char[][] board;
+    char[][] processBoard;
+    boolean row, col;
+    char winner;
+
+    public llGiocoDellX() {
+        super("llGiocoDellX", "llGiocoDellX", WINDOWS);
 	}
 
 	@Override
@@ -33,7 +36,7 @@ public class llGiocoDellX extends template {
 					board[i][j]=temp.charAt(j);
 				}
 			}
-			
+
 			// test index checking
 //			floodfill(4, -1, 2, 'b', 'c');
 //			floodfill(4, 4, 2, 'b', 'c');
@@ -41,66 +44,61 @@ public class llGiocoDellX extends template {
 //			floodfill(4, 1, 4, 'b', 'c');
 //			floodfill(4, -1, 4, 'b', 'c');
 //			floodfill(4, 1, 3, 'b', 'c');
-			
-			template_utility.print(getOutput(), (N + " "), false);
-			template_utility.print(getOutput(), (tC++ + " "), false);
-			
+
+            TemplateUtility.print(getOutput(), (N + " "), false);
+            TemplateUtility.print(getOutput(), (tC++ + " "), false);
+
 			row = true;
 			for(int i=0;i<N;i++){
 //				processBoard = Arrays.copyOf(board, board.length);
 				for(int j=0;j<board.length;j++)
 					for(int k=0;k<board[j].length;k++)
 						processBoard[j][k] = board[j][k];
-//				template_utility.print(getOutput(),"start "+0+","+i,true);
-//				template_utility.print(getOutput(),"before:",true);
+//				TemplateUtility.print(getOutput(),"start "+0+","+i,true);
+//				TemplateUtility.print(getOutput(),"before:",true);
 //				printMap();
 				floodfill(N, 0, i, board[0][i], '.');
-//				template_utility.print(getOutput(),"after:",true);
+//				TemplateUtility.print(getOutput(),"after:",true);
 //				printMap();
 			}
 			row = false;
-//			template_utility.print(getOutput(), (char)winner+"", true);
-			if(winner!=0){
-				template_utility.print(getOutput(), (char)winner+"", true);
-			}else{
-				col = true;
+//			TemplateUtility.print(getOutput(), (char)winner+"", true);
+            if (winner != 0) {
+                TemplateUtility.print(getOutput(), winner + "", true);
+            } else {
+                col = true;
 				for(int i=0;i<N;i++){
 					for(int j=0;j<board.length;j++)
 						for(int k=0;k<board[j].length;k++)
 							processBoard[j][k] = board[j][k];
-	//				template_utility.print(getOutput(),"start "+i+","+0,true);
-	//				template_utility.print(getOutput(),"before:",true);
-	//				printMap();
-					floodfill(N, i, 0, board[i][0], '.');
-	//				template_utility.print(getOutput(),"after:",true);
-	//				printMap();
-				}
+                    //				TemplateUtility.print(getOutput(),"start "+i+","+0,true);
+                    //				TemplateUtility.print(getOutput(),"before:",true);
+                    //				printMap();
+                    floodfill(N, i, 0, board[i][0], '.');
+                    //				TemplateUtility.print(getOutput(),"after:",true);
+                    //				printMap();
+                }
 				col = false;
-				template_utility.print(getOutput(), (char)winner+"", true);
-			}
-		}
+                TemplateUtility.print(getOutput(), winner + "", true);
+            }
+        }
 	}
-	
+
 	void printMap(){
 		for(int i=0;i<processBoard.length;i++){
 			for(int j=0;j<processBoard[i].length;j++){
 //				System.out.print((char)processBoard[i][j]);
-				template_utility.print(getOutput(),(char)processBoard[i][j]+"",false);
-			}
+                TemplateUtility.print(getOutput(), processBoard[i][j] + "", false);
+            }
 //			System.out.println();
-			template_utility.print(getOutput(),"",true);
-		}
+            TemplateUtility.print(getOutput(), "", true);
+        }
 //		System.out.println();
-		template_utility.print(getOutput(),"",true);
-	}
-	
-	char[][] board;
-	char[][] processBoard;
-	boolean row, col;
-	char winner;
-	
-	void floodfill(int N, int r, int c, char c1, char c2){
-//		template_utility.print(getOutput(), r+" "+c, true);
+        TemplateUtility.print(getOutput(), "", true);
+    }
+
+    void floodfill(int N, int r, int c, char c1, char c2){
+//		TemplateUtility.print(getOutput(), r+" "+c, true);
 //		System.out.println(r+" "+c);
 		
 //		if((r<0||r>=N)||(c<0||c>=N))

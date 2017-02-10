@@ -1,6 +1,6 @@
 package norman.uva;
 
-import norman.template.template;
+import norman.template.Template;
 
 /**
  *
@@ -8,7 +8,10 @@ import norman.template.template;
  * start at 11-5-2015, Max 1D Sum example
  *
  */
-public class JillRidesAgain extends template {
+public class JillRidesAgain extends Template {
+
+    int[] stops;
+    int start, fin;
 
 	public JillRidesAgain() {
 		super("JillRidesAgain", "JillRidesAgain", LINUX);
@@ -47,7 +50,4 @@ public class JillRidesAgain extends template {
 				System.out.println("Route "+(total-TC)+" has no nice parts");
 		}
 	}
-
-	int[] stops;
-	int start, fin;
 }

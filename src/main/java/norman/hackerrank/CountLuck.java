@@ -1,19 +1,16 @@
 package norman.hackerrank;
 
-import java.util.Scanner;
-
-import norman.template.template;
+import norman.template.Template;
 
 /**
  * http://blueocean-penn.blogspot.com/2014/12/count-luck-maz.html
  * @author M Normansyah (m.normansyah@samsung.com)
  *
  */
-public class CountLuck extends template {
+public class CountLuck extends Template {
 
-	public static class Node{
-        int r;int c; Node pre;
-        public Node(int r, int c){this.r = r; this.c = c;}
+    public CountLuck() {
+        super("CountLuck", "CountLuck", LINUX);
     }
 
 	public static void visit(char[][] maz, int startR, int startC, boolean[][] seen,  Node pre, Node tail){
@@ -33,10 +30,6 @@ public class CountLuck extends template {
         visit(maz, startR, startC-1, seen,  n, tail);
         visit(maz, startR, startC+1, seen,  n, tail);
     }
-
-	public CountLuck() {
-		super("CountLuck", "CountLuck", LINUX);
-	}
 
 	@Override
 	public void doSomething() {
@@ -87,5 +80,16 @@ public class CountLuck extends template {
                 System.out.println(counter==k?"Impressed":"Oops!");
         }
 	}
+
+    public static class Node {
+        int r;
+        int c;
+        Node pre;
+
+        public Node(int r, int c) {
+            this.r = r;
+            this.c = c;
+        }
+    }
 
 }

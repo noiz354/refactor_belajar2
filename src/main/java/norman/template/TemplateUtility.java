@@ -3,13 +3,13 @@ package norman.template;
 import java.io.BufferedWriter;
 import java.io.IOException;
 
-public class template_utility {
+public class TemplateUtility {
 	/**
 	 * Method to print to file and to console
-	 * @param bufferedWriter
-	 * @param str
-	 * @param endWithNewLine
-	 * @param printToConsole
+	 * @param bufferedWriter prefere not null
+	 * @param str string default
+	 * @param endWithNewLine true if with new line, false if without new line.
+	 * @param printToConsole true if still need to print to console, false if not need to print to console.
 	 */
 	public static void print(BufferedWriter bufferedWriter, String str, boolean endWithNewLine, boolean printToConsole){
 		if(endWithNewLine){

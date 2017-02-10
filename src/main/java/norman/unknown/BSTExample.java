@@ -1,11 +1,11 @@
 package norman.unknown;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import norman.template.template;
-
-public class BSTExample extends template {
+public class BSTExample extends Template {
 
 	public BSTExample() {
 		super("BSTExample", "BSTExample", WINDOWS);

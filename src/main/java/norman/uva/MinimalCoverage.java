@@ -1,11 +1,11 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import norman.template.template;
-
-public class MinimalCoverage extends template {
+public class MinimalCoverage extends Template {
 
 	public MinimalCoverage(String inputFileName, String outputFileName,
 			int envType) {

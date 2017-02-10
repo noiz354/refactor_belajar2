@@ -1,10 +1,12 @@
 package norman.uva;
 
+import norman.template.Template;
+
 import java.util.Arrays;
 
-import norman.template.template;
+public class EightQueenChessProblem extends Template {
 
-public class EightQueenChessProblem extends template {
+	int row[], TC, a, b, lineCounter;
 
 	public EightQueenChessProblem() {
 		super("EightQueenChessProblem", "EightQueenChessProblem", LINUX);
@@ -25,8 +27,6 @@ public class EightQueenChessProblem extends template {
 			}
 		}
 	}
-
-	int row[], TC, a, b, lineCounter;
 
 	boolean place(int col, int tryrow){
 		for(int prev=1;prev<col;prev++){

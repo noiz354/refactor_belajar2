@@ -1,11 +1,9 @@
 package norman.uva;
 
-import norman.template.template;
-import norman.template.template_utility;
+import norman.template.Template;
+import norman.template.TemplateUtility;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +11,7 @@ import static java.lang.Math.floor;
 import static java.lang.Math.sqrt;
 
 /**
- * Created by normansyahputa on 11/14/16.
+ * Created @author normansyahputa  on 11/14/16.
  *
  * uva 11228
  *
@@ -21,62 +19,25 @@ import static java.lang.Math.sqrt;
  * 1. round using floor by adding 0.5
  * 2. check if r is in range or not
  */
-public class TransportationSystem extends template {
-
-    double sqr(double x){
-        return x*x;
-    }
+public class TransportationSystem extends Template {
 
     final static int MAX = 500_000;
     final static int MAX_NODE = 1_005;
-    class Pair{
-        double i, y;
-
-        public Pair(double i, double y) {
-            this.i = i;
-            this.y = y;
-        }
-    }
-
     List<Pair> co;
-
-    double round(double d){
-        return floor(d+0.5);
-    }
-
-    private class Edge implements Comparable<Edge>{
-
-        double weight;// 1 < Cost < 300
-
-        int x, y;
-        public Edge(double weight, int x, int y) {
-            this.weight = weight;
-            this.x = x;
-            this.y = y;
-        }
-        @Override
-        public String toString() {
-            return
-                    weight +
-                            ": " + x +
-                            "," + y;
-        }
-
-        @Override
-        public int compareTo(Edge o) {
-            if(this.weight < o.weight) return -1;
-            if(this.weight > o.weight) return 1;
-            return 0;
-        }
-
-    }
-
     List<Edge> ed;
 //    Edge ed[];
     int par[];
 
     public TransportationSystem() {
         super("TransportationSystem", "TransportationSystem", LINUX, false);
+    }
+
+    double sqr(double x) {
+        return x * x;
+    }
+
+    double round(double d) {
+        return floor(d + 0.5);
     }
 
     @Override
@@ -165,11 +126,49 @@ public class TransportationSystem extends template {
     }
 
     private void print(Object object){
-        template_utility.print(getOutput(), object.toString(), true, true);
+        TemplateUtility.print(getOutput(), object.toString(), true, true);
     }
 
     int findPar(int x){
         return (par[x]==x)?x:(par[x] = findPar(par[x]));
+    }
+
+    class Pair {
+        double i, y;
+
+        public Pair(double i, double y) {
+            this.i = i;
+            this.y = y;
+        }
+    }
+
+    private class Edge implements Comparable<Edge> {
+
+        double weight;// 1 < Cost < 300
+
+        int x, y;
+
+        public Edge(double weight, int x, int y) {
+            this.weight = weight;
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public String toString() {
+            return
+                    weight +
+                            ": " + x +
+                            "," + y;
+        }
+
+        @Override
+        public int compareTo(Edge o) {
+            if (this.weight < o.weight) return -1;
+            if (this.weight > o.weight) return 1;
+            return 0;
+        }
+
     }
 
 

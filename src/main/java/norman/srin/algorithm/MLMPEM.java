@@ -1,12 +1,16 @@
 package norman.srin.algorithm;
 
+import norman.template.Template;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import norman.template.template;
+public class MLMPEM extends Template {
 
-public class MLMPEM extends template {
+	int[][] map;
+	List<List<Integer>> adjLists;
+	int[] memo;
 
 	public MLMPEM() {
 		super("MLMPEM", "MLMPEM", LINUX);
@@ -49,9 +53,6 @@ public class MLMPEM extends template {
 		}
 	}
 
-	int[][] map;
-	List<List<Integer>> adjLists;
-	int[] memo;
 	int calc(int index){
 //		System.out.println("index "+index);
 		if(memo[index]!=-1){

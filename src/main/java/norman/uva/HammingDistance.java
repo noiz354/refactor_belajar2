@@ -1,8 +1,8 @@
 package norman.uva;
 
-import java.util.Arrays;
+import norman.template.Template;
 
-import norman.template.template;
+import java.util.Arrays;
 
 /**
  * started at 23-3-2015
@@ -11,7 +11,7 @@ import norman.template.template;
  * @author M Normansyah (m.normansyah@samsung.com)
  * caranya sama dengan print all menggunakan rekursif.
  */
-public class HammingDistance extends template {
+public class HammingDistance extends Template {
 
 	public HammingDistance() {
 		super("HammingDistance", "HammingDistance", LINUX);

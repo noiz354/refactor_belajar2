@@ -1,13 +1,13 @@
 package norman.uva;
 
-import norman.template.template;
+import norman.template.Template;
 
 import java.util.*;
 
 /**
- * Created by normansyahputa on 12/2/16.
+ * Created @author normansyahputa  on 12/2/16.
  */
-public class KahnTopSort extends template {
+public class KahnTopSort extends Template {
 
 //    static final int[][] adjListRawData = {
 //            {0,1},
@@ -25,7 +25,10 @@ public class KahnTopSort extends template {
             {1,0},
             {0,4}
     };
-
+    int V;
+    List<List<Integer>> adjList;
+    // for storing in degree of each vertex
+    int[] indegree;
     public KahnTopSort() {
         super("KahnTopSort", "KahnTopSort", LINUX, true);
     }
@@ -86,12 +89,6 @@ public class KahnTopSort extends template {
         System.out.println();
 
     }
-
-    int V;
-    List<List<Integer>> adjList;
-
-    // for storing in degree of each vertex
-    int[] indegree;
 
     void calculateInDegree(int indegree[]){
         int i=0;

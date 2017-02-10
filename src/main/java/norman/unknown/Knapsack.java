@@ -1,11 +1,17 @@
 package norman.unknown;
 
-import norman.template.template;
+import norman.template.Template;
 
 /**
- * Created by normansyahputa on 12/8/16.
+ * Created on 12/8/16.
+ * @author normansyahputa
  */
-public class Knapsack extends template {
+public class Knapsack extends Template {
+    private static final int MAX_N = 1010;
+    private static final int MAX_W = 40;
+    private static int N, MW;
+    private static int[] V = new int[MAX_N], W = new int[MAX_N];
+    private static int[][] memo = new int[MAX_N][MAX_W];
     public Knapsack() {
         super("Knapsack", "Knapsack", LINUX, true);
     }
@@ -45,12 +51,6 @@ public class Knapsack extends template {
             System.out.printf("%d\n", ans);
         }
     }
-
-    private static final int MAX_N = 1010;
-    private static final int MAX_W = 40;
-    private static int N, MW;
-    private static int[] V = new int[MAX_N], W = new int[MAX_N];
-    private static int[][] memo = new int[MAX_N][MAX_W];
 
     private int value(int id, int w) {
         if (id == N || w == 0) return 0;
