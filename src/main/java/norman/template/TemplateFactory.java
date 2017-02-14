@@ -27,8 +27,7 @@ public abstract class TemplateFactory {
 			, rushmurderer = 32, theseusandtheminotaur = 33, vertex = 34, stickercollectorrobot = 35, mappingtheroute = 36
 			, journeytothemoon = 37, knightinthewargrid = 38, forwardingemails = 39, coinchangedp = 40
 			, dfscyclic = 41, ledtest = 42, banknotquiteocr = 43, ancientmessages = 44, llgiocodellx = 45
-			, hmactokopedia = 46, binarysearchtree = 47, continents = 48, battleship = 49, orderingtask = 50
-			, ordering = 51, followingorder = 52, reconnecting = 53, prim_mst_special_subtree = 54, network = 55, critical_link = 56, racing = 57, highways = 58, acm_and_blackout = 59, audiophobia = 60, transportation_system = 61, dark_roads = 62, heavy_cycle_edges = 63, kahn_topological_sort = 64, beverages = 65, shortestreach2 = 66, word_transformation = 67, davis_staircase = 68, balanced_brackets = 69, sherlock_and_the_cost = 70, candies = 71, greedy_florist = 72, number_maze = 73, boardcutting = 74, knapsack = 75, diving_for_gold = 76, wormhole = 77, barcodes = 78, max_sub_array = 79, word_justification = 80, flight_planner = 81, test_template = 82, sam_and_sub_strings = 83, blackjack = 84, brick_games = 85, how_to_add = 86, lowest_price_in_town = 87, y2k = 88, hanoitower = 89, history_grading = 90;
+			, hmactokopedia = 46, binarysearchtree = 47, continents = 48, battleship = 49, orderingtask = 50, ordering = 51, followingorder = 52, reconnecting = 53, prim_mst_special_subtree = 54, network = 55, critical_link = 56, racing = 57, highways = 58, acm_and_blackout = 59, audiophobia = 60, transportation_system = 61, dark_roads = 62, heavy_cycle_edges = 63, kahn_topological_sort = 64, beverages = 65, shortestreach2 = 66, word_transformation = 67, davis_staircase = 68, balanced_brackets = 69, sherlock_and_the_cost = 70, candies = 71, greedy_florist = 72, number_maze = 73, boardcutting = 74, knapsack = 75, diving_for_gold = 76, wormhole = 77, barcodes = 78, max_sub_array = 79, word_justification = 80, flight_planner = 81, test_template = 82, sam_and_sub_strings = 83, blackjack = 84, brick_games = 85, how_to_add = 86, lowest_price_in_town = 87, y2k = 88, hanoitower = 89, history_grading = 90, what_goes_up = 91;
 
 	public static void run(int category, int prob_num) {
 		switch (category) {
@@ -52,6 +51,9 @@ public abstract class TemplateFactory {
 			break;
 		case dynamic_programming:
 			switch(prob_num){
+				case what_goes_up:
+					new WhatGoesUp();
+					break;
 				case history_grading:
 					new HistoryGrading();
 					break;

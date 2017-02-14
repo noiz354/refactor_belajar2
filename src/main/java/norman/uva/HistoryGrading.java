@@ -3,7 +3,6 @@ package norman.uva;
 import norman.template.Template2;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * Created on 2/9/17.
@@ -26,14 +25,14 @@ public class HistoryGrading extends Template2 {
             line = getInput2().readLine();
 
             while (line != null) {
-                println("#1 " + line);
+//                println("#1 " + line);
                 int n = Integer.parseInt(line), a, b;
 
                 int ori[] = new int[50];
                 line = getInput2().readLine();
                 String[] lines = line.split(" ");
                 int[] ints1 = convToInt(lines);
-                println("#2 " + line);
+//                println("#2 " + line);
 
                 for (int i = 0; i < n; i++) {
                     ori[ints1[i] - 1] = i;
@@ -48,7 +47,7 @@ public class HistoryGrading extends Template2 {
                     if (line == null || line.split(" ").length == 1)
                         break;
                     int[] ints = convToInt(line.split(" "));
-                    println("#3 " + Arrays.toString(ints));
+//                    println("#3 " + Arrays.toString(ints));
 
                     for (int i = 0; i < n; i++) {
                         ar[ints[i] - 1] = i;

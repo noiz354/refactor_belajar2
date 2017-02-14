@@ -284,6 +284,9 @@ public class Start {
 //		TemplateFactory.run(TemplateFactory.graph, TemplateFactory.beverages);
 
 		// https://uva.onlinejudge.org/external/1/111.pdf
-		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.history_grading);
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.history_grading);
+
+		// uva 411 - LIS
+		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.what_goes_up);
 	}
 }
