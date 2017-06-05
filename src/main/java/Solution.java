@@ -13,47 +13,70 @@ import java.util.Scanner;
 public class Solution {
 
 
-    static long dp[], v_[], c_[];
     static BufferedReader reader;
     // setup below here
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
         int T = getInput().nextInt();
-        String line = null;
         while (T-- > 0) {
-            dp = new long[10_000];
+            s = getInput().next();
+            t = getInput().next();
 
-            int n = getInput().nextInt();
-
-            v_ = parseInt(null, n);
-            c_ = new long[v_.length];
-
-            c_[0] = v_[0];
-            for (int i = 1; i < v_.length; i++) {
-                c_[i] = v_[i] + c_[i - 1];
-            }
-            System.out.println(Arrays.toString(c_));
-
-            dp[0] = v_[0];
-            dp[1] = v_[1] + dp[0];
-            dp[2] = v_[2] + dp[1];
-
-            for (int i = 3; i < n; i++) {
-                long t1 = (c_[i - 1] - dp[i - 1]) + v_[i];
-                long t2 = (c_[i - 2] - dp[i - 2]) + (v_[i] + v_[i - 1]);
-                long t3 = (c_[i - 3] - dp[i - 3]) + (v_[i] + v_[i - 1] + v_[i - 2]);
-
-                dp[i] = max(t1, max(t2, t3));
-            }
-
-            System.out.println(dp[n - 1]);
-
+            calculateResult();
         }
     }
 
-    public static long max(long x, long y) {
-        return x >= y ? x : y;
+    private static void calculateResult() {
+        boolean res = dp(s.length()-1, t.length()-1);
+//        System.out.println(String.format("\"%s\" convert to \"%s\" : \"%s\"", s, t, Boolean.toString(res)));
+        System.out.println(res ? "YES" : "NO");
+    }
+
+    static String s = null;
+    static String t = null;
+
+    static boolean is_del = false;
+
+    static boolean dp(int s_i, int t_i){
+
+        if(s_i == -1 && t_i == -1)
+            return true;
+
+        if(s_i < 0 && t_i >= 0 && !is_del){
+            return false;
+        }else if(s_i < 0 && t_i >= 0 && is_del){
+            return true;
+        }
+        if(isUpper(s.charAt(s_i))){
+            if(s.charAt(s_i) == t.charAt(t_i)){
+                if(is_del = (s_i-1 >= 0 && t_i-1 < 0))
+                    return true && dp(s_i-1, t_i);
+                else
+                    return true && dp(s_i-1, t_i-1)|| dp(s_i-1, t_i);
+            }else{
+    /* tidak dapat dihapus, maka string s tidak dapat diubah ke t*/
+                return false;
+            }
+        }else{
+            if(toUpper(s.charAt(s_i)) == t.charAt(t_i)){
+                if(is_del = (s_i-1 >= 0 && t_i-1 < 0)){
+                    return true && dp(s_i-1, t_i);
+                }else {
+                    return true && dp(s_i - 1, t_i - 1) || dp(s_i-1, t_i);
+                }
+            }else{
+                return dp(s_i-1, t_i);
+            }
+        }
+    }
+
+    static boolean isUpper(char c){
+        return c-65 >= 0 && c-65 <=25;
+    }
+
+    static int toUpper(int c){
+        return c-32;
     }
 
     static long[] parseInt(String[] input, int n) {
