@@ -196,10 +196,6 @@ public class Highways2 extends Template {
         }
     }
 
-    private void print(Object object){
-        TemplateUtility.print(getOutput(), object.toString(), true, true);
-    }
-
     int findSet(int i){
         if(p.get(i)==i){
             return i;
@@ -216,7 +212,7 @@ public class Highways2 extends Template {
         return findSet(i) == findSet(j);
     }
 
-    void unionSet(int i, int j){
+    private void unionSet(int i, int j){
         if(!isSameSet(i, j)){
             int set = findSet(j);
             int set1 = findSet(i);

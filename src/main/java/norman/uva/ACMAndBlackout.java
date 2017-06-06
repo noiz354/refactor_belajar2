@@ -80,7 +80,7 @@ public class ACMAndBlackout extends Template {
                     bannedEdgeFlag[edge.x][edge.y] = 1;
                 }
             }
-            print(mst+" ", false);
+            print(mst+" ");
 
             // exclude banned edge then rerun the mst without
             for(int i=0;i<bannedEdges.size();i++){
@@ -131,14 +131,6 @@ public class ACMAndBlackout extends Template {
         if(!isSameSet(i, j)){
             p[findSet(i)] = findSet(j);
         }
-    }
-
-    private void print(Object object, boolean withoutNewLine){
-        TemplateUtility.print(getOutput(), object.toString(), withoutNewLine, true);
-    }
-
-    private void print(Object object){
-        TemplateUtility.print(getOutput(), object.toString(), true, true);
     }
 
     private class Edge implements Comparable<Edge>{

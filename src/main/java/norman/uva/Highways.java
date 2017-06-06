@@ -130,10 +130,6 @@ public class Highways extends Template {
         }
     }
 
-    private void print(Object object){
-        TemplateUtility.print(getOutput(), object.toString(), true, true);
-    }
-
     private class Edge{
         int x, y;
         double weight;

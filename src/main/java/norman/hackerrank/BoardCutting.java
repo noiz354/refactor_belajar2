@@ -116,14 +116,4 @@ public class BoardCutting extends Template {
         integers.remove(innerIndex);
         data.set(index, integers);
     }
-
-    void print(Object object){
-        if(debug)
-            TemplateUtility.print(getOutput(), object.toString(), false, true);
-    }
-
-    void println(Object object){
-        if(debug)
-            TemplateUtility.print(getOutput(), object.toString(), true, true);
-    }
 }

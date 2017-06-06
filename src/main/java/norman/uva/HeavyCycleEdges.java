@@ -76,14 +76,6 @@ public class HeavyCycleEdges extends Template {
         }
     }
 
-    private void println(Object object){
-        TemplateUtility.print(getOutput(), object.toString(), true, true);
-    }
-
-    private void print(Object object){
-        TemplateUtility.print(getOutput(), object.toString(), false, true);
-    }
-
     boolean isSameSet(int i, int j){
 //        if(debug){
 //            print(i+" "+j);

@@ -103,13 +103,6 @@ public class Racing2 extends Template {
         }
     }
 
-    void print(Object object){
-        if(object==null || getOutput() == null)
-            return;
-
-        TemplateUtility.printCon(getOutput(), object.toString(), true);
-    }
-
     void sort(int n){
         int w[] = new int[1001];
         int i;

@@ -206,14 +206,6 @@ public class AudioPhobia extends Template {
         }
     }
 
-    private void print(Object object, boolean withoutNewLine){
-        TemplateUtility.print(getOutput(), object.toString(), withoutNewLine, true);
-    }
-
-    private void print(Object object){
-        TemplateUtility.print(getOutput(), object.toString(), true, true);
-    }
-
     private class Edge implements Comparable<Edge>{
         double weight;// 1 < Cost < 300
         int x, y;

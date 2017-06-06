@@ -146,13 +146,6 @@ public class Racing extends Template {
         }
     }
 
-    void print(Object object){
-        if(object==null || getOutput() == null)
-            return;
-
-        TemplateUtility.printCon(getOutput(), object.toString(), true);
-    }
-
     private static class Pair<E, V>{
         E u;
         V v;

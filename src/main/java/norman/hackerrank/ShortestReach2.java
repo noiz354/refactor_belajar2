@@ -107,14 +107,6 @@ public class ShortestReach2 extends Template {
         }
     }
 
-    void print(Object object) {
-        TemplateUtility.print(getOutput(), object.toString(), false, true);
-    }
-
-    void println(Object object) {
-        TemplateUtility.print(getOutput(), object.toString(), true, true);
-    }
-
     static class IntegerPair{
         public int first,second;
 

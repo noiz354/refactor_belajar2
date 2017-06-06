@@ -134,12 +134,4 @@ public class WordTransformation extends Template {
             println(next+" "+adj);
         }
     }
-
-    void print(Object object){
-        TemplateUtility.print(getOutput(), object.toString(), false, true);
-    }
-
-    void println(Object object){
-        TemplateUtility.print(getOutput(), object.toString(), true, true);
-    }
 }

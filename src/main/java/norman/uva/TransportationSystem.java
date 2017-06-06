@@ -125,10 +125,6 @@ public class TransportationSystem extends Template {
         }
     }
 
-    private void print(Object object){
-        TemplateUtility.print(getOutput(), object.toString(), true, true);
-    }
-
     int findPar(int x){
         return (par[x]==x)?x:(par[x] = findPar(par[x]));
     }

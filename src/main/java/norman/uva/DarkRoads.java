@@ -64,10 +64,6 @@ public class DarkRoads extends Template {
         }
     }
 
-    private void print(Object object){
-        TemplateUtility.print(getOutput(), object.toString(), true, true);
-    }
-
     boolean isSameSet(int i, int j){
 //        if(debug){
 //            print(i+" "+j);

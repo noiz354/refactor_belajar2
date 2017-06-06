@@ -75,12 +75,4 @@ public class FollowingOrder extends Template {
 		}
 	}
 
-	private void print(Object o){
-        TemplateUtility.print(getOutput(), o.toString(), false, true);
-    }
-
-	private void println(Object o){
-        TemplateUtility.print(getOutput(), o.toString(), true, true);
-    }
-
 }

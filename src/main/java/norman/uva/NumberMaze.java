@@ -96,16 +96,6 @@ public class NumberMaze extends Template {
         data.set(src_index_x, datas);
     }
 
-    void print(Object object) {
-        if (debug)
-            TemplateUtility.print(getOutput(), object.toString(), false, true);
-    }
-
-    void println(Object object) {
-        if (debug)
-            TemplateUtility.print(getOutput(), object.toString(), true, true);
-    }
-
     class IntegerPair{
         public int u, v, weigh;
 

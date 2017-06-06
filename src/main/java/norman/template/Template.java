@@ -137,6 +137,45 @@ public abstract class Template implements TemplateConst {
 		return out;
 	}
 
+	protected void print(int valueToPrint){
+		print(Integer.toString(valueToPrint));
+	}
+
+	protected void print(long valueToPrint){
+		print(Long.toString(valueToPrint));
+	}
+
+	protected void print(double valueToPrint){
+		print(Double.toString(valueToPrint));
+	}
+
+	protected void print(Object valueToPrint){
+		if(valueToPrint==null || getOutput() == null)
+			return;
+
+		print(valueToPrint.toString());
+	}
+
+	protected void println(int valueToPrint){
+		println(Integer.toString(valueToPrint));
+	}
+
+	protected void println(long valueToPrint){
+		println(Long.toString(valueToPrint));
+	}
+
+	protected void println(double valueToPrint){
+		println(Double.toString(valueToPrint));
+	}
+
+	protected void println(Object valueToPrint){
+		if(valueToPrint==null || getOutput() == null)
+			return;
+
+		println(valueToPrint.toString());
+	}
+
+
 	protected void println(String textToPrint) {
 		if (debug)
 			TemplateUtility.print(getOutput(), textToPrint, true, true);

@@ -287,6 +287,9 @@ public class Start {
 //		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.history_grading);
 
 		// uva 411 - LIS
-		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.what_goes_up);
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.what_goes_up);
+
+		// hackerrank https://www.hackerrank.com/challenges/summing-pieces
+		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.summing_pieces);
 	}
 }
