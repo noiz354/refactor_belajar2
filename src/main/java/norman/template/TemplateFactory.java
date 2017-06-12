@@ -35,7 +35,7 @@ public abstract class TemplateFactory {
 			, number_maze = 73, boardcutting = 74, knapsack = 75, diving_for_gold = 76, wormhole = 77, barcodes = 78
 			, max_sub_array = 79, word_justification = 80, flight_planner = 81, test_template = 82, sam_and_sub_strings = 83
 			, blackjack = 84, brick_games = 85, how_to_add = 86, lowest_price_in_town = 87, y2k = 88, hanoitower = 89
-			, history_grading = 90, what_goes_up = 91, summing_pieces = 92;
+			, history_grading = 90, what_goes_up = 91, summing_pieces = 92, kingdom_division = 93;
 
     public static void run(int category, int prob_num) {
 		switch (category) {
@@ -59,6 +59,9 @@ public abstract class TemplateFactory {
 			break;
 		case dynamic_programming:
 			switch(prob_num){
+				case kingdom_division:
+					new KingdomDivision();
+					break;
 				case summing_pieces:
 					new SummingPieces();
 					break;
