@@ -35,12 +35,19 @@ public abstract class TemplateFactory {
 			, number_maze = 73, boardcutting = 74, knapsack = 75, diving_for_gold = 76, wormhole = 77, barcodes = 78
 			, max_sub_array = 79, word_justification = 80, flight_planner = 81, test_template = 82, sam_and_sub_strings = 83
 			, blackjack = 84, brick_games = 85, how_to_add = 86, lowest_price_in_town = 87, y2k = 88, hanoitower = 89
-			, history_grading = 90, what_goes_up = 91, summing_pieces = 92, kingdom_division = 93;
+			, history_grading = 90, what_goes_up = 91, summing_pieces = 92, kingdom_division = 93
+			, william_pet=94, abbrevia_wil = 95, sum_of_different_pieces=96;
 
-    public static void run(int category, int prob_num) {
+	public static void run(int category, int prob_num) {
 		switch (category) {
 		case unknown:
 			switch (prob_num) {
+				case abbrevia_wil:
+					new AbbrevationWil();
+					break;
+				case william_pet:
+					new WilliamPet();
+					break;
 				case blackjack:
 					new BlackJack();
 					break;
@@ -250,6 +257,9 @@ public abstract class TemplateFactory {
 			break;
 		case uva:
 			switch (prob_num) {
+				case sum_of_different_pieces:
+					new SumOfDifferentPieces();
+					break;
 			case backtoeightqueens:
 				new BackToTheEightQueens();
 				break;

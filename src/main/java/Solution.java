@@ -36,33 +36,12 @@ public class Solution {
 
     private void doSomething() {
         int n = getInput().nextInt();
+        int a = getInput().nextInt();
+        int b = getInput().nextInt();
 
-        memo = new long[NODE+10][2][2];
-        done = new long[NODE+10][2][2];
 
-        adj = new List[NODE+10];
-        for(int i=0;i<adj.length;i++){
-            adj[i] = new ArrayList<>();
-        }
 
-        for(int i=1;i<=n;i++){
-            adj[i].clear();
-        }
-
-        for(int i=0;i<=n-2;i++){
-            int a =getInput().nextInt();
-            int b =getInput().nextInt();
-
-            adj[a].add(b);
-            adj[b].add(a);
-        }
-
-        cc++;
-        long res = dp(1,0,0,0);
-        res += dp(1,0,1,0);
-        res = norm(res);
-
-        System.out.println(res);
+        System.out.println((a+b*(n-1)) - (a*(n-1)+b)  + 1);
     }
 
     // this is f() in editorial

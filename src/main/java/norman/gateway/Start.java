@@ -292,6 +292,14 @@ public class Start {
 		// hackerrank https://www.hackerrank.com/challenges/summing-pieces
 //		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.summing_pieces);
 
-		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.kingdom_division);
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.kingdom_division);
+
+		// below is candidate interview
+//		TemplateFactory.run(TemplateFactory.unknown, TemplateFactory.william_pet);
+
+//		TemplateFactory.run(TemplateFactory.unknown, TemplateFactory.abbrevia_wil);
+		// below is candidate interview
+
+		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.sum_of_different_pieces);
 	}
 }
