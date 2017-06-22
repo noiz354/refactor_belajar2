@@ -36,7 +36,7 @@ public abstract class TemplateFactory {
 			, max_sub_array = 79, word_justification = 80, flight_planner = 81, test_template = 82, sam_and_sub_strings = 83
 			, blackjack = 84, brick_games = 85, how_to_add = 86, lowest_price_in_town = 87, y2k = 88, hanoitower = 89
 			, history_grading = 90, what_goes_up = 91, summing_pieces = 92, kingdom_division = 93
-			, william_pet=94, abbrevia_wil = 95, sum_of_different_pieces=96;
+			, william_pet=94, abbrevia_wil = 95, sum_of_different_pieces=96, fair_cut = 97, lets_yum_cha = 98;
 
 	public static void run(int category, int prob_num) {
 		switch (category) {
@@ -66,6 +66,12 @@ public abstract class TemplateFactory {
 			break;
 		case dynamic_programming:
 			switch(prob_num){
+				case lets_yum_cha:
+					new LetsYumCha();
+					break;
+				case fair_cut:
+					new FairCut();
+					break;
 				case kingdom_division:
 					new KingdomDivision();
 					break;
@@ -258,7 +264,7 @@ public abstract class TemplateFactory {
 		case uva:
 			switch (prob_num) {
 				case sum_of_different_pieces:
-					new SumOfDifferentPieces();
+					new SumOfDifferentPrimes();
 					break;
 			case backtoeightqueens:
 				new BackToTheEightQueens();

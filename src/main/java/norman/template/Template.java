@@ -176,6 +176,14 @@ public abstract class Template implements TemplateConst {
 	}
 
 
+	protected void printTab(int length){
+		length = Math.abs(length);
+		while(--length >= 0) {
+			print("\t");
+		}
+	}
+
+
 	protected void println(String textToPrint) {
 		if (debug)
 			TemplateUtility.print(getOutput(), textToPrint, true, true);

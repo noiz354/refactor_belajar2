@@ -17,64 +17,57 @@ class Main {
     }
 
     private void go() throws Exception {
-        String line;
-
-        try {
-            line = getInput2().readLine();
-
-            while (line != null) {
-                int n = Integer.parseInt(line), a, b;
-
-                int ori[] = new int[50];
-                line = getInput2().readLine();
-                String[] lines = line.split(" ");
-                int[] ints1 = convToInt(lines);
-
-                for (int i = 0; i < n; i++) {
-                    ori[ints1[i] - 1] = i;
-                }
-
-
-                while (true) {
-                    int ar[] = new int[50];
-
-                    line = getInput2().readLine();
-//                    println("#3 " + line);
-                    if (line == null || line.split(" ").length == 1)
-                        break;
-                    int[] ints = convToInt(line.split(" "));
-
-                    for (int i = 0; i < n; i++) {
-                        ar[ints[i] - 1] = i;
-                    }
-
-                    int table[][] = new int[50][50];
-                    // longest common subsequence
-                    for (int i = 1; i <= n; i++) {
-                        for (int j = 1; j <= n; j++) {
-                            if (ori[i - 1] == ar[j - 1])
-                                table[i][j] = table[i - 1][j - 1] + 1;
-                            else
-                                table[i][j] = Math.max(table[i - 1][j], table[i][j - 1]);
-                        }
-                    }
-
-                    System.out.println(String.format("%d", table[n][n]));
+// build prime sequence, sieve
+        int i, j, k;
+        primes = new int[N];
+        primes[0]=0;primes[1]=1;
+        char[] mark = new char[10_000];
+        int Pt = 0;
+        for(i=2;i<10_000;i++){
+            if(mark[i] ==0){
+                primes[Pt++] = i;
+                for(j=2;i*j<10_000;j++){
+                    mark[i*j] = 1;
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+//        print(Arrays.toString(primes));
+        // build prime sequence, sieve
+
+        dp = new int[N][187][15];
+        for(i=0;i<N;i++){
+            for(j=0;j<187;j++){
+                for(k=0;k<15;k++){
+                    dp[i][j][k]=-1;
+                }
+            }
+        }
+
+        i = getInput().nextInt();
+        j = getInput().nextInt();
+        while(i != 0 || j != 0){
+            System.out.println(nWays(i,0,j));
+
+            i = getInput().nextInt();
+            j = getInput().nextInt();
         }
     }
 
-    private int[] convToInt(String[] lines) {
-        int[] res = new int[lines.length];
-        int c = 0;
-        for (String line : lines) {
-            res[c] = Integer.parseInt(line);
-            c++;
+    final static int N = 5200;// maximal prime number
+
+    private int primes[];
+    private int[][][] dp;
+
+    private int nWays(int n, int i, int k) {
+        if(n==0&&k==0){
+            return 1;
+        }else if(n<0||i>=187||k==0){
+            return 0;
+        }else if(dp[n][i][k]!=-1){
+            return dp[n][i][k];
+        }else{
+            return dp[n][i][k] = nWays(n,i+1, k) + nWays(n-primes[i], i+1, k-1);
         }
-        return res;
     }
 
     private BufferedReader getInput2() {

@@ -300,6 +300,11 @@ public class Start {
 //		TemplateFactory.run(TemplateFactory.unknown, TemplateFactory.abbrevia_wil);
 		// below is candidate interview
 
-		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.sum_of_different_pieces);
+//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.sum_of_different_pieces);
+
+		// pending https://www.hackerrank.com/contests/hourrank-12/challenges/fair-cut/editorial
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.fair_cut);
+
+		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.lets_yum_cha);
 	}
 }

@@ -3,18 +3,19 @@ package norman.uva;
 import norman.template.Template;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * @author normansyahputa on 6/20/17.
  *
  * using memoization.
  */
-public class SumOfDifferentPieces extends Template{
-    public SumOfDifferentPieces() {
+public class SumOfDifferentPrimes extends Template{
+    public SumOfDifferentPrimes() {
         super("SumOfDifferentPieces", "SumOfDifferentPieces", LINUX, true);
     }
 
-    final static int N = 5200;// maximal prime number
+    /*final static int N = 5200;// maximal prime number
 
     private int primes[];
     private int[][][] dp;
@@ -57,6 +58,8 @@ public class SumOfDifferentPieces extends Template{
         }
     }
 
+
+
     private int nWays(int n, int i, int k) {
         if(n==0&&k==0){
             return 1;
@@ -66,6 +69,37 @@ public class SumOfDifferentPieces extends Template{
             return dp[n][i][k];
         }else{
             return dp[n][i][k] = nWays(n,i+1, k) + nWays(n-primes[i], i+1, k-1);
+        }
+    }*/
+
+    @Override
+    public void doSomething() {
+        boolean[] arr = new boolean[1130];
+        int[] primes = new int[189];
+        int top = 0;
+        arr[0] = arr[1] = true;
+        for (int i = 2; i < arr.length; i++)
+            if (!arr[i])
+                for (int j = i * i; j < arr.length; j += i)
+                    arr[j] = true;
+        for (int i = 0; i < arr.length; i++)
+            if (!arr[i])
+                primes[top++] = i;
+        while (true) {
+            int n = getInput().nextInt();
+            int r = getInput().nextInt();
+            if (n == 0 && r == 0)
+                break;
+            int[][] nWays = new int[1121][15];
+            nWays[0][0] = 1;
+            int i, j, k;
+            for(i = 0; i < top; i++) {
+                for(j = 1120; j >= primes[i]; j--) {
+                    for(k = 14; k >= 1; k--)
+                        nWays[j][k] += nWays[j-primes[i]][k-1];
+                }
+            }
+            println(nWays[n][r]);
         }
     }
 }

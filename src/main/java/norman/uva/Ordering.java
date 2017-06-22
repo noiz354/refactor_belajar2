@@ -108,7 +108,7 @@ public class Ordering extends Template {
 		return text;
 	}*/
 
-	void printTab(int index){
+	public void printTab(int index){
 		while(index-->0){
 			System.out.print(" ");
 		}

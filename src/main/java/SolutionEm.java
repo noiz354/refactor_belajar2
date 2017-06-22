@@ -139,18 +139,45 @@ public class SolutionEm {
 			}
 		}
 
-		 public static void main(String[] args){
-		        Scanner in = new Scanner(System.in);
-		        int res;
-		        int _n;
-		        _n = Integer.parseInt(in.nextLine());
-		        
-		        int _m;
-		        _m = Integer.parseInt(in.nextLine());
-		        
-		        res = totalCellsVisited(_n, _m);
-		        System.out.println(res);
-		        
-		    }
+	public static void main(String[] args){
+	 	List<Integer> equal = new ArrayList<Integer>(){{
+	 		add(1);
+			add(2);
+			add(3);
+		}};
+
+		List<Integer> sizeTwo = new ArrayList<Integer>(){{
+			add(1);
+			add(2);
+		}};
+
+		List<Integer> empty = new ArrayList<Integer>();
+
+		List<Integer> moreThanThree = new ArrayList<Integer>(){{
+			add(1);
+			add(2);
+			add(3);
+			add(4);
+		}};
+
+
+		assert (subList(null, 3)==null);
+		assert (subList(empty, 3)==null);
+		assert (subList(equal, 3).size()==3);
+		assert (subList(sizeTwo, 3).size()==2);
+		assert (subList(moreThanThree, 3).size()==3);
+		System.out.println("lewat");
+	}
+
+	public static List<Integer> subList(List<Integer> datas, int size){
+		if(datas != null && !datas.isEmpty()){
+			if(datas.size()<=size){
+				return datas;
+			}else{
+				return datas.subList(0,3);
+			}
+		}
+		return null;
+	}
 	
 }
