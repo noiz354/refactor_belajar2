@@ -17,56 +17,44 @@ class Main {
     }
 
     private void go() throws Exception {
-// build prime sequence, sieve
-        int i, j, k;
-        primes = new int[N];
-        primes[0]=0;primes[1]=1;
-        char[] mark = new char[10_000];
-        int Pt = 0;
-        for(i=2;i<10_000;i++){
-            if(mark[i] ==0){
-                primes[Pt++] = i;
-                for(j=2;i*j<10_000;j++){
-                    mark[i*j] = 1;
+        int T = getInput().nextInt();
+        int maxA[], maxB[], A[];
+        while(T-- > 0){
+            //System.out.println(T);
+
+            int n = getInput().nextInt();
+            A = new int[n];
+
+            maxA = new int[n];
+            maxB = new int[n];
+
+            for(int i = 0;i<n;i++){
+                A[i] = getInput().nextInt();
+            }
+
+            for(int i=n-1 ; i>=0 ; i--){
+                maxA[i] = 1;
+                for(int j=i+1 ; j<n ; j++){
+                    if(A[i]<A[j]){
+                        maxA[i] = Math.max(maxA[i], maxA[j]+1);
+                    }
                 }
             }
-        }
-//        print(Arrays.toString(primes));
-        // build prime sequence, sieve
 
-        dp = new int[N][187][15];
-        for(i=0;i<N;i++){
-            for(j=0;j<187;j++){
-                for(k=0;k<15;k++){
-                    dp[i][j][k]=-1;
+            for(int i=n-1 ; i>=0 ; i--){
+                maxB[i] = 1;
+                for(int j=i+1 ; j<n ; j++){
+                    if(A[i]>A[j]){
+                        maxB[i] = Math.max(maxB[i], maxB[j]+1);
+                    }
                 }
             }
-        }
 
-        i = getInput().nextInt();
-        j = getInput().nextInt();
-        while(i != 0 || j != 0){
-            System.out.println(nWays(i,0,j));
-
-            i = getInput().nextInt();
-            j = getInput().nextInt();
-        }
-    }
-
-    final static int N = 5200;// maximal prime number
-
-    private int primes[];
-    private int[][][] dp;
-
-    private int nWays(int n, int i, int k) {
-        if(n==0&&k==0){
-            return 1;
-        }else if(n<0||i>=187||k==0){
-            return 0;
-        }else if(dp[n][i][k]!=-1){
-            return dp[n][i][k];
-        }else{
-            return dp[n][i][k] = nWays(n,i+1, k) + nWays(n-primes[i], i+1, k-1);
+            int result =0;
+            for(int i=0;i<A.length;i++){
+                result = Math.max(maxA[i]+maxB[i]-1, result);
+            }
+            System.out.println(result);
         }
     }
 
