@@ -305,6 +305,10 @@ public class Start {
 		// pending https://www.hackerrank.com/contests/hourrank-12/challenges/fair-cut/editorial
 //		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.fair_cut);
 
-		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.lets_yum_cha);
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.lets_yum_cha);
+
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.coin_sum_tree);
+
+		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.diameter_of_tree);
 	}
 }
