@@ -183,7 +183,6 @@ public abstract class Template implements TemplateConst {
 		}
 	}
 
-
 	protected void println(String textToPrint) {
 		if (debug)
 			TemplateUtility.print(getOutput(), textToPrint, true, true);

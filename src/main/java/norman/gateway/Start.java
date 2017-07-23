@@ -1,6 +1,7 @@
 package norman.gateway;
 
 import norman.template.TemplateFactory;
+import norman.template.TemplateUtility;
 
 /**
  * This is the execution for all algorithm implementation
@@ -307,8 +308,12 @@ public class Start {
 
 //		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.lets_yum_cha);
 
-		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.coin_sum_tree);
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.coin_sum_tree);
 
 //		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.diameter_of_tree);
+
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.steve_explorer);
+
+		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.mobile);
 	}
 }

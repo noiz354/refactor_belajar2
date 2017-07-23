@@ -39,6 +39,7 @@ public class CoinSumTree extends Template {
             adj.get(v).add(u);
         }
 
+
         dfs(1,0);
         int ans = Math.max(dp1[1], dp2[1]);
         println(String.format("%d", ans));
