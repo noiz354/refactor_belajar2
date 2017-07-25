@@ -68,7 +68,8 @@ public abstract class TemplateFactory {
 		case dynamic_programming:
 			switch(prob_num){
 				case mobile:
-					new Mobile();
+					new MobileInput();
+//					new Mobile();// pending due to learn input
 					break;
 				case steve_explorer:
 					// failed to understand, maybe asking more experienced than me.

@@ -15,7 +15,7 @@ import java.util.List;
  * real problem
  * http://apio-olympiad.org/2007/apio-en.pdf
  *
- * first attempt.
+ * first attempt. FAILED ( wrong understanding !! )
  */
 public class Mobile extends Template{
     public Mobile() {
