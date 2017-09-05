@@ -16,6 +16,8 @@ import java.util.List;
  * http://apio-olympiad.org/2007/apio-en.pdf
  *
  * first attempt. FAILED ( wrong understanding !! )
+ *
+ * why failed ? failed to calculate height,
  */
 public class Mobile extends Template{
     public Mobile() {
@@ -26,62 +28,94 @@ public class Mobile extends Template{
     public void doSomething() {
         int N = getInput().nextInt();
 
-        depth = new int[N+1];
-        m = new int[N+1];
-        c = new int[N+1];
-        adj = new ArrayList<>();
+        int tmp = N;
 
-        for(int i=0;i<N+1;i++){
-            adj.add(new ArrayList<>());
-        }
+        adj = new int[N+1][2];
+        leaf = new int[N*2+1];
+        height = new int[N*2];
+        typ = new int[N*2];
+        swapped = new int[N*2];
 
-        int read_list = getInput().nextInt();
-        println(String.format("read_list : %d", read_list));
+        for (int i = 0; i < tmp; i++) {
+            adj[i][0] = getInput().nextInt();
+            adj[i][1] = getInput().nextInt();
 
-        for (int i = 0; i < read_list; i++) {
-            int a = getInput().nextInt();
-            int b = getInput().nextInt();
-
-            println(String.format("%d & %d", a, b));
-
-            adj.get(a).add(b);
-        }
-
-        println(Arrays.toString(depth));
-
-        M(1);
-        println(m[1]);
-    }
-
-    int M(int v){
-        if(adj.get(v).size()-1 > 0){
-            int leftChild = adj.get(v).get(0);
-            int rightChild = adj.get(v).get(1);
-
-            if(depth[leftChild]<depth[rightChild]){
-                return m[v] = 1 +  C(leftChild) + M(rightChild);
+            if(adj[i][0]<0){
+                adj[i][0] = N;
+                leaf[N++] = 1;
+            }else{
+                --adj[i][0];
             }
 
-            if(depth[leftChild]>depth[rightChild]){
-                return m[v] = M(leftChild)+C(rightChild);
-            }
-
-            if(depth[leftChild]==depth[rightChild]){
-                return m[v] = Math.min( 1+ M(leftChild) + C(rightChild), C(leftChild) + M(rightChild));
+            if(adj[i][1]<0){
+                adj[i][1] = N;
+                leaf[N++] = 1;
+            }else{
+                --adj[i][1];
             }
         }
 
-        return 0;
+        dfs(0);
+
+        print(String.format("%d\n",typ[0] < 0 ? typ[0] : swapped[0]));
     }
 
-    int C(int v){
-        // if v has complete tree
-        if(adj.get(v).size()-1 == 0 || adj.get(v).size()-1 == 2)
-            return 0;
-        else // otherwise
-            return Integer.MAX_VALUE;
+    private void dfs(int v){
+
+        if(leaf[v] == 0){
+            height[v] = 1;
+            return;
+        }
+
+        int l = adj[v][0];
+        int r = adj[v][0];
+
+        dfs(l);
+        dfs(r);
+
+//	cout << l << " " << typ[l] << " " << swapped[l] << " " << height[l] << endl;
+//	cout << r << " " << typ[r] << " " << swapped[r] << " " << height[r] << endl;
+
+        height[v] = Math.max(height[l],height[r])+1;
+        typ[v] = Math.min(typ[l],typ[r]);
+        swapped[v] = swapped[l]+swapped[r];
+
+        if(typ[v] < 0) return;
+
+        if(typ[l] != 0 && typ[r] != 0){		//both incomplete
+            typ[v] = -1;
+            return;
+        }
+
+        if(height[l] == height[r]){			//heights are same then the complete subtree will go first
+            swapped[v] += typ[l] < typ[r] ? 1 : 0 ;
+            return;
+        }
+
+        typ[v] = 0;
+        if(height[l] < height[r]){			//height are different then the larger subtree will go first
+            int temp = l;
+            l = r;
+            r = temp;
+            swapped[v] += 1;
+        }
+
+        if(height[l] > height[r]+1){
+            typ[v]  = -1;
+            return;
+        }
+
+        if(typ[r] != 0){						//if the right subtree is smaller than left and not complete
+            typ[v] = -1;
+            return;
+        }
     }
 
-    List<List<Integer>> adj;
-    int[] depth, m, c;
+
+
+    private int[][] adj;
+    private int[] leaf;
+    private int[] height;
+    private int[] typ;
+    private int swapped[];
 }
