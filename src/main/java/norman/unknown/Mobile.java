@@ -32,24 +32,23 @@ public class Mobile extends Template{
 
         adj = new int[N+1][2];
         leaf = new int[N*2+1];
-        height = new int[N*2];
-        typ = new int[N*2];
-        swapped = new int[N*2];
+        height = new int[N*2+1];
+        typ = new int[N*2+1];
+        swapped = new int[N*2+1];
 
         for (int i = 0; i < tmp; i++) {
             adj[i][0] = getInput().nextInt();
             adj[i][1] = getInput().nextInt();
 
-            if(adj[i][0]<0){
-                adj[i][0] = N;
-                leaf[N++] = 1;
+            if(adj[i][0] < 0){
+                leaf[N] = 1;
+                adj[i][0] = N++;
             }else{
                 --adj[i][0];
             }
-
-            if(adj[i][1]<0){
-                adj[i][1] = N;
-                leaf[N++] = 1;
+            if(adj[i][1] < 0){
+                leaf[N] = 1;
+                adj[i][1] = N++;
             }else{
                 --adj[i][1];
             }
@@ -62,13 +61,14 @@ public class Mobile extends Template{
 
     private void dfs(int v){
 
-        if(leaf[v] == 0){
+        if(leaf[v] != 0){
             height[v] = 1;
+            typ[v] = 1;
             return;
         }
 
         int l = adj[v][0];
-        int r = adj[v][0];
+        int r = adj[v][1];
 
         dfs(l);
         dfs(r);
@@ -82,7 +82,7 @@ public class Mobile extends Template{
 
         if(typ[v] < 0) return;
 
-        if(typ[l] != 0 && typ[r] != 0){		//both incomplete
+        if(typ[l] == 0 && typ[r] == 0){		//both incomplete
             typ[v] = -1;
             return;
         }
@@ -105,9 +105,8 @@ public class Mobile extends Template{
             return;
         }
 
-        if(typ[r] != 0){						//if the right subtree is smaller than left and not complete
+        if(typ[r] == 0){						//if the right subtree is smaller than left and not complete
             typ[v] = -1;
-            return;
         }
     }
 
