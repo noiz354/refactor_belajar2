@@ -18,7 +18,7 @@ public abstract class TemplateFactory {
 			sorting = 9,
 			unknown = 10;
 
-	public final static int bomberman = 1, bughunter = 2, backtoeightqueens = 3, callforwarding = 4, cd = 5
+	public final static int bomberman = 1, bughunter = 2, backtoeightqueens = 3, callforwarding = 4
 			, cellRemoval = 6, chestOfDrawers = 7, countLuck =8, division = 9, dominator = 10, dragonofloowater = 11
 			, eightqueenproblem = 12, evenfibo = 13, eventree = 14, expertEnough = 15, granddiner = 16
 			, grapevine = 17, gridchallenge = 18, hammingdistance = 19, hanoitowerproblemagain = 20, highestpeak = 21
@@ -33,7 +33,7 @@ public abstract class TemplateFactory {
 			, heavy_cycle_edges = 63, kahn_topological_sort = 64, beverages = 65, shortestreach2 = 66, word_transformation = 67
 			, davis_staircase = 68, balanced_brackets = 69, sherlock_and_the_cost = 70, candies = 71, greedy_florist = 72
 			, number_maze = 73, boardcutting = 74, knapsack = 75, diving_for_gold = 76, wormhole = 77, barcodes = 78
-			, max_sub_array = 79, word_justification = 80, flight_planner = 81, test_template = 82, sam_and_sub_strings = 83
+			, max_sub_array = 79, word_justification = 80, test_template = 82, sam_and_sub_strings = 83
 			, blackjack = 84, brick_games = 85, how_to_add = 86, lowest_price_in_town = 87, y2k = 88, hanoitower = 89
 			, history_grading = 90, what_goes_up = 91, summing_pieces = 92, kingdom_division = 93
 			, william_pet=94, abbrevia_wil = 95, sum_of_different_pieces=96, fair_cut = 97, lets_yum_cha = 98, coin_sum_tree = 99
@@ -111,9 +111,6 @@ public abstract class TemplateFactory {
 					break;
 				case brick_games:
 					new BrickGame();
-					break;
-				case flight_planner:
-					new FlightPlanner();
 					break;
 				case word_justification:
 					new WordJustification();
@@ -290,12 +287,6 @@ public abstract class TemplateFactory {
 				break;
 			case callforwarding:
 				new CallForwarding();
-				break;
-			case cd:
-				new CD2();
-				//[START] This is old code
-//				new CD();
-				//[END] This is old code
 				break;
 			case chestOfDrawers:
 				new ChestOfDrawers();

@@ -30,9 +30,6 @@ public class Start {
 		// renew Template
 //		TemplateFactory.run(TemplateFactory.unknown, TemplateFactory.test_template);
 
-		// flight planner - dp TSP ( Travel Salesman Problem )
-//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.flight_planner);
-
 		// word justification - dynamic programming
 //		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.word_justification);
 
@@ -229,7 +226,7 @@ public class Start {
 //		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.banknotquiteocr);
 		
 		// graph - connected component , failed at some test cases and stackoverflow
-//		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.ancientmessages);
+		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.ancientmessages);
 		
 		// graph - connected component , 6 ways to move
 //		TemplateFactory.run(TemplateFactory.uva, TemplateFactory.llgiocodellx);
@@ -314,6 +311,6 @@ public class Start {
 
 //		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.steve_explorer);
 
-		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.mobile);
+//		TemplateFactory.run(TemplateFactory.dynamic_programming, TemplateFactory.mobile);
 	}
 }

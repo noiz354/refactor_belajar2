@@ -85,9 +85,9 @@ public class AncientMessages extends Template {
 						map[i][(j*4)+k] = hex[hexToInt(temp.charAt(j))][k];
 					}
 				}
-			}
-			printMap();
+			}printMap();
 			System.out.println();
+
 
 //			System.out.print("Case "+countTest++ +": ");
 			lvl1 = new HashSet<>();
@@ -145,6 +145,7 @@ public class AncientMessages extends Template {
         for(int i=0;i<map.length;i++){
 			System.out.println(Arrays.toString(map[i]));
 		}
+		System.out.println();
 	}
 	
 	int floodfill(int r, int c, int c1, int c2 ){// return the size of CC
